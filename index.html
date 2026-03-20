@@ -2,47 +2,98 @@
 <html>
 <head>
   <title>Purnima's Website</title>
+
   <style>
     body {
       font-family: Arial;
-      background: linear-gradient(to right, #ff9a9e, #fad0c4);
+      background: linear-gradient(to right, #667eea, #764ba2);
       text-align: center;
-      color: #333;
+      color: white;
     }
+
     h1 {
-      margin-top: 50px;
+      margin-top: 30px;
       font-size: 40px;
+      animation: fadeIn 2s ease-in-out;
     }
+
     p {
-      font-size: 20px;
+      font-size: 18px;
     }
+
     .box {
       background: white;
+      color: black;
       padding: 20px;
       margin: 20px;
       border-radius: 15px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.2);
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    img {
+      width: 150px;
+      border-radius: 50%;
+      margin-top: 20px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background: #ff4b2b;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background: #ff416c;
+    }
+
+    a {
+      text-decoration: none;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
     }
   </style>
 </head>
+
 <body>
 
   <h1>Welcome to My Website 🚀</h1>
-  <p>This is my first stylish website 😎</p>
 
+  <!-- 📸 PHOTO -->
+  <img src="https://via.placeholder.com/150" alt="My Photo">
+
+  <p>This is my stylish website 😎</p>
+
+  <!-- 🧑 ABOUT -->
   <div class="box">
     <h2>About Me</h2>
-    <p>Hi! My name is Purnima. I am learning coding and building websites.</p>
+    <p>Hi! I am Purnima. I am learning coding 💻</p>
   </div>
 
+  <!-- 💻 SKILLS -->
   <div class="box">
     <h2>My Skills</h2>
-    <p>HTML | CSS | Beginner Developer 💻</p>
+    <p>HTML | CSS | Beginner Developer</p>
   </div>
 
+  <!-- 🔘 BUTTON -->
   <div class="box">
-    <h2>Contact</h2>
-    <p>Email: your-email@gmail.com</p>
+    <h2>Click Me</h2>
+    <button onclick="alert('Hello Purnima! 😄')">Click Here</button>
+  </div>
+
+  <!-- 🔗 INSTAGRAM -->
+  <div class="box">
+    <h2>Follow Me</h2>
+    <a href="https://instagram.com" target="_blank">
+      <button>Open Instagram</button>
+    </a>
   </div>
 
 </body>
