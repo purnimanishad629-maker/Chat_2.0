@@ -151,51 +151,396 @@
     .keep-going {
       text-align: center;
       background: linear-gradient(135deg, #ff6b6b, #ff9f4a);
-      color: white;
-    }
 
-    .footer {
-      text-align: center;
-      background: #2c3e50;
-      color: white;
-    }
-
-    .footer a {
-      color: #ff9f4a;
-      text-decoration: none;
-    }
-
-    hr {
-      margin: 0.5rem 0;
-      border-color: #ffddb0;
-    }
-
-    .nav-links {
-      display: flex;
-      justify-content: center;
-      gap: 0.8rem;
-      flex-wrap: wrap;
-      margin: 0.5rem 0;
-    }
-
-    .nav-links span {
-      font-weight: 500;
-      padding: 0.3rem 0.8rem;
-      border-radius: 2rem;
-      background: linear-gradient(135deg, #ff6b6b, #ff9f4a);
-      color: white;
-      font-size: 0.85rem;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .nav-links span:hover {
-      transform: scale(1.05);
-    }
-  </style>
 </head>
 <body>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+body {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  padding: 1rem;
+  min-height: 100vh;
+}
+
+/* Page Navigation - IMPORTANT */
+.page {
+  display: none !important;
+}
+
+.active-page {
+  display: block !important;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Home Page Grid */
+.motivation-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.2rem;
+}
+
+@media (min-width: 768px) {
+  .motivation-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .motivation-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+/* Cards */
+.card {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 1.5rem;
+  padding: 1.3rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 25px 40px rgba(0, 0, 0, 0.25);
+}
+
+.card:active {
+  transform: scale(0.98);
+}
+
+/* Profile Card */
+.profile-card {
+  background: linear-gradient(135deg, #fff5e6, #ffe6d5);
+  text-align: center;
+}
+
+.profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 4px solid #ff6b6b;
+  margin-bottom: 1rem;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+h1 {
+  color: #ff6b6b;
+  font-size: 1.6rem;
+  margin-bottom: 0.3rem;
+}
+
+.sub-name {
+  color: #ff9f4a;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.about-text {
+  background: white;
+  padding: 0.8rem;
+  border-radius: 1rem;
+  line-height: 1.5;
+  color: #5a3e2b;
+  font-size: 0.85rem;
+}
+
+.welcome-tag {
+  font-size: 1.3rem;
+  font-weight: bold;
+  background: linear-gradient(135deg, #ff6b6b, #ff9f4a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.section-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #ff6b6b;
+  margin-bottom: 0.8rem;
+  border-left: 4px solid #ff9f4a;
+  padding-left: 0.8rem;
+}
+
+.shayari-text, .poem-line {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #5a3e2b;
+  font-style: italic;
+  text-align: center;
+  padding: 0.5rem;
+}
+
+.inspire-text {
+  font-size: 1rem;
+  font-weight: bold;
+  color: #ff6b6b;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+
+.keep-going {
+  text-align: center;
+  background: linear-gradient(135deg, #ff6b6b, #ff9f4a);
+  color: white;
+}
+
+.footer {
+  text-align: center;
+  background: #2c3e50;
+  color: white;
+}
+
+.footer a {
+  color: #ff9f4a;
+  text-decoration: none;
+}
+
+hr {
+  margin: 0.5rem 0;
+  border-color: #ffddb0;
+}
+
+.nav-links {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+  margin: 0.5rem 0;
+}
+
+.nav-links span {
+  font-weight: 500;
+  padding: 0.3rem 0.8rem;
+  border-radius: 2rem;
+  background: linear-gradient(135deg, #ff6b6b, #ff9f4a);
+  color: white;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: 0.3s;
+  display: inline-block;
+}
+
+.nav-links span:hover {
+  transform: scale(1.05);
+}
+
+/* Page Header Styles */
+.page-header {
+  background: linear-gradient(135deg, #ff6b6b, #ff9f4a);
+  color: white;
+  padding: 1.2rem;
+  border-radius: 1.5rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.page-header h1 {
+  color: white;
+  font-size: 1.5rem;
+}
+
+.back-home {
+  display: inline-block;
+  margin-top: 0.8rem;
+  padding: 0.4rem 1rem;
+  background: rgba(255,255,255,0.2);
+  color: white;
+  border-radius: 2rem;
+  cursor: pointer;
+}
+
+/* Content Cards */
+.content-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  border-left: 6px solid #ff6b6b;
+}
+
+.content-text {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #2d2b26;
+  font-style: italic;
+}
+
+.content-author {
+  margin-top: 0.5rem;
+  color: #ff6b6b;
+  text-align: right;
+  font-weight: bold;
+}
+
+.poem-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  border-bottom: 3px solid #ff6b6b;
+}
+
+.poem-text {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #2d2b26;
+  white-space: pre-line;
+}
+
+.thought-card {
+  background: white;
+  border-radius: 1rem;
+  padding: 1.2rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  border-bottom: 3px solid #ff6b6b;
+}
+
+.thought-text {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #2d2b26;
+}
+
+/* Chat Styles */
+.chat-main {
+  background: white;
+  border-radius: 1.5rem;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.chat-header {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.chat-messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1rem;
+  background: #f8f9fa;
+}
+
+.message {
+  margin-bottom: 1rem;
+  display: flex;
+}
+
+.user-message {
+  justify-content: flex-end;
+}
+
+.bot-message {
+  justify-content: flex-start;
+}
+
+.message-bubble {
+  max-width: 85%;
+  padding: 0.8rem 1rem;
+  border-radius: 1.2rem;
+  word-wrap: break-word;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+.user-message .message-bubble {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+}
+
+.bot-message .message-bubble {
+  background: white;
+  color: #333;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.chat-input-area {
+  display: flex;
+  gap: 0.5rem;
+  padding: 0.8rem;
+  background: white;
+  border-top: 1px solid #eee;
+}
+
+.chat-input {
+  flex: 1;
+  padding: 0.7rem;
+  border: 1px solid #ddd;
+  border-radius: 2rem;
+  outline: none;
+}
+
+.send-btn {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 2rem;
+  cursor: pointer;
+}
+
+.typing-dots {
+  display: flex;
+  gap: 6px;
+  padding: 0.6rem 1rem;
+  background: white;
+  border-radius: 1rem;
+  width: fit-content;
+}
+
+.typing-dots span {
+  width: 8px;
+  height: 8px;
+  background: #888;
+  border-radius: 50%;
+  animation: typingAnim 1.4s infinite;
+}
+
+@keyframes typingAnim {
+  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+  30% { transform: translateY(-10px); opacity: 1; }
+}
+
+.footer-nav {
+  text-align: center;
+  padding: 0.8rem;
+  background: #f8f9fa;
+}
+
+.footer-nav span {
+  color: #ff6b6b;
+  margin: 0 0.5rem;
+  cursor: pointer;
+}
+
+button, .card, .nav-links span, .back-home, .footer-nav span {
+  cursor: pointer;
+}
+      
 <!-- ==================== HOME PAGE ==================== -->
 <div id="homePage" class="page active-page">
   <div class="motivation-container">
