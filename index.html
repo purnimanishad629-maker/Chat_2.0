@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+      <!DOCTYPE html>
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
@@ -52,10 +52,10 @@
       border-bottom: 5px solid #f39c12;
     }
 
-    /* image styling */
+    /* image styling - actual photo will be displayed */
     .profile-img {
-      width: 130px;
-      height: 130px;
+      width: 140px;
+      height: 140px;
       border-radius: 50%;
       object-fit: cover;
       border: 5px solid #ffb347;
@@ -235,6 +235,10 @@
       h1 {
         font-size: 1.6rem;
       }
+      .profile-img {
+        width: 110px;
+        height: 110px;
+      }
     }
 
     /* typing effect for welcome line (subtle) */
@@ -247,6 +251,11 @@
       padding: 0.4rem 1rem;
       border-radius: 50px;
       margin-bottom: 0.8rem;
+    }
+
+    /* fallback text if image fails to load */
+    .profile-img {
+      object-fit: cover;
     }
   </style>
 </head>
@@ -270,15 +279,12 @@
     </div>
   </div>
 
-  <!-- Profile section - includes Purnima details from old code, plus photo placeholder with female avatar style (since image not provided, using a modern motivational avatar but keeping it personal) -->
+  <!-- Profile section - includes YOUR IMAGE (Purnima.jpg) as per old code requirement -->
   <div class="card profile-card">
     <div style="text-align: center;">
-      <!-- Profile image: using a placeholder with initial "P" but looks like a stylish profile. As per old code we used Purnima.jpg, but to match live site we keep a nice modern gradient avatar with text -->
-      <div style="display: flex; justify-content: center;">
-        <div class="profile-img" style="background: linear-gradient(145deg, #f7b787, #f5a65b); display: flex; align-items: center; justify-content: center; font-size: 3.5rem; font-weight: bold; color: white;">
-          P
-        </div>
-      </div>
+      <!-- YOUR IMAGE: using the exact same filename as your old code "Purnima.jpg" -->
+      <!-- Agar aapki image ka naam "Purnima.jpg" hai to ye automatic display hoga. Agar image naam alag ho to yahan "src" change karein. -->
+      <img class="profile-img" src="Purnima.jpg" alt="Purnima Nishad - My Photo" onerror="this.onerror=null; this.src='https://via.placeholder.com/140x140?text=Purnima'; this.style.objectFit='cover';">
       <h1>Purnima Nishad</h1>
       <div class="sub-name">✨ Believer | Creator | Learner ✨</div>
       <div class="about-text">
@@ -350,18 +356,13 @@
 
 </div>
 
-<!-- small additional script to add dynamic greeting effect (optional but fun) -->
 <script>
-  // just an elegant console greeting and dynamic year (no intrusive)
-  console.log("✨ Mera Motivation Hub — Purnima ki website mein swagat hai! ✨");
-  // optional: set current year in footer if needed? not required but nice 
-  const yearSpan = document.createElement('span');
-  // but not needed for design, just keep as is.
-  // add micro interaction: any card click gentle feedback
+  // console greeting and subtle card interaction
+  console.log("✨ Mera Motivation Hub — Purnima ki website mein aapka swagat hai! ✨");
+  
   const allCards = document.querySelectorAll('.card');
   allCards.forEach(card => {
     card.addEventListener('click', (e) => {
-      // just a small ripple effect (no redirection, just playful)
       if(e.target.closest('a')) return;
       card.style.transform = 'scale(0.99)';
       setTimeout(() => {
@@ -369,6 +370,29 @@
       }, 120);
     });
   });
+
+  // Optional: agar aapki image load na ho to user ko guidance de sakte hain, lekin humne onerror pehle hi laga diya hai
+  // Agar aapke paas "Purnima.jpg" nahi hai to aapko image file ko same folder mein rakhna hoga.
+  // Agar image ka naam different hai to "Purnima.jpg" ki jagah apna correct filename likhein.
+  console.log("✅ Image path set to 'Purnima.jpg' — agar image dikh nahi rahi to confirm karein ki image file same folder mein 'Purnima.jpg' naam se maujood hai.");
 </script>
+
+<!--
+  NOTE: Is website mein aapki original image "Purnima.jpg" use ki gayi hai jaise aapke purane code mein thi.
+  Agar aapki image ka naam alag hai (jaise "myphoto.png" ya "Purnima Nishad.jpg") to upar <img> tag ke andar 
+  src="Purnima.jpg" ko apne sahi image path se replace kar dijiye.
+  Example: src="meri_photo.jpg"
+  
+  Website bilkul waisi hi hai jaise aapne image mein dikhayi thi: 
+  - Inspiration of the Day (Sapne wahi sach hote..)
+  - Trending Shayari
+  - Quote of the Day
+  - Positive Thoughts
+  - Motivational Poem (Udaan unchi bharni hai)
+  - Keep Going & Stay Motivated section
+  - Aapki personal details aur profile image original code ke hisaab se add ki gayi.
+  
+  Ab aapki apni image profile mein show hogi, mountains ya placeholder ki jagah.
+-->
 </body>
 </html>
