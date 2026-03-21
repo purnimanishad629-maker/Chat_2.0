@@ -1,4 +1,4 @@
-      <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
@@ -30,17 +30,15 @@
       background: rgba(255, 255, 255, 0.96);
       border-radius: 2rem;
       padding: 1.8rem 1.5rem;
-      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.05);
-      transition: transform 0.25s ease, box-shadow 0.3s;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2);
+      transition: transform 0.25s ease;
       border: 1px solid rgba(255, 215, 150, 0.5);
-      animation: fadeSlideUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+      animation: fadeSlideUp 0.6s ease forwards;
       opacity: 0;
     }
 
     .card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 28px 38px -16px rgba(0, 0, 0, 0.25);
-      border-color: #ffb347;
     }
 
     .clickable-card {
@@ -48,28 +46,14 @@
       position: relative;
     }
 
-    .clickable-card::after {
-      content: "🔗";
-      position: absolute;
-      bottom: 15px;
-      right: 20px;
-      font-size: 1.2rem;
-      opacity: 0.6;
-      transition: opacity 0.3s;
-    }
-
-    .clickable-card:hover::after {
-      opacity: 1;
+    .clickable-card:active {
+      transform: scale(0.98);
     }
 
     .profile-card {
       background: linear-gradient(135deg, #ffffff 0%, #fff7ed 100%);
       border-bottom: 5px solid #f39c12;
       cursor: default;
-    }
-
-    .profile-card::after {
-      display: none;
     }
 
     .profile-img {
@@ -80,13 +64,6 @@
       border: 5px solid #ffb347;
       box-shadow: 0 12px 22px -8px rgba(0, 0, 0, 0.2);
       margin-bottom: 1rem;
-      transition: all 0.4s;
-      background: #ffe0b5;
-    }
-
-    .profile-img:hover {
-      transform: scale(1.02);
-      border-color: #e67e22;
     }
 
     h1 {
@@ -96,8 +73,6 @@
       background-clip: text;
       -webkit-background-clip: text;
       color: transparent;
-      letter-spacing: -0.3px;
-      margin: 0.5rem 0 0.2rem;
     }
 
     .sub-name {
@@ -106,7 +81,6 @@
       color: #b95f1a;
       border-bottom: 2px dotted #ffcd94;
       display: inline-block;
-      padding-bottom: 0.2rem;
     }
 
     .section-title {
@@ -118,9 +92,6 @@
       padding: 0.2rem 1.2rem;
       border-radius: 40px;
       color: #b6490e;
-      letter-spacing: -0.2px;
-      box-shadow: inset 0 -1px 0 #ffd59e;
-      pointer-events: none;
     }
 
     .inspire-text {
@@ -131,10 +102,8 @@
       background: #fff1e0;
       padding: 1.2rem;
       border-radius: 1.8rem;
-      margin: 0.8rem 0;
       border-left: 7px solid #f39c12;
       text-align: center;
-      pointer-events: none;
     }
 
     .shayari-text {
@@ -145,8 +114,6 @@
       border-radius: 1.5rem;
       color: #2d2b26;
       line-height: 1.45;
-      box-shadow: 0 3px 8px rgba(0,0,0,0.03);
-      pointer-events: none;
     }
 
     .poem-line {
@@ -157,21 +124,15 @@
       padding: 0.8rem;
       border-radius: 2rem;
       margin: 0.6rem 0;
-      white-space: pre-line;
-      pointer-events: none;
     }
 
     .keep-going {
       background: #fdebd0;
       font-weight: bold;
       font-size: 1.5rem;
-      letter-spacing: 2px;
       color: #c94f0b;
+      text-align: center;
       cursor: default;
-    }
-
-    .keep-going::after {
-      display: none;
     }
 
     .footer {
@@ -180,35 +141,12 @@
       border-radius: 2rem;
       padding: 1.5rem;
       text-align: center;
-      cursor: default;
-    }
-
-    .footer::after {
-      display: none;
     }
 
     .footer a {
       color: #ffbc6e;
       text-decoration: none;
-      font-weight: 600;
       margin: 0 0.5rem;
-      transition: 0.2s;
-    }
-
-    .footer a:hover {
-      color: #ffa33c;
-      text-decoration: underline;
-    }
-
-    .social-icons {
-      margin-top: 0.8rem;
-      font-size: 1.1rem;
-      word-spacing: 10px;
-    }
-
-    hr {
-      margin: 0.5rem 0;
-      border-color: #ffddb0;
     }
 
     .about-text {
@@ -217,10 +155,9 @@
       line-height: 1.55;
       color: #2e2a24;
       background: #fffbf2;
-      padding: 1rem 1.2rem;
+      padding: 1rem;
       border-radius: 1.5rem;
       margin-top: 0.5rem;
-      pointer-events: none;
     }
 
     .welcome-tag {
@@ -232,7 +169,6 @@
       padding: 0.4rem 1rem;
       border-radius: 50px;
       margin-bottom: 0.8rem;
-      pointer-events: none;
     }
 
     /* Chatbot Card Special Style */
@@ -251,14 +187,8 @@
     }
 
     @keyframes fadeSlideUp {
-      0% {
-        opacity: 0;
-        transform: translateY(24px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(24px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
 
     .card:nth-child(1) { animation-delay: 0.05s; }
@@ -271,117 +201,61 @@
     .card:nth-child(8) { animation-delay: 0.75s; }
 
     @media (max-width: 550px) {
-      body {
-        padding: 1rem;
-      }
-      .card {
-        padding: 1.3rem;
-      }
-      .inspire-text {
-        font-size: 1.3rem;
-      }
-      .section-title {
-        font-size: 1.4rem;
-      }
-      h1 {
-        font-size: 1.6rem;
-      }
-      .profile-img {
-        width: 110px;
-        height: 110px;
-      }
+      .profile-img { width: 110px; height: 110px; }
+      .inspire-text { font-size: 1.3rem; }
+      .section-title { font-size: 1.4rem; }
     }
 
-    /* Modal Styles */
-    .modal-overlay {
+    /* Chatbot Modal - Fixed */
+    .chatbot-modal {
+      display: none;
       position: fixed;
       top: 0;
       left: 0;
       width: 100%;
       height: 100%;
-      background: rgba(0,0,0,0.85);
-      backdrop-filter: blur(8px);
-      z-index: 1000;
-      display: flex;
+      background: rgba(0,0,0,0.9);
+      z-index: 9999;
       align-items: center;
       justify-content: center;
       padding: 1rem;
-      opacity: 0;
-      visibility: hidden;
-      transition: all 0.3s ease;
     }
-    .modal-overlay.active {
-      opacity: 1;
-      visibility: visible;
+    .chatbot-modal.show {
+      display: flex;
     }
-    .modal-container {
-      background: #fffaf2;
+    .chatbot-container {
+      background: white;
       border-radius: 2rem;
-      max-width: 750px;
       width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-      box-shadow: 0 30px 50px rgba(0,0,0,0.4);
-      animation: modalZoom 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-      position: relative;
+      max-width: 600px;
+      height: 80vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.5);
     }
-    @keyframes modalZoom {
-      from {
-        transform: scale(0.9);
-        opacity: 0;
-      }
-      to {
-        transform: scale(1);
-        opacity: 1;
-      }
-    }
-    .modal-header {
-      position: sticky;
-      top: 0;
-      background: #f39c12;
+    .chatbot-header {
+      background: #2a5298;
+      color: white;
       padding: 1rem 1.5rem;
-      border-radius: 2rem 2rem 0 0;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      color: white;
       font-weight: bold;
-      z-index: 10;
     }
-    .modal-header h2 {
-      font-size: 1.5rem;
+    .chatbot-header h3 {
       margin: 0;
+      font-size: 1.3rem;
     }
-    .close-modal {
-      background: rgba(0,0,0,0.3);
+    .close-chat {
+      background: rgba(255,255,255,0.2);
       border: none;
       color: white;
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       cursor: pointer;
-      width: 36px;
-      height: 36px;
+      width: 35px;
+      height: 35px;
       border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: 0.2s;
-    }
-    .close-modal:hover {
-      background: #e67e22;
-      transform: rotate(90deg);
-    }
-    .modal-body {
-      padding: 1.8rem;
-    }
-
-    /* Chatbot Specific Styles */
-    .chat-container {
-      display: flex;
-      flex-direction: column;
-      height: 500px;
-      background: #f8f9fa;
-      border-radius: 1.5rem;
-      overflow: hidden;
     }
     .chat-messages {
       flex: 1;
@@ -390,12 +264,13 @@
       display: flex;
       flex-direction: column;
       gap: 0.8rem;
+      background: #f8f9fa;
     }
     .message {
       max-width: 85%;
       padding: 0.8rem 1rem;
       border-radius: 1.2rem;
-      animation: fadeIn 0.3s ease;
+      word-wrap: break-word;
     }
     .user-message {
       background: #f39c12;
@@ -408,14 +283,14 @@
       color: #333;
       align-self: flex-start;
       border-bottom-left-radius: 0.3rem;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-      border-left: 4px solid #f39c12;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+      border-left: 3px solid #f39c12;
     }
     .chat-input-area {
       display: flex;
       padding: 1rem;
       background: white;
-      border-top: 1px solid #eee;
+      border-top: 1px solid #ddd;
       gap: 0.5rem;
     }
     .chat-input {
@@ -434,19 +309,15 @@
       border-radius: 2rem;
       cursor: pointer;
       font-weight: bold;
-      transition: 0.2s;
     }
-    .send-btn:hover {
-      background: #e67e22;
-    }
-    .typing {
+    .typing-indicator {
       color: #888;
       font-style: italic;
       padding: 0.5rem;
     }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+    hr {
+      margin: 0.5rem 0;
+      border-color: #ffddb0;
     }
   </style>
 </head>
@@ -455,16 +326,16 @@
 <div class="motivation-container">
 
   <!-- Header Card -->
-  <div class="card" style="cursor: default;">
+  <div class="card">
     <div class="welcome-tag">✨ मेरा Motivation Hub ✨</div>
-    <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin: 0.5rem 0 0.2rem;">
-      <span style="font-weight:600;">🏠 Home</span>
-      <span style="font-weight:600;">❤️ Shayari</span>
-      <span style="font-weight:600;">📜 Poems</span>
-      <span style="font-weight:600;">💬 Quotes</span>
-      <span style="font-weight:600;">🤖 Chat_2.0</span>
+    <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap;">
+      <span>🏠 Home</span>
+      <span>❤️ Shayari</span>
+      <span>📜 Poems</span>
+      <span>💬 Quotes</span>
+      <span>🤖 Chat_2.0</span>
     </div>
-    <hr style="margin: 0.8rem 0;">
+    <hr>
     <div style="font-size: 1rem; color:#a7581a;">🌟 Inspiration of the Day:</div>
     <div class="inspire-text">
       "Sapne wahi sach hote hain, <br> jinko poora karne ka junoon ho!"
@@ -474,181 +345,145 @@
   <!-- Profile Card -->
   <div class="card profile-card">
     <div style="text-align: center;">
-      <img class="profile-img" src="Purnima.jpg" alt="Purnima Nishad" onerror="this.onerror=null; this.src='https://via.placeholder.com/140x140?text=Purnima';">
+      <img class="profile-img" src="Purnima.jpg" alt="Purnima Nishad" onerror="this.src='https://via.placeholder.com/140x140?text=Purnima'">
       <h1>Purnima Nishad</h1>
       <div class="sub-name">✨ Believer | Creator | Learner ✨</div>
       <div class="about-text">
         <strong>मेरे बारे में :</strong><br>
-        Hello! Mera naam Purnima Nishad hai. Main ek student hoon aur mujhe web designing aur technology me interest hai. Main apni skills ko improve kar rahi hoon aur naye projects banana pasand karti hoon. Yeh meri first personal website hai jise maine khud design kiya hai — aur ab isme Chat_2.0 AI Assistant bhi hai! 💫
+        Hello! Mera naam Purnima Nishad hai. Main ek student hoon aur mujhe web designing aur technology me interest hai. Yeh meri personal website hai aur isme Chat_2.0 AI Assistant bhi hai! 💫
       </div>
     </div>
   </div>
 
-  <!-- Chat_2.0 AI Chatbot Card - Main Attraction -->
-  <div class="card chatbot-card clickable-card" onclick="openChatbotModal()">
+  <!-- Chat_2.0 AI Chatbot Card - Click to Open -->
+  <div class="card chatbot-card" id="chatbotOpenBtn">
     <div class="section-title">🤖 Chat_2.0 - AI Assistant</div>
     <div class="shayari-text">
-      💬 "Study & Motivation ke liye smart AI Chatbot!<br>
-      Questions solve kare, motivation de, aur guide kare."
+      💬 Study & Motivation ke liye smart AI Chatbot!<br>
+      Questions solve kare, motivation de, aur guide kare.
     </div>
-    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #ffd966; text-align: right;">✨ क्लिक करके Chat_2.0 से बात करें</div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #ffd966; text-align: right;">👇 नीचे क्लिक करें और बात करें</div>
   </div>
 
   <!-- Trending Shayari -->
-  <div class="card clickable-card" onclick="openModal('shayari')">
+  <div class="card clickable-card" id="shayariBtn">
     <div class="section-title">📖 Trending Shayari</div>
     <div class="shayari-text">
       ❝ Har mushkil mein jeet paoge,<br> Bas khud par vishwas rakhna hoga. ❞
     </div>
-    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #b87333; text-align: right;">✨ पूरा संग्रह देखें</div>
   </div>
 
   <!-- Quote of the Day -->
-  <div class="card clickable-card" onclick="openModal('quotes')">
+  <div class="card clickable-card" id="quotesBtn">
     <div class="section-title">💡 Quote of the Day</div>
-    <div class="shayari-text" style="background:#fff3e6;">
-      "Kamyabi ke raaste <br> mehnat se hokar hi guzarate hain."
+    <div class="shayari-text">
+      "Kamyabi ke raaste mehnat se hokar hi guzarate hain."
     </div>
-    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #b87333; text-align: right;">✨ और quotes के लिए क्लिक करें</div>
   </div>
 
   <!-- Positive Thoughts -->
-  <div class="card clickable-card" onclick="openModal('thoughts')">
+  <div class="card clickable-card" id="thoughtsBtn">
     <div class="section-title">🌼 Positive Thoughts</div>
-    <div class="shayari-text" style="background:#fef7e9;">
-      ✨ Soch achhi ho, <br> Toh zindagi khubsoorat ho jati hai. ✨
+    <div class="shayari-text">
+      ✨ Soch achhi ho, Toh zindagi khubsoorat ho jati hai. ✨
     </div>
-    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #b87333; text-align: right;">✨ सकारात्मक विचार</div>
   </div>
 
   <!-- Motivational Poem -->
-  <div class="card clickable-card" onclick="openModal('poems')">
+  <div class="card clickable-card" id="poemsBtn">
     <div class="section-title">📜 Motivational Poem</div>
     <div class="poem-line">
       "Udaan unchi bharni hai,<br> Hausle buland karne hain."
     </div>
-    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #b87333; text-align: right;">✨ प्रेरक कविताएँ</div>
   </div>
 
   <!-- Keep Going -->
-  <div class="card keep-going" style="text-align: center;">
-    <div style="font-size: 1.9rem; font-weight:800;">🔥 Keep Going! 🔥</div>
-    <div style="margin-top: 0.8rem; font-size: 1.2rem;">हर दिन नई शुरुआत ✨</div>
+  <div class="card keep-going">
+    <div style="font-size: 1.9rem;">🔥 Keep Going! 🔥</div>
+    <div>हर दिन नई शुरुआत ✨</div>
   </div>
 
   <!-- Footer -->
   <div class="card footer">
-    <div style="font-size: 1.5rem; font-weight: bold; color: #ffdb9f;">🚀 Stay Motivated!</div>
-    <div style="font-size: 1.2rem; margin: 0.6rem 0; color: #ffe0b5;">Believe in Yourself!</div>
+    <div style="font-size: 1.5rem; font-weight: bold;">🚀 Stay Motivated!</div>
+    <div>Believe in Yourself!</div>
     <div class="social-icons">
       🌟 Follow Us: 
       <a href="#">Facebook</a> | 
       <a href="#">Instagram</a> | 
       <a href="#">Twitter</a>
     </div>
-    <div style="font-size: 0.75rem; margin-top: 1rem; opacity:0.8;">
-      © Purnima Nishad | Motivation Hub | 🤖 Chat_2.0 AI Assistant
-    </div>
-  </div>
-</div>
-
-<!-- Modal for Shayari, Quotes, Thoughts, Poems -->
-<div id="universalModal" class="modal-overlay">
-  <div class="modal-container">
-    <div class="modal-header">
-      <h2 id="modalTitle">शीर्षक</h2>
-      <button class="close-modal" onclick="closeModal()">✕</button>
-    </div>
-    <div class="modal-body" id="modalBody"></div>
+    <div>© Purnima Nishad | Motivation Hub | 🤖 Chat_2.0 AI Assistant</div>
   </div>
 </div>
 
 <!-- Chatbot Modal -->
-<div id="chatbotModal" class="modal-overlay">
-  <div class="modal-container" style="max-width: 600px;">
-    <div class="modal-header" style="background: #2a5298;">
-      <h2>🤖 Chat_2.0 - AI Assistant</h2>
-      <button class="close-modal" onclick="closeChatbotModal()">✕</button>
+<div id="chatbotModal" class="chatbot-modal">
+  <div class="chatbot-container">
+    <div class="chatbot-header">
+      <h3>🤖 Chat_2.0 - AI Assistant</h3>
+      <button class="close-chat" onclick="closeChatbot()">✕</button>
     </div>
-    <div class="modal-body" style="padding: 0;">
-      <div class="chat-container">
-        <div class="chat-messages" id="chatMessages">
-          <div class="message bot-message">
-            👋 नमस्ते! मैं Chat_2.0 AI Assistant हूँ।<br>
-            📚 मैं आपकी study में मदद कर सकता हूँ, सवाल solve कर सकता हूँ, और motivation भी दे सकता हूँ!<br>
-            💬 पूछिए जो भी दिल में है...
-          </div>
-        </div>
-        <div class="chat-input-area">
-          <input type="text" id="chatInput" class="chat-input" placeholder="अपना सवाल या message लिखें..." onkeypress="if(event.key==='Enter') sendMessage()">
-          <button class="send-btn" onclick="sendMessage()">📤 भेजें</button>
-        </div>
+    <div class="chat-messages" id="chatMessages">
+      <div class="message bot-message">
+        👋 नमस्ते! मैं Chat_2.0 AI Assistant हूँ।<br>
+        📚 मैं आपकी study में मदद कर सकता हूँ, सवाल solve कर सकता हूँ, और motivation भी दे सकता हूँ!<br>
+        💬 पूछिए जो भी दिल में है...
       </div>
+    </div>
+    <div class="chat-input-area">
+      <input type="text" id="chatInput" class="chat-input" placeholder="अपना सवाल या message लिखें..." onkeypress="if(event.key==='Enter') sendMessage()">
+      <button class="send-btn" onclick="sendMessage()">📤 भेजें</button>
     </div>
   </div>
 </div>
 
 <script>
-  // Modal functions for Shayari, Quotes, etc.
-  function openModal(type) {
-    const modal = document.getElementById('universalModal');
-    const modalTitle = document.getElementById('modalTitle');
-    const modalBody = document.getElementById('modalBody');
-    
-    if (type === 'shayari') {
-      modalTitle.innerHTML = '📖 प्रेरक शायरी संग्रह';
-      modalBody.innerHTML = getShayariContent();
-    } else if (type === 'quotes') {
-      modalTitle.innerHTML = '💡 प्रेरणादायक Quotes';
-      modalBody.innerHTML = getQuotesContent();
-    } else if (type === 'thoughts') {
-      modalTitle.innerHTML = '🌼 सकारात्मक विचार';
-      modalBody.innerHTML = getThoughtsContent();
-    } else if (type === 'poems') {
-      modalTitle.innerHTML = '📜 प्रेरक कविताएँ';
-      modalBody.innerHTML = getPoemsContent();
-    }
-    
-    modal.classList.add('active');
-    document.body.style.overflow = 'hidden';
+  // Open Chatbot
+  document.getElementById('chatbotOpenBtn').onclick = function() {
+    document.getElementById('chatbotModal').classList.add('show');
+  };
+  
+  function closeChatbot() {
+    document.getElementById('chatbotModal').classList.remove('show');
   }
   
-  function closeModal() {
-    document.getElementById('universalModal').classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
+  // Shayari, Quotes, etc alerts (simple popup for now)
+  document.getElementById('shayariBtn').onclick = function() {
+    alert("📖 प्रेरक शायरी संग्रह:\n\n❝ हर मुश्किल में जीत पाओगे, बस खुद पर विश्वास रखना होगा। ❞\n\n❝ मंजिल उन्हीं को मिलती है, जिनके सपनों में जान होती है ❞\n\n❝ खुद पे कर यकीन पूरा, हर अंधेरा होगा दूर ❞");
+  };
   
-  // Chatbot functions
-  function openChatbotModal() {
-    document.getElementById('chatbotModal').classList.add('active');
-    document.body.style.overflow = 'hidden';
-  }
+  document.getElementById('quotesBtn').onclick = function() {
+    alert("💡 प्रेरणादायक Quotes:\n\n\"Kamyabi ke raaste mehnat se hokar hi guzarate hain.\"\n\n\"सफलता वह नहीं जो आपको मिलती है, सफलता वह है जो आप बन जाते हैं।\"\n\n\"जो लोग कभी हार नहीं मानते, वही इतिहास रचते हैं।\"");
+  };
   
-  function closeChatbotModal() {
-    document.getElementById('chatbotModal').classList.remove('active');
-    document.body.style.overflow = 'auto';
-  }
+  document.getElementById('thoughtsBtn').onclick = function() {
+    alert("🌼 सकारात्मक विचार:\n\n✨ सोच अच्छी हो, तो जिंदगी खूबसूरत हो जाती है। ✨\n\n☀️ हर सुबह नई शुरुआत है\n\n🌱 जब आप सकारात्मक सोचते हैं, तो पूरी दुनिया आपके साथ सकारात्मक हो जाती है।");
+  };
   
-  // AI Chatbot Response Logic
+  document.getElementById('poemsBtn').onclick = function() {
+    alert("📜 प्रेरक कविताएँ:\n\n★ उड़ान ★\n\"उड़ान उंची भरनी है, हौसले बुलंद करने हैं\"\n\n★ मंजिल की ओर ★\n\"थककर मत बैठ जाना ए दिल, अभी तो सफर बाकी है\"");
+  };
+  
+  // Chatbot AI Functions
   function sendMessage() {
     const input = document.getElementById('chatInput');
     const message = input.value.trim();
     if (message === "") return;
     
-    // Add user message
     addMessage(message, 'user');
     input.value = '';
     
-    // Show typing indicator
+    // Show typing
     const typingDiv = document.createElement('div');
-    typingDiv.className = 'message bot-message typing';
+    typingDiv.className = 'message bot-message';
     typingDiv.innerText = '🤔 Chat_2.0 सोच रहा है...';
+    typingDiv.id = 'typingMsg';
     document.getElementById('chatMessages').appendChild(typingDiv);
-    document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+    scrollToBottom();
     
-    // Generate bot response after delay
     setTimeout(() => {
-      typingDiv.remove();
+      document.getElementById('typingMsg')?.remove();
       const reply = getBotReply(message);
       addMessage(reply, 'bot');
     }, 500);
@@ -660,28 +495,49 @@
     msgDiv.className = `message ${sender === 'user' ? 'user-message' : 'bot-message'}`;
     msgDiv.innerText = text;
     messagesDiv.appendChild(msgDiv);
+    scrollToBottom();
+  }
+  
+  function scrollToBottom() {
+    const messagesDiv = document.getElementById('chatMessages');
     messagesDiv.scrollTop = messagesDiv.scrollHeight;
   }
   
-  function getBotReply(userMsg) {
-    const msg = userMsg.toLowerCase();
+  function getBotReply(msg) {
+    const m = msg.toLowerCase();
     
-    // Study related responses
-    if (msg.includes('math') || msg.includes('गणित') || msg.includes('maths')) {
-      return "📐 गणित के लिए: Practice is key! Formulas yaad rakhein, daily practice karein. क्या कोई specific topic hai jisme help chahiye?";
+    if (m.includes('math') || m.includes('गणित')) {
+      return "📐 गणित के लिए: Practice is key! Formulas yaad rakhein, daily practice karein, aur pehle easy questions solve karein. क्या कोई specific topic hai?";
     }
-    else if (msg.includes('science') || msg.includes('विज्ञान')) {
-      return "🔬 Science ke liye: Concepts clear karo, diagrams banake samjho, aur NCERT books follow karo. कौनसा chapter difficult lag raha hai?";
+    else if (m.includes('science') || m.includes('विज्ञान')) {
+      return "🔬 Science ke liye: Concepts clear karo, diagrams banake samjho, NCERT books best hain. कौनसा chapter difficult lag raha hai?";
     }
-    else if (msg.includes('english') || msg.includes('अंग्रेजी')) {
-      return "📖 English improve karne ke liye: Roz 10 new words yaad karo, grammar videos dekho, aur daily conversation practice karo. Want some tips?";
+    else if (m.includes('exam') || m.includes('परीक्षा')) {
+      return "📚 Exam की तैयारी: Time table banayo, revision karo, aur khud pe bharosa rakho! 'Success unhi ki hoti hai jo haar nahi maante.' Best of luck! ✨";
     }
-    // Motivation related
-    else if (msg.includes('motivation') || msg.includes('प्रेरणा') || msg.includes('हिम्मत')) {
-      return "💪 आप बहुत strong हो! याद रखो: 'कल्पना से बड़ी कोई ताकत नहीं, और मेहनत से बड़ा कोई रास्ता नहीं।' आपको किस चीज में motivation चाहिए?";
+    else if (m.includes('motivation') || m.includes('प्रेरणा') || m.includes('हिम्मत')) {
+      return "💪 आप बहुत strong हो! याद रखो: 'हर दिन नई शुरुआत है, कल से बेहतर आज बनो।' आपको किस चीज में motivation चाहिए?";
     }
-    else if (msg.includes('exam') || msg.includes('परीक्षा') || msg.includes('test')) {
-      return "📚 Exam की तैयारी: समय table बनाओ, revision करो, और सबसे जरूरी - खुद पर विश्वास रखो! 'Success उन्हीं की होती है जो हार नहीं मानते।' All the best! ✨";
+    else if (m.includes('stress') || m.includes('तनाव')) {
+      return "🧘 तनाव दूर करने के लिए: 5 मिनट गहरी सांस लो, positive thoughts rakho, aur yaad rakho - 'ये वक्त भी गुजर जाएगा।' मैं हूं ना, बात करो!";
     }
-    else if (msg.includes('stress') || msg.includes('तनाव') || msg.includes('anxiety')) {
-      return "🧘 तना
+    else if (m.includes('hello') || m.includes('hi') || m.includes('namaste')) {
+      return "🙏 नमस्ते! Main Chat_2.0 AI Assistant. Kaise help kar sakta hoon? Study ho ya motivation, poocho freely!";
+    }
+    else if (m.includes('thanks')) {
+      return "😊 Welcome! Always here for you. Keep shining! 🌟";
+    }
+    else {
+      return "💬 बहुत अच्छा! मैं Chat_2.0 हूँ, आपकी study और motivation ke liye. Maths, Science, Exam tips, ya motivation kuch bhi poocho! Main hoon na 😊";
+    }
+  }
+  
+  // Close modal on outside click
+  document.getElementById('chatbotModal').onclick = function(e) {
+    if (e.target === this) closeChatbot();
+  };
+  
+  console.log("✅ Chat_2.0 ready! Blue card par click karo, chatbot khulega!");
+</script>
+</body>
+</html>
