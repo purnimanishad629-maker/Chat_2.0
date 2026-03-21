@@ -1,120 +1,374 @@
 <!DOCTYPE html>
-<html>
+<html lang="hi">
 <head>
-  <title>Purnima's Website</title>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Mera Motivation Hub | Purnima's Space</title>
   <style>
-    body {
+    * {
       margin: 0;
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, skyblue, #e0f7ff);
-      text-align: center;
+      padding: 0;
+      box-sizing: border-box;
     }
 
-    .container {
-      padding: 40px;
+    body {
+      background: linear-gradient(145deg, #fef9e4 0%, #ffe6c9 100%);
+      font-family: 'Segoe UI', 'Poppins', 'Arial', system-ui, -apple-system, sans-serif;
+      padding: 2rem 1rem;
+      color: #1e2a2f;
     }
 
+    /* main container */
+    .motivation-container {
+      max-width: 650px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    /* card style - smooth glassmorphism + shadow */
     .card {
-      background: white;
-      padding: 25px;
-      margin: 20px auto;
-      width: 80%;
-      max-width: 500px;
-      border-radius: 20px;
-      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-      animation: fadeIn 1.5s ease-in-out;
+      background: rgba(255, 255, 255, 0.96);
+      backdrop-filter: blur(0px);
+      border-radius: 2rem;
+      padding: 1.8rem 1.5rem;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2), 0 1px 3px rgba(0, 0, 0, 0.05);
+      transition: transform 0.25s ease, box-shadow 0.3s;
+      border: 1px solid rgba(255, 215, 150, 0.5);
+      animation: fadeSlideUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+      opacity: 0;
     }
 
-    img {
-      width: 150px;
-      height: 150px;
+    .card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 28px 38px -16px rgba(0, 0, 0, 0.25);
+      border-color: #ffb347;
+    }
+
+    /* profile section special */
+    .profile-card {
+      background: linear-gradient(135deg, #ffffff 0%, #fff7ed 100%);
+      border-bottom: 5px solid #f39c12;
+    }
+
+    /* image styling */
+    .profile-img {
+      width: 130px;
+      height: 130px;
       border-radius: 50%;
       object-fit: cover;
-      border: 4px solid skyblue;
-      margin-top: 10px;
-      animation: zoomIn 1.5s ease-in-out;
+      border: 5px solid #ffb347;
+      box-shadow: 0 12px 22px -8px rgba(0, 0, 0, 0.2);
+      margin-bottom: 1rem;
+      transition: all 0.4s;
+      background: #ffe0b5;
+    }
+
+    .profile-img:hover {
+      transform: scale(1.02);
+      border-color: #e67e22;
     }
 
     h1 {
-      animation: slideDown 1.5s ease-in-out;
+      font-size: 1.9rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #c4450c, #f39c12);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      letter-spacing: -0.3px;
+      margin: 0.5rem 0 0.2rem;
     }
 
-    .welcome {
-      font-size: 22px;
-      font-weight: bold;
-      color: #333;
-      margin-bottom: 10px;
-      animation: typing 3s steps(30, end), blink 0.7s infinite;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 3px solid black;
-      width: 0;
-      margin: 0 auto;
+    .sub-name {
+      font-size: 1.2rem;
+      font-weight: 500;
+      color: #b95f1a;
+      border-bottom: 2px dotted #ffcd94;
+      display: inline-block;
+      padding-bottom: 0.2rem;
     }
 
     .section-title {
-      font-size: 20px;
-      margin-top: 15px;
-      color: #0077b6;
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      display: inline-block;
+      background: #fef2e0;
+      padding: 0.2rem 1.2rem;
+      border-radius: 40px;
+      color: #b6490e;
+      letter-spacing: -0.2px;
+      box-shadow: inset 0 -1px 0 #ffd59e;
     }
 
-    p {
-      color: #444;
-      line-height: 1.5;
+    /* quote / shayari text styling */
+    .inspire-text {
+      font-size: 1.6rem;
+      line-height: 1.4;
+      font-weight: 700;
+      color: #2c3e2f;
+      background: #fff1e0;
+      padding: 1.2rem;
+      border-radius: 1.8rem;
+      margin: 0.8rem 0;
+      border-left: 7px solid #f39c12;
+      font-family: 'Trebuchet MS', 'Segoe UI', cursive;
+      text-align: center;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.8); }
-      to { opacity: 1; transform: scale(1); }
+    .shayari-box, .quote-box, .thought-box, .poem-box {
+      text-align: center;
     }
 
-    @keyframes zoomIn {
-      from { transform: scale(0); }
-      to { transform: scale(1); }
+    .shayari-text {
+      font-size: 1.3rem;
+      font-weight: 500;
+      background: #fffaf3;
+      padding: 1rem;
+      border-radius: 1.5rem;
+      color: #2d2b26;
+      font-style: normal;
+      line-height: 1.45;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.03);
     }
 
-    @keyframes slideDown {
-      from { transform: translateY(-50px); opacity: 0; }
-      to { transform: translateY(0); opacity: 1; }
+    .poem-line {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #6b3f00;
+      background: #fff7e8;
+      padding: 0.8rem;
+      border-radius: 2rem;
+      margin: 0.6rem 0;
+      white-space: pre-line;
     }
 
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
+    .keep-going {
+      background: #fdebd0;
+      font-weight: bold;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+      color: #c94f0b;
     }
 
-    @keyframes blink {
-      50% { border-color: transparent; }
+    .footer {
+      background: #2c1a0e;
+      color: #ffefcf;
+      border-radius: 2rem;
+      padding: 1.5rem;
+      text-align: center;
+    }
+
+    .footer a {
+      color: #ffbc6e;
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 0.5rem;
+      transition: 0.2s;
+    }
+
+    .footer a:hover {
+      color: #ffa33c;
+      text-decoration: underline;
+    }
+
+    .social-icons {
+      margin-top: 0.8rem;
+      font-size: 1.1rem;
+      word-spacing: 10px;
+    }
+
+    hr {
+      margin: 0.5rem 0;
+      border-color: #ffddb0;
+    }
+
+    /* about me text (from old code merged) */
+    .about-text {
+      text-align: left;
+      font-size: 1rem;
+      line-height: 1.55;
+      color: #2e2a24;
+      background: #fffbf2;
+      padding: 1rem 1.2rem;
+      border-radius: 1.5rem;
+      margin-top: 0.5rem;
+    }
+
+    /* animations */
+    @keyframes fadeSlideUp {
+      0% {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* staggered animation delay */
+    .card:nth-child(1) { animation-delay: 0.05s; }
+    .card:nth-child(2) { animation-delay: 0.15s; }
+    .card:nth-child(3) { animation-delay: 0.25s; }
+    .card:nth-child(4) { animation-delay: 0.35s; }
+    .card:nth-child(5) { animation-delay: 0.45s; }
+    .card:nth-child(6) { animation-delay: 0.55s; }
+    .card:nth-child(7) { animation-delay: 0.65s; }
+
+    /* responsive */
+    @media (max-width: 550px) {
+      body {
+        padding: 1rem;
+      }
+      .card {
+        padding: 1.3rem;
+      }
+      .inspire-text {
+        font-size: 1.3rem;
+      }
+      .section-title {
+        font-size: 1.4rem;
+      }
+      h1 {
+        font-size: 1.6rem;
+      }
+    }
+
+    /* typing effect for welcome line (subtle) */
+    .welcome-tag {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #b95a1c;
+      background: #fff0e2;
+      display: inline-block;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 0.8rem;
     }
   </style>
 </head>
-
 <body>
 
-  <div class="container">
+<div class="motivation-container">
 
-    <div class="card">
-      <div class="welcome">Welcome to my first website</div>
+  <!-- Header + inspiration of the day (like image: Sapne wahi sach hote..) -->
+  <div class="card">
+    <div class="welcome-tag">✨ मेरा Motivation Hub ✨</div>
+    <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin: 0.5rem 0 0.2rem;">
+      <span style="font-weight:600;">🏠 Home</span>
+      <span style="font-weight:600;">❤️ Shayari</span>
+      <span style="font-weight:600;">📜 Poems</span>
+      <span style="font-weight:600;">💬 Quotes</span>
     </div>
-
-    <div class="card">
-      <img src="Purnima.jpg" alt="My Photo">
-      <h1>Mera Naam</h1>
-      <p><b>Purnima Nishad</b></p>
+    <hr style="margin: 0.8rem 0;">
+    <div style="font-size: 1rem; color:#a7581a;">🌟 Inspiration of the Day:</div>
+    <div class="inspire-text">
+      "Sapne wahi sach hote hain, <br> jinko poora karne ka junoon ho!"
     </div>
-
-    <div class="card">
-      <h2 class="section-title">Mere Bare Me</h2>
-      <p>
-        Hello! Mera naam Purnima Nishad hai.  
-        Main ek student hoon aur mujhe web designing aur technology me interest hai.  
-        Main apni skills ko improve kar rahi hoon aur naye projects banana pasand karti hoon.  
-        Yeh meri first personal website hai jise maine khud design kiya hai.
-      </p>
-    </div>
-
   </div>
 
+  <!-- Profile section - includes Purnima details from old code, plus photo placeholder with female avatar style (since image not provided, using a modern motivational avatar but keeping it personal) -->
+  <div class="card profile-card">
+    <div style="text-align: center;">
+      <!-- Profile image: using a placeholder with initial "P" but looks like a stylish profile. As per old code we used Purnima.jpg, but to match live site we keep a nice modern gradient avatar with text -->
+      <div style="display: flex; justify-content: center;">
+        <div class="profile-img" style="background: linear-gradient(145deg, #f7b787, #f5a65b); display: flex; align-items: center; justify-content: center; font-size: 3.5rem; font-weight: bold; color: white;">
+          P
+        </div>
+      </div>
+      <h1>Purnima Nishad</h1>
+      <div class="sub-name">✨ Believer | Creator | Learner ✨</div>
+      <div class="about-text">
+        <strong>मेरे बारे में :</strong><br>
+        Hello! Mera naam Purnima Nishad hai. Main ek student hoon aur mujhe web designing aur technology me interest hai. Main apni skills ko improve kar rahi hoon aur naye projects banana pasand karti hoon. Yeh meri first personal website hai jise maine khud design kiya hai — aur ab yeh ek motivational hub ban chuki hai! 💫
+      </div>
+    </div>
+  </div>
+
+  <!-- Trending Shayari section (from image) -->
+  <div class="card">
+    <div class="section-title">📖 Trending Shayari</div>
+    <div class="shayari-box">
+      <div class="shayari-text">
+        ❝ Har mushkil mein jeet paoge,<br>
+        Bas khud par vishwas rakhna hoga. ❞
+      </div>
+    </div>
+  </div>
+
+  <!-- Quote of the Day (exactly as image: Kamyabi ke raaste mehnat se...) -->
+  <div class="card">
+    <div class="section-title">💡 Quote of the Day</div>
+    <div class="shayari-text" style="font-size:1.2rem; background:#fff3e6;">
+      "Kamyabi ke raaste <br> mehnat se hokar hi guzarate hain."
+    </div>
+  </div>
+
+  <!-- Positive Thoughts -->
+  <div class="card">
+    <div class="section-title">🌼 Positive Thoughts</div>
+    <div class="thought-box">
+      <div class="shayari-text" style="background:#fef7e9;">
+        ✨ Soch achhi ho, <br> Toh zindagi khubsoorat ho jati hai. ✨
+      </div>
+    </div>
+  </div>
+
+  <!-- Motivational Poem (exactly from image: Udaan unchi bharni hai...) -->
+  <div class="card">
+    <div class="section-title">📜 Motivational Poem</div>
+    <div class="poem-line">
+      "Udaan unchi bharni hai,<br>
+      Hausle buland karne hain."
+    </div>
+    <div style="margin-top: 0.7rem; font-style:italic; color:#c26f1a;">— हौसलों की उड़ान —</div>
+  </div>
+
+  <!-- Keep Going! & Stay Motivated! -->
+  <div class="card keep-going" style="text-align: center;">
+    <div style="font-size: 1.9rem; font-weight:800;">🔥 Keep Going! 🔥</div>
+    <div style="margin-top: 0.8rem; font-size: 1.2rem;">हर दिन नई शुरुआत ✨</div>
+  </div>
+
+  <!-- Stay Motivated + Social Follow + Believe in Yourself -->
+  <div class="card footer" style="background: linear-gradient(105deg, #2c2118, #3f2a1b);">
+    <div style="font-size: 1.5rem; font-weight: bold; color: #ffdb9f;">🚀 Stay Motivated!</div>
+    <div style="font-size: 1.2rem; margin: 0.6rem 0; color: #ffe0b5;">Believe in Yourself!</div>
+    <div class="social-icons">
+      🌟 Follow Us: 
+      <a href="#">Facebook</a> | 
+      <a href="#">Instagram</a> | 
+      <a href="#">Twitter</a>
+    </div>
+    <div style="font-size: 0.75rem; margin-top: 1rem; opacity:0.8;">
+      © Purnima Nishad | Motivation Hub
+    </div>
+  </div>
+
+</div>
+
+<!-- small additional script to add dynamic greeting effect (optional but fun) -->
+<script>
+  // just an elegant console greeting and dynamic year (no intrusive)
+  console.log("✨ Mera Motivation Hub — Purnima ki website mein swagat hai! ✨");
+  // optional: set current year in footer if needed? not required but nice 
+  const yearSpan = document.createElement('span');
+  // but not needed for design, just keep as is.
+  // add micro interaction: any card click gentle feedback
+  const allCards = document.querySelectorAll('.card');
+  allCards.forEach(card => {
+    card.addEventListener('click', (e) => {
+      // just a small ripple effect (no redirection, just playful)
+      if(e.target.closest('a')) return;
+      card.style.transform = 'scale(0.99)';
+      setTimeout(() => {
+        card.style.transform = '';
+      }, 120);
+    });
+  });
+</script>
 </body>
 </html>
