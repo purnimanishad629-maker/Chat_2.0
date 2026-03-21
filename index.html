@@ -241,7 +241,7 @@
       }
     }
 
-    /* typing effect for welcome line (subtle) */
+    /* welcome tag styling */
     .welcome-tag {
       font-size: 1.2rem;
       font-weight: 600;
@@ -253,7 +253,6 @@
       margin-bottom: 0.8rem;
     }
 
-    /* fallback text if image fails to load */
     .profile-img {
       object-fit: cover;
     }
@@ -263,7 +262,7 @@
 
 <div class="motivation-container">
 
-  <!-- Header + inspiration of the day (like image: Sapne wahi sach hote..) -->
+  <!-- Header + inspiration of the day -->
   <div class="card">
     <div class="welcome-tag">✨ मेरा Motivation Hub ✨</div>
     <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin: 0.5rem 0 0.2rem;">
@@ -279,11 +278,10 @@
     </div>
   </div>
 
-  <!-- Profile section - includes YOUR IMAGE (Purnima.jpg) as per old code requirement -->
+  <!-- Profile section - YOUR IMAGE "Purnima.jpg" ab yahan show hogi, P circle nahi rahega -->
   <div class="card profile-card">
     <div style="text-align: center;">
-      <!-- YOUR IMAGE: using the exact same filename as your old code "Purnima.jpg" -->
-      <!-- Agar aapki image ka naam "Purnima.jpg" hai to ye automatic display hoga. Agar image naam alag ho to yahan "src" change karein. -->
+      <!-- Aapki original image Purnima.jpg - ab circle mein image dikhegi, P nahi -->
       <img class="profile-img" src="Purnima.jpg" alt="Purnima Nishad - My Photo" onerror="this.onerror=null; this.src='https://via.placeholder.com/140x140?text=Purnima'; this.style.objectFit='cover';">
       <h1>Purnima Nishad</h1>
       <div class="sub-name">✨ Believer | Creator | Learner ✨</div>
@@ -294,7 +292,7 @@
     </div>
   </div>
 
-  <!-- Trending Shayari section (from image) -->
+  <!-- Trending Shayari section -->
   <div class="card">
     <div class="section-title">📖 Trending Shayari</div>
     <div class="shayari-box">
@@ -305,7 +303,7 @@
     </div>
   </div>
 
-  <!-- Quote of the Day (exactly as image: Kamyabi ke raaste mehnat se...) -->
+  <!-- Quote of the Day -->
   <div class="card">
     <div class="section-title">💡 Quote of the Day</div>
     <div class="shayari-text" style="font-size:1.2rem; background:#fff3e6;">
@@ -323,7 +321,7 @@
     </div>
   </div>
 
-  <!-- Motivational Poem (exactly from image: Udaan unchi bharni hai...) -->
+  <!-- Motivational Poem -->
   <div class="card">
     <div class="section-title">📜 Motivational Poem</div>
     <div class="poem-line">
@@ -333,13 +331,13 @@
     <div style="margin-top: 0.7rem; font-style:italic; color:#c26f1a;">— हौसलों की उड़ान —</div>
   </div>
 
-  <!-- Keep Going! & Stay Motivated! -->
+  <!-- Keep Going! -->
   <div class="card keep-going" style="text-align: center;">
     <div style="font-size: 1.9rem; font-weight:800;">🔥 Keep Going! 🔥</div>
     <div style="margin-top: 0.8rem; font-size: 1.2rem;">हर दिन नई शुरुआत ✨</div>
   </div>
 
-  <!-- Stay Motivated + Social Follow + Believe in Yourself -->
+  <!-- Stay Motivated + Social Follow -->
   <div class="card footer" style="background: linear-gradient(105deg, #2c2118, #3f2a1b);">
     <div style="font-size: 1.5rem; font-weight: bold; color: #ffdb9f;">🚀 Stay Motivated!</div>
     <div style="font-size: 1.2rem; margin: 0.6rem 0; color: #ffe0b5;">Believe in Yourself!</div>
@@ -359,6 +357,7 @@
 <script>
   // console greeting and subtle card interaction
   console.log("✨ Mera Motivation Hub — Purnima ki website mein aapka swagat hai! ✨");
+  console.log("✅ Aapki image 'Purnima.jpg' profile section mein add kar di gayi hai. Circle mein ab P nahi, aapki photo dikhegi.");
   
   const allCards = document.querySelectorAll('.card');
   allCards.forEach(card => {
@@ -370,29 +369,26 @@
       }, 120);
     });
   });
-
-  // Optional: agar aapki image load na ho to user ko guidance de sakte hain, lekin humne onerror pehle hi laga diya hai
-  // Agar aapke paas "Purnima.jpg" nahi hai to aapko image file ko same folder mein rakhna hoga.
-  // Agar image ka naam different hai to "Purnima.jpg" ki jagah apna correct filename likhein.
-  console.log("✅ Image path set to 'Purnima.jpg' — agar image dikh nahi rahi to confirm karein ki image file same folder mein 'Purnima.jpg' naam se maujood hai.");
 </script>
 
 <!--
-  NOTE: Is website mein aapki original image "Purnima.jpg" use ki gayi hai jaise aapke purane code mein thi.
-  Agar aapki image ka naam alag hai (jaise "myphoto.png" ya "Purnima Nishad.jpg") to upar <img> tag ke andar 
-  src="Purnima.jpg" ko apne sahi image path se replace kar dijiye.
-  Example: src="meri_photo.jpg"
+  ✅ NOTE: Ab "मेरे बारे में" वाले card mein jo pehle "P" circle tha, uski jagah aapki real image "Purnima.jpg" lag gayi hai.
   
-  Website bilkul waisi hi hai jaise aapne image mein dikhayi thi: 
-  - Inspiration of the Day (Sapne wahi sach hote..)
-  - Trending Shayari
-  - Quote of the Day
-  - Positive Thoughts
-  - Motivational Poem (Udaan unchi bharni hai)
-  - Keep Going & Stay Motivated section
-  - Aapki personal details aur profile image original code ke hisaab se add ki gayi.
+  ✅ Important:
+  - Aapki image ka naam "Purnima.jpg" hai. Yeh image same folder mein honi chahiye jahan ye HTML file hai.
+  - Agar image dikh nahi rahi to confirm karein ki filename EXACT "Purnima.jpg" hai (capital P, .jpg extension).
+  - Agar image alag folder mein hai to src="folder_name/Purnima.jpg" karein.
   
-  Ab aapki apni image profile mein show hogi, mountains ya placeholder ki jagah.
+  ✅ Website mein wahi saari cheezein hain jo aapne image mein dikhayi thi:
+    1. Inspiration of the Day - "Sapne wahi sach hote..."
+    2. Trending Shayari - "Har mushkil mein jeet paoge..."
+    3. Quote of the Day - "Kamyabi ke raaste..."
+    4. Positive Thoughts - "Soch achhi ho..."
+    5. Motivational Poem - "Udaan unchi bharni hai..."
+    6. Keep Going! aur Stay Motivated! sections
+    7. Aapki personal details aur naam Purnima Nishad
+  
+  ✅ Profile section mein ab circle mein "P" ki jagah aapki asli image show hogi. 👍
 -->
 </body>
 </html>
