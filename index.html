@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>मेरा Motivation Hub | Purnima's Space</title>
+  <title>मेरा Motivation Hub | Chat_2.0 AI Assistant</title>
   <style>
     * {
       margin: 0;
@@ -235,6 +235,21 @@
       pointer-events: none;
     }
 
+    /* Chatbot Card Special Style */
+    .chatbot-card {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      color: white;
+      cursor: pointer;
+    }
+    .chatbot-card .section-title {
+      background: rgba(255,255,255,0.2);
+      color: white;
+    }
+    .chatbot-card .shayari-text {
+      background: rgba(255,255,255,0.15);
+      color: white;
+    }
+
     @keyframes fadeSlideUp {
       0% {
         opacity: 0;
@@ -253,6 +268,7 @@
     .card:nth-child(5) { animation-delay: 0.45s; }
     .card:nth-child(6) { animation-delay: 0.55s; }
     .card:nth-child(7) { animation-delay: 0.65s; }
+    .card:nth-child(8) { animation-delay: 0.75s; }
 
     @media (max-width: 550px) {
       body {
@@ -276,7 +292,7 @@
       }
     }
 
-    /* Modal / Popup Styles for internal pages */
+    /* Modal Styles */
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -357,31 +373,80 @@
     .modal-body {
       padding: 1.8rem;
     }
-    .shayari-card, .quote-card, .thought-card, .poem-card {
-      background: white;
+
+    /* Chatbot Specific Styles */
+    .chat-container {
+      display: flex;
+      flex-direction: column;
+      height: 500px;
+      background: #f8f9fa;
       border-radius: 1.5rem;
-      padding: 1.2rem;
-      margin-bottom: 1.2rem;
-      box-shadow: 0 5px 12px rgba(0,0,0,0.08);
-      border-left: 6px solid #f39c12;
+      overflow: hidden;
     }
-    .modal-body .shayari-text, .modal-body .quote-text, .modal-body .thought-text, .modal-body .poem-content {
-      font-size: 1.2rem;
-      line-height: 1.5;
-      text-align: center;
-      color: #2d2b26;
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
     }
-    .quote-author, .shayari-cat {
-      text-align: right;
-      color: #b95f1a;
-      margin-top: 0.6rem;
-      font-size: 0.85rem;
+    .message {
+      max-width: 85%;
+      padding: 0.8rem 1rem;
+      border-radius: 1.2rem;
+      animation: fadeIn 0.3s ease;
     }
-    .poem-title {
+    .user-message {
+      background: #f39c12;
+      color: white;
+      align-self: flex-end;
+      border-bottom-right-radius: 0.3rem;
+    }
+    .bot-message {
+      background: white;
+      color: #333;
+      align-self: flex-start;
+      border-bottom-left-radius: 0.3rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+      border-left: 4px solid #f39c12;
+    }
+    .chat-input-area {
+      display: flex;
+      padding: 1rem;
+      background: white;
+      border-top: 1px solid #eee;
+      gap: 0.5rem;
+    }
+    .chat-input {
+      flex: 1;
+      padding: 0.8rem;
+      border: 1px solid #ddd;
+      border-radius: 2rem;
+      outline: none;
+      font-size: 1rem;
+    }
+    .send-btn {
+      background: #f39c12;
+      border: none;
+      color: white;
+      padding: 0.8rem 1.2rem;
+      border-radius: 2rem;
+      cursor: pointer;
       font-weight: bold;
-      color: #c4450c;
-      margin-bottom: 0.5rem;
-      font-size: 1.2rem;
+      transition: 0.2s;
+    }
+    .send-btn:hover {
+      background: #e67e22;
+    }
+    .typing {
+      color: #888;
+      font-style: italic;
+      padding: 0.5rem;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -397,6 +462,7 @@
       <span style="font-weight:600;">❤️ Shayari</span>
       <span style="font-weight:600;">📜 Poems</span>
       <span style="font-weight:600;">💬 Quotes</span>
+      <span style="font-weight:600;">🤖 Chat_2.0</span>
     </div>
     <hr style="margin: 0.8rem 0;">
     <div style="font-size: 1rem; color:#a7581a;">🌟 Inspiration of the Day:</div>
@@ -405,7 +471,7 @@
     </div>
   </div>
 
-  <!-- Profile Card with YOUR IMAGE -->
+  <!-- Profile Card -->
   <div class="card profile-card">
     <div style="text-align: center;">
       <img class="profile-img" src="Purnima.jpg" alt="Purnima Nishad" onerror="this.onerror=null; this.src='https://via.placeholder.com/140x140?text=Purnima';">
@@ -413,19 +479,28 @@
       <div class="sub-name">✨ Believer | Creator | Learner ✨</div>
       <div class="about-text">
         <strong>मेरे बारे में :</strong><br>
-        Hello! Mera naam Purnima Nishad hai. Main ek student hoon aur mujhe web designing aur technology me interest hai. Main apni skills ko improve kar rahi hoon aur naye projects banana pasand karti hoon. Yeh meri first personal website hai jise maine khud design kiya hai — aur ab yeh ek motivational hub ban chuki hai! 💫
+        Hello! Mera naam Purnima Nishad hai. Main ek student hoon aur mujhe web designing aur technology me interest hai. Main apni skills ko improve kar rahi hoon aur naye projects banana pasand karti hoon. Yeh meri first personal website hai jise maine khud design kiya hai — aur ab isme Chat_2.0 AI Assistant bhi hai! 💫
       </div>
     </div>
   </div>
 
-  <!-- Trending Shayari - opens modal -->
+  <!-- Chat_2.0 AI Chatbot Card - Main Attraction -->
+  <div class="card chatbot-card clickable-card" onclick="openChatbotModal()">
+    <div class="section-title">🤖 Chat_2.0 - AI Assistant</div>
+    <div class="shayari-text">
+      💬 "Study & Motivation ke liye smart AI Chatbot!<br>
+      Questions solve kare, motivation de, aur guide kare."
+    </div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #ffd966; text-align: right;">✨ क्लिक करके Chat_2.0 से बात करें</div>
+  </div>
+
+  <!-- Trending Shayari -->
   <div class="card clickable-card" onclick="openModal('shayari')">
     <div class="section-title">📖 Trending Shayari</div>
     <div class="shayari-text">
-      ❝ Har mushkil mein jeet paoge,<br>
-      Bas khud par vishwas rakhna hoga. ❞
+      ❝ Har mushkil mein jeet paoge,<br> Bas khud par vishwas rakhna hoga. ❞
     </div>
-    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #b87333; text-align: right;">✨ पूरा संग्रह देखने के लिए क्लिक करें</div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #b87333; text-align: right;">✨ पूरा संग्रह देखें</div>
   </div>
 
   <!-- Quote of the Day -->
@@ -434,7 +509,7 @@
     <div class="shayari-text" style="background:#fff3e6;">
       "Kamyabi ke raaste <br> mehnat se hokar hi guzarate hain."
     </div>
-    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #b87333; text-align: right;">✨ और प्रेरक quotes के लिए क्लिक करें</div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #b87333; text-align: right;">✨ और quotes के लिए क्लिक करें</div>
   </div>
 
   <!-- Positive Thoughts -->
@@ -443,17 +518,16 @@
     <div class="shayari-text" style="background:#fef7e9;">
       ✨ Soch achhi ho, <br> Toh zindagi khubsoorat ho jati hai. ✨
     </div>
-    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #b87333; text-align: right;">✨ सकारात्मक विचारों के लिए क्लिक करें</div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #b87333; text-align: right;">✨ सकारात्मक विचार</div>
   </div>
 
   <!-- Motivational Poem -->
   <div class="card clickable-card" onclick="openModal('poems')">
     <div class="section-title">📜 Motivational Poem</div>
     <div class="poem-line">
-      "Udaan unchi bharni hai,<br>
-      Hausle buland karne hain."
+      "Udaan unchi bharni hai,<br> Hausle buland karne hain."
     </div>
-    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #b87333; text-align: right;">✨ प्रेरक कविताएँ पढ़ने के लिए क्लिक करें</div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #b87333; text-align: right;">✨ प्रेरक कविताएँ</div>
   </div>
 
   <!-- Keep Going -->
@@ -473,26 +547,49 @@
       <a href="#">Twitter</a>
     </div>
     <div style="font-size: 0.75rem; margin-top: 1rem; opacity:0.8;">
-      © Purnima Nishad | Motivation Hub
+      © Purnima Nishad | Motivation Hub | 🤖 Chat_2.0 AI Assistant
     </div>
   </div>
 </div>
 
-<!-- Modal Structure (popup) -->
+<!-- Modal for Shayari, Quotes, Thoughts, Poems -->
 <div id="universalModal" class="modal-overlay">
   <div class="modal-container">
     <div class="modal-header">
       <h2 id="modalTitle">शीर्षक</h2>
       <button class="close-modal" onclick="closeModal()">✕</button>
     </div>
-    <div class="modal-body" id="modalBody">
-      <!-- dynamic content injected -->
+    <div class="modal-body" id="modalBody"></div>
+  </div>
+</div>
+
+<!-- Chatbot Modal -->
+<div id="chatbotModal" class="modal-overlay">
+  <div class="modal-container" style="max-width: 600px;">
+    <div class="modal-header" style="background: #2a5298;">
+      <h2>🤖 Chat_2.0 - AI Assistant</h2>
+      <button class="close-modal" onclick="closeChatbotModal()">✕</button>
+    </div>
+    <div class="modal-body" style="padding: 0;">
+      <div class="chat-container">
+        <div class="chat-messages" id="chatMessages">
+          <div class="message bot-message">
+            👋 नमस्ते! मैं Chat_2.0 AI Assistant हूँ।<br>
+            📚 मैं आपकी study में मदद कर सकता हूँ, सवाल solve कर सकता हूँ, और motivation भी दे सकता हूँ!<br>
+            💬 पूछिए जो भी दिल में है...
+          </div>
+        </div>
+        <div class="chat-input-area">
+          <input type="text" id="chatInput" class="chat-input" placeholder="अपना सवाल या message लिखें..." onkeypress="if(event.key==='Enter') sendMessage()">
+          <button class="send-btn" onclick="sendMessage()">📤 भेजें</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
 <script>
-  // Function to open modal with different content
+  // Modal functions for Shayari, Quotes, etc.
   function openModal(type) {
     const modal = document.getElementById('universalModal');
     const modalTitle = document.getElementById('modalTitle');
@@ -500,46 +597,16 @@
     
     if (type === 'shayari') {
       modalTitle.innerHTML = '📖 प्रेरक शायरी संग्रह';
-      modalBody.innerHTML = `
-        <div class="shayari-card"><div class="shayari-text">❝ हर मुश्किल में जीत पाओगे,<br>बस खुद पर विश्वास रखना होगा। ❞</div><div class="shayari-cat">— विश्वास शायरी</div></div>
-        <div class="shayari-card"><div class="shayari-text">❝ मंजिल उन्हीं को मिलती है,<br>जिनके सपनों में जान होती है,<br>पंख से कुछ नहीं होता,<br>हौसलों से उड़ान होती है। ❞</div><div class="shayari-cat">— हौसला शायरी</div></div>
-        <div class="shayari-card"><div class="shayari-text">❝ खुद पे कर यकीन पूरा,<br>हर अंधेरा होगा दूर,<br>मेहनत इतनी करो कि कामयाबी खुद चलकर आए ❞</div><div class="shayari-cat">— मेहनत शायरी</div></div>
-        <div class="shayari-card"><div class="shayari-text">❝ रुकना नहीं, झुकना नहीं,<br>हर दिन नया संघर्ष है,<br>हार नहीं मानूंगा मैं,<br>यही मेरा प्रयास है। ❞</div><div class="shayari-cat">— जज़्बा शायरी</div></div>
-        <div class="shayari-card"><div class="shayari-text">❝ तूफानों से लड़ना सीख,<br>हर लहर को पार कर,<br>तेरे इरादे अगर बुलंद हैं,<br>तो किनारा खुद ब खुद मिलेगा। ❞</div><div class="shayari-cat">— संघर्ष शायरी</div></div>
-        <div class="shayari-card"><div class="shayari-text">❝ हर सुबह नई उम्मीद लेकर आती है,<br>बस हौसला रखो, मंजिल पास है। ❞</div><div class="shayari-cat">— नई शुरुआत</div></div>
-      `;
-    } 
-    else if (type === 'quotes') {
+      modalBody.innerHTML = getShayariContent();
+    } else if (type === 'quotes') {
       modalTitle.innerHTML = '💡 प्रेरणादायक Quotes';
-      modalBody.innerHTML = `
-        <div class="quote-card"><div class="shayari-text">"Kamyabi ke raaste mehnat se hokar hi guzarate hain."</div><div class="quote-author">— मेहनत का फल</div></div>
-        <div class="quote-card"><div class="shayari-text">"सफलता वह नहीं जो आपको मिलती है, सफलता वह है जो आप बन जाते हैं।"</div><div class="quote-author">— जिम रोहन</div></div>
-        <div class="quote-card"><div class="shayari-text">"आपकी सोच ही आपकी जिंदगी की दिशा तय करती है। सकारात्मक सोचो, बड़ा सोचो।"</div><div class="quote-author">— प्रेरणा विचार</div></div>
-        <div class="quote-card"><div class="shayari-text">"जो लोग कभी हार नहीं मानते, वही इतिहास रचते हैं।"</div><div class="quote-author">— संघर्ष सूत्र</div></div>
-        <div class="quote-card"><div class="shayari-text">"आप जितना बड़ा सपना देख सकते हैं, उतना ही बड़ा आप कर सकते हैं।"</div><div class="quote-author">— पॉल कोएल्हो</div></div>
-        <div class="quote-card"><div class="shayari-text">"हर दिन एक नया अवसर है। अपने सपनों को पीछे मत छोड़ो।"</div><div class="quote-author">— प्रेरक वचन</div></div>
-      `;
-    }
-    else if (type === 'thoughts') {
+      modalBody.innerHTML = getQuotesContent();
+    } else if (type === 'thoughts') {
       modalTitle.innerHTML = '🌼 सकारात्मक विचार';
-      modalBody.innerHTML = `
-        <div class="thought-card"><div class="thought-text">✨ सोच अच्छी हो, तो जिंदगी खूबसूरत हो जाती है। ✨</div></div>
-        <div class="thought-card"><div class="thought-text">☀️ हर सुबह नई शुरुआत है, बीती कल को भूलकर आज को जियो।</div></div>
-        <div class="thought-card"><div class="thought-text">🌱 जब आप सकारात्मक सोचते हैं, तो पूरी दुनिया आपके साथ सकारात्मक हो जाती है।</div></div>
-        <div class="thought-card"><div class="thought-text">💫 आप जैसा सोचते हो, वैसे ही बन जाते हो। इसलिए हमेशा उच्च सोच रखो।</div></div>
-        <div class="thought-card"><div class="thought-text">🌸 हर दिन एक नया अवसर है, मुस्कुराओ, सीखो और आगे बढ़ो।</div></div>
-        <div class="thought-card"><div class="thought-text">🌻 मुश्किलें अस्थायी होती हैं, धैर्य और विश्वास रखो।</div></div>
-      `;
-    }
-    else if (type === 'poems') {
+      modalBody.innerHTML = getThoughtsContent();
+    } else if (type === 'poems') {
       modalTitle.innerHTML = '📜 प्रेरक कविताएँ';
-      modalBody.innerHTML = `
-        <div class="poem-card"><div class="poem-title">★ उड़ान ★</div><div class="poem-content">"उड़ान उंची भरनी है,<br>हौसले बुलंद करने हैं,<br>हर असफलता से सीख ले,<br>फिर से नए इरादे रखने हैं।"</div></div>
-        <div class="poem-card"><div class="poem-title">★ मंजिल की ओर ★</div><div class="poem-content">थककर मत बैठ जाना ए दिल,<br>अभी तो सफर बाकी है,<br>हर मोड़ पर मुश्किलें आएंगी,<br>पर हौसला हर बार जीत का परचम लहराएगा।</div></div>
-        <div class="poem-card"><div class="poem-title">★ खुद पे भरोसा ★</div><div class="poem-content">खुद पे कर यकीन ऐ मुसाफिर,<br>तेरे अंदर है वो ताकत,<br>हर सपना होगा साकार,<br>बस लगातार करता जा कोशिश।</div></div>
-        <div class="poem-card"><div class="poem-title">★ जज़्बा जवां ★</div><div class="poem-content">हार नहीं मानूंगा मैं,<br>हर दिन नया संघर्ष है,<br>सपनों की उड़ान में,<br>पूरा आसमान मेरा है।</div></div>
-        <div class="poem-card"><div class="poem-title">★ नया सवेरा ★</div><div class="poem-content">हर सुबह नई किरण ले आए,<br>हर दिल में उम्मीद जगाए,<br>मुश्किलें चाहे जितनी भी हों,<br>हौसला हमें मंजिल तक ले जाए।</div></div>
-      `;
+      modalBody.innerHTML = getPoemsContent();
     }
     
     modal.classList.add('active');
@@ -547,26 +614,74 @@
   }
   
   function closeModal() {
-    const modal = document.getElementById('universalModal');
-    modal.classList.remove('active');
+    document.getElementById('universalModal').classList.remove('active');
     document.body.style.overflow = 'auto';
   }
   
-  // Close modal when clicking outside
-  document.getElementById('universalModal').addEventListener('click', function(e) {
-    if (e.target === this) {
-      closeModal();
-    }
-  });
+  // Chatbot functions
+  function openChatbotModal() {
+    document.getElementById('chatbotModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
   
-  // Keyboard Escape key support
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') {
-      closeModal();
-    }
-  });
+  function closeChatbotModal() {
+    document.getElementById('chatbotModal').classList.remove('active');
+    document.body.style.overflow = 'auto';
+  }
   
-  console.log("✅ एकदम perfect website! सभी कार्ड पर क्लिक करें - Shayari, Quotes, Thoughts, Poems पॉपअप में खुलेंगे। आपकी अपनी image 'Purnima.jpg' सेट है।");
-</script>
-</body>
-</html>
+  // AI Chatbot Response Logic
+  function sendMessage() {
+    const input = document.getElementById('chatInput');
+    const message = input.value.trim();
+    if (message === "") return;
+    
+    // Add user message
+    addMessage(message, 'user');
+    input.value = '';
+    
+    // Show typing indicator
+    const typingDiv = document.createElement('div');
+    typingDiv.className = 'message bot-message typing';
+    typingDiv.innerText = '🤔 Chat_2.0 सोच रहा है...';
+    document.getElementById('chatMessages').appendChild(typingDiv);
+    document.getElementById('chatMessages').scrollTop = document.getElementById('chatMessages').scrollHeight;
+    
+    // Generate bot response after delay
+    setTimeout(() => {
+      typingDiv.remove();
+      const reply = getBotReply(message);
+      addMessage(reply, 'bot');
+    }, 500);
+  }
+  
+  function addMessage(text, sender) {
+    const messagesDiv = document.getElementById('chatMessages');
+    const msgDiv = document.createElement('div');
+    msgDiv.className = `message ${sender === 'user' ? 'user-message' : 'bot-message'}`;
+    msgDiv.innerText = text;
+    messagesDiv.appendChild(msgDiv);
+    messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  }
+  
+  function getBotReply(userMsg) {
+    const msg = userMsg.toLowerCase();
+    
+    // Study related responses
+    if (msg.includes('math') || msg.includes('गणित') || msg.includes('maths')) {
+      return "📐 गणित के लिए: Practice is key! Formulas yaad rakhein, daily practice karein. क्या कोई specific topic hai jisme help chahiye?";
+    }
+    else if (msg.includes('science') || msg.includes('विज्ञान')) {
+      return "🔬 Science ke liye: Concepts clear karo, diagrams banake samjho, aur NCERT books follow karo. कौनसा chapter difficult lag raha hai?";
+    }
+    else if (msg.includes('english') || msg.includes('अंग्रेजी')) {
+      return "📖 English improve karne ke liye: Roz 10 new words yaad karo, grammar videos dekho, aur daily conversation practice karo. Want some tips?";
+    }
+    // Motivation related
+    else if (msg.includes('motivation') || msg.includes('प्रेरणा') || msg.includes('हिम्मत')) {
+      return "💪 आप बहुत strong हो! याद रखो: 'कल्पना से बड़ी कोई ताकत नहीं, और मेहनत से बड़ा कोई रास्ता नहीं।' आपको किस चीज में motivation चाहिए?";
+    }
+    else if (msg.includes('exam') || msg.includes('परीक्षा') || msg.includes('test')) {
+      return "📚 Exam की तैयारी: समय table बनाओ, revision करो, और सबसे जरूरी - खुद पर विश्वास रखो! 'Success उन्हीं की होती है जो हार नहीं मानते।' All the best! ✨";
+    }
+    else if (msg.includes('stress') || msg.includes('तनाव') || msg.includes('anxiety')) {
+      return "🧘 तना
