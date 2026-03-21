@@ -1,9 +1,9 @@
-            <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-  <title>Mera Motivation Hub | Purnima's Space</title>
+  <title>मेरा Motivation Hub | Purnima's Space</title>
   <style>
     * {
       margin: 0;
@@ -18,7 +18,6 @@
       color: #1e2a2f;
     }
 
-    /* main container */
     .motivation-container {
       max-width: 650px;
       margin: 0 auto;
@@ -27,7 +26,6 @@
       gap: 1.8rem;
     }
 
-    /* card style */
     .card {
       background: rgba(255, 255, 255, 0.96);
       border-radius: 2rem;
@@ -37,7 +35,6 @@
       border: 1px solid rgba(255, 215, 150, 0.5);
       animation: fadeSlideUp 0.6s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
       opacity: 0;
-      cursor: pointer;
     }
 
     .card:hover {
@@ -46,7 +43,6 @@
       border-color: #ffb347;
     }
 
-    /* clickable card indicator */
     .clickable-card {
       cursor: pointer;
       position: relative;
@@ -66,7 +62,6 @@
       opacity: 1;
     }
 
-    /* profile section special - no click effect on profile */
     .profile-card {
       background: linear-gradient(135deg, #ffffff 0%, #fff7ed 100%);
       border-bottom: 5px solid #f39c12;
@@ -77,11 +72,6 @@
       display: none;
     }
 
-    .profile-card:hover {
-      transform: translateY(-5px);
-    }
-
-    /* image styling */
     .profile-img {
       width: 140px;
       height: 140px;
@@ -285,13 +275,121 @@
         height: 110px;
       }
     }
+
+    /* Modal / Popup Styles for internal pages */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+    .modal-overlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+    .modal-container {
+      background: #fffaf2;
+      border-radius: 2rem;
+      max-width: 750px;
+      width: 100%;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 30px 50px rgba(0,0,0,0.4);
+      animation: modalZoom 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      position: relative;
+    }
+    @keyframes modalZoom {
+      from {
+        transform: scale(0.9);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+    .modal-header {
+      position: sticky;
+      top: 0;
+      background: #f39c12;
+      padding: 1rem 1.5rem;
+      border-radius: 2rem 2rem 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+      font-weight: bold;
+      z-index: 10;
+    }
+    .modal-header h2 {
+      font-size: 1.5rem;
+      margin: 0;
+    }
+    .close-modal {
+      background: rgba(0,0,0,0.3);
+      border: none;
+      color: white;
+      font-size: 1.8rem;
+      cursor: pointer;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: 0.2s;
+    }
+    .close-modal:hover {
+      background: #e67e22;
+      transform: rotate(90deg);
+    }
+    .modal-body {
+      padding: 1.8rem;
+    }
+    .shayari-card, .quote-card, .thought-card, .poem-card {
+      background: white;
+      border-radius: 1.5rem;
+      padding: 1.2rem;
+      margin-bottom: 1.2rem;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.08);
+      border-left: 6px solid #f39c12;
+    }
+    .modal-body .shayari-text, .modal-body .quote-text, .modal-body .thought-text, .modal-body .poem-content {
+      font-size: 1.2rem;
+      line-height: 1.5;
+      text-align: center;
+      color: #2d2b26;
+    }
+    .quote-author, .shayari-cat {
+      text-align: right;
+      color: #b95f1a;
+      margin-top: 0.6rem;
+      font-size: 0.85rem;
+    }
+    .poem-title {
+      font-weight: bold;
+      color: #c4450c;
+      margin-bottom: 0.5rem;
+      font-size: 1.2rem;
+    }
   </style>
 </head>
 <body>
 
 <div class="motivation-container">
 
-  <!-- Header Card (not clickable) -->
+  <!-- Header Card -->
   <div class="card" style="cursor: default;">
     <div class="welcome-tag">✨ मेरा Motivation Hub ✨</div>
     <div style="display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin: 0.5rem 0 0.2rem;">
@@ -307,7 +405,7 @@
     </div>
   </div>
 
-  <!-- Profile Card -->
+  <!-- Profile Card with YOUR IMAGE -->
   <div class="card profile-card">
     <div style="text-align: center;">
       <img class="profile-img" src="Purnima.jpg" alt="Purnima Nishad" onerror="this.onerror=null; this.src='https://via.placeholder.com/140x140?text=Purnima';">
@@ -320,45 +418,45 @@
     </div>
   </div>
 
-  <!-- Trending Shayari - CLICKABLE -->
-  <div class="card clickable-card" onclick="openPage('shayari')">
+  <!-- Trending Shayari - opens modal -->
+  <div class="card clickable-card" onclick="openModal('shayari')">
     <div class="section-title">📖 Trending Shayari</div>
     <div class="shayari-text">
       ❝ Har mushkil mein jeet paoge,<br>
       Bas khud par vishwas rakhna hoga. ❞
     </div>
-    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #b87333; text-align: right;">✨ और देखने के लिए क्लिक करें</div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #b87333; text-align: right;">✨ पूरा संग्रह देखने के लिए क्लिक करें</div>
   </div>
 
-  <!-- Quote of the Day - CLICKABLE -->
-  <div class="card clickable-card" onclick="openPage('quotes')">
+  <!-- Quote of the Day -->
+  <div class="card clickable-card" onclick="openModal('quotes')">
     <div class="section-title">💡 Quote of the Day</div>
     <div class="shayari-text" style="background:#fff3e6;">
       "Kamyabi ke raaste <br> mehnat se hokar hi guzarate hain."
     </div>
-    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #b87333; text-align: right;">✨ और quotes के लिए क्लिक करें</div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #b87333; text-align: right;">✨ और प्रेरक quotes के लिए क्लिक करें</div>
   </div>
 
-  <!-- Positive Thoughts - CLICKABLE -->
-  <div class="card clickable-card" onclick="openPage('positivethoughts')">
+  <!-- Positive Thoughts -->
+  <div class="card clickable-card" onclick="openModal('thoughts')">
     <div class="section-title">🌼 Positive Thoughts</div>
     <div class="shayari-text" style="background:#fef7e9;">
       ✨ Soch achhi ho, <br> Toh zindagi khubsoorat ho jati hai. ✨
     </div>
-    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #b87333; text-align: right;">✨ और सकारात्मक विचारों के लिए क्लिक करें</div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #b87333; text-align: right;">✨ सकारात्मक विचारों के लिए क्लिक करें</div>
   </div>
 
-  <!-- Motivational Poem - CLICKABLE -->
-  <div class="card clickable-card" onclick="openPage('poems')">
+  <!-- Motivational Poem -->
+  <div class="card clickable-card" onclick="openModal('poems')">
     <div class="section-title">📜 Motivational Poem</div>
     <div class="poem-line">
       "Udaan unchi bharni hai,<br>
       Hausle buland karne hain."
     </div>
-    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #b87333; text-align: right;">✨ और प्रेरक कविताओं के लिए क्लिक करें</div>
+    <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #b87333; text-align: right;">✨ प्रेरक कविताएँ पढ़ने के लिए क्लिक करें</div>
   </div>
 
-  <!-- Keep Going Card (not clickable) -->
+  <!-- Keep Going -->
   <div class="card keep-going" style="text-align: center;">
     <div style="font-size: 1.9rem; font-weight:800;">🔥 Keep Going! 🔥</div>
     <div style="margin-top: 0.8rem; font-size: 1.2rem;">हर दिन नई शुरुआत ✨</div>
@@ -380,143 +478,95 @@
   </div>
 </div>
 
+<!-- Modal Structure (popup) -->
+<div id="universalModal" class="modal-overlay">
+  <div class="modal-container">
+    <div class="modal-header">
+      <h2 id="modalTitle">शीर्षक</h2>
+      <button class="close-modal" onclick="closeModal()">✕</button>
+    </div>
+    <div class="modal-body" id="modalBody">
+      <!-- dynamic content injected -->
+    </div>
+  </div>
+</div>
+
 <script>
-  // Function to open pages in the same tab (reliable method)
-  function openPage(pageType) {
-    let htmlContent = '';
+  // Function to open modal with different content
+  function openModal(type) {
+    const modal = document.getElementById('universalModal');
+    const modalTitle = document.getElementById('modalTitle');
+    const modalBody = document.getElementById('modalBody');
     
-    if (pageType === 'shayari') {
-      htmlContent = getShayariPage();
-    } else if (pageType === 'quotes') {
-      htmlContent = getQuotesPage();
-    } else if (pageType === 'positivethoughts') {
-      htmlContent = getPositiveThoughtsPage();
-    } else if (pageType === 'poems') {
-      htmlContent = getPoemsPage();
-    }
-    
-    // Create a new document and replace current page
-    document.open();
-    document.write(htmlContent);
-    document.close();
-  }
-  
-  // SHAYARI PAGE CONTENT
-  function getShayariPage() {
-    return `<!DOCTYPE html>
-    <html lang="hi">
-    <head>
-      <meta charset="UTF-8">
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <title>Trending Shayari | Purnima's Motivation Hub</title>
-      <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-          background: linear-gradient(145deg, #fff3e0, #ffe0b5);
-          font-family: 'Segoe UI', 'Poppins', sans-serif;
-          padding: 2rem 1rem;
-          min-height: 100vh;
-        }
-        .container { max-width: 750px; margin: 0 auto; }
-        .header {
-          text-align: center;
-          margin-bottom: 2rem;
-        }
-        .back-btn {
-          display: inline-block;
-          background: #f39c12;
-          color: white;
-          padding: 0.6rem 1.5rem;
-          border-radius: 40px;
-          text-decoration: none;
-          font-weight: bold;
-          margin-bottom: 1.5rem;
-          transition: 0.3s;
-          border: none;
-          cursor: pointer;
-          font-size: 1rem;
-        }
-        .back-btn:hover { background: #e67e22; transform: scale(1.02); }
-        h1 {
-          font-size: 2.2rem;
-          color: #b6490e;
-          border-bottom: 3px solid #ffb347;
-          display: inline-block;
-          padding-bottom: 0.3rem;
-        }
-        .shayari-card {
-          background: white;
-          border-radius: 1.8rem;
-          padding: 1.5rem;
-          margin-bottom: 1.5rem;
-          box-shadow: 0 12px 22px rgba(0,0,0,0.1);
-          transition: transform 0.2s;
-          border-left: 8px solid #f39c12;
-        }
-        .shayari-card:hover { transform: translateX(5px); }
-        .shayari-text {
-          font-size: 1.35rem;
-          line-height: 1.6;
-          color: #2c3e2f;
-          font-weight: 500;
-          text-align: center;
-          font-style: normal;
-        }
-        .shayari-cat { color: #c26f1a; margin-top: 0.6rem; font-size: 0.9rem; text-align: right; }
-        footer { text-align: center; margin-top: 2rem; color: #a7581a; }
-      </style>
-    </head>
-    <body>
-      <div class="container">
-        <div class="header">
-          <button class="back-btn" onclick="window.location.href='javascript:history.back()'">← वापस होम पेज</button>
-          <h1>📖 प्रेरक शायरी संग्रह</h1>
-          <p style="margin-top: 0.8rem; color:#b95f1a;">हौसला बढ़ाने वाली शायरियाँ</p>
-        </div>
+    if (type === 'shayari') {
+      modalTitle.innerHTML = '📖 प्रेरक शायरी संग्रह';
+      modalBody.innerHTML = `
         <div class="shayari-card"><div class="shayari-text">❝ हर मुश्किल में जीत पाओगे,<br>बस खुद पर विश्वास रखना होगा। ❞</div><div class="shayari-cat">— विश्वास शायरी</div></div>
         <div class="shayari-card"><div class="shayari-text">❝ मंजिल उन्हीं को मिलती है,<br>जिनके सपनों में जान होती है,<br>पंख से कुछ नहीं होता,<br>हौसलों से उड़ान होती है। ❞</div><div class="shayari-cat">— हौसला शायरी</div></div>
         <div class="shayari-card"><div class="shayari-text">❝ खुद पे कर यकीन पूरा,<br>हर अंधेरा होगा दूर,<br>मेहनत इतनी करो कि कामयाबी खुद चलकर आए ❞</div><div class="shayari-cat">— मेहनत शायरी</div></div>
         <div class="shayari-card"><div class="shayari-text">❝ रुकना नहीं, झुकना नहीं,<br>हर दिन नया संघर्ष है,<br>हार नहीं मानूंगा मैं,<br>यही मेरा प्रयास है। ❞</div><div class="shayari-cat">— जज़्बा शायरी</div></div>
         <div class="shayari-card"><div class="shayari-text">❝ तूफानों से लड़ना सीख,<br>हर लहर को पार कर,<br>तेरे इरादे अगर बुलंद हैं,<br>तो किनारा खुद ब खुद मिलेगा। ❞</div><div class="shayari-cat">— संघर्ष शायरी</div></div>
-        <footer>✨ Purnima's Motivation Hub ✨</footer>
-      </div>
-    </body>
-    </html>`;
+        <div class="shayari-card"><div class="shayari-text">❝ हर सुबह नई उम्मीद लेकर आती है,<br>बस हौसला रखो, मंजिल पास है। ❞</div><div class="shayari-cat">— नई शुरुआत</div></div>
+      `;
+    } 
+    else if (type === 'quotes') {
+      modalTitle.innerHTML = '💡 प्रेरणादायक Quotes';
+      modalBody.innerHTML = `
+        <div class="quote-card"><div class="shayari-text">"Kamyabi ke raaste mehnat se hokar hi guzarate hain."</div><div class="quote-author">— मेहनत का फल</div></div>
+        <div class="quote-card"><div class="shayari-text">"सफलता वह नहीं जो आपको मिलती है, सफलता वह है जो आप बन जाते हैं।"</div><div class="quote-author">— जिम रोहन</div></div>
+        <div class="quote-card"><div class="shayari-text">"आपकी सोच ही आपकी जिंदगी की दिशा तय करती है। सकारात्मक सोचो, बड़ा सोचो।"</div><div class="quote-author">— प्रेरणा विचार</div></div>
+        <div class="quote-card"><div class="shayari-text">"जो लोग कभी हार नहीं मानते, वही इतिहास रचते हैं।"</div><div class="quote-author">— संघर्ष सूत्र</div></div>
+        <div class="quote-card"><div class="shayari-text">"आप जितना बड़ा सपना देख सकते हैं, उतना ही बड़ा आप कर सकते हैं।"</div><div class="quote-author">— पॉल कोएल्हो</div></div>
+        <div class="quote-card"><div class="shayari-text">"हर दिन एक नया अवसर है। अपने सपनों को पीछे मत छोड़ो।"</div><div class="quote-author">— प्रेरक वचन</div></div>
+      `;
+    }
+    else if (type === 'thoughts') {
+      modalTitle.innerHTML = '🌼 सकारात्मक विचार';
+      modalBody.innerHTML = `
+        <div class="thought-card"><div class="thought-text">✨ सोच अच्छी हो, तो जिंदगी खूबसूरत हो जाती है। ✨</div></div>
+        <div class="thought-card"><div class="thought-text">☀️ हर सुबह नई शुरुआत है, बीती कल को भूलकर आज को जियो।</div></div>
+        <div class="thought-card"><div class="thought-text">🌱 जब आप सकारात्मक सोचते हैं, तो पूरी दुनिया आपके साथ सकारात्मक हो जाती है।</div></div>
+        <div class="thought-card"><div class="thought-text">💫 आप जैसा सोचते हो, वैसे ही बन जाते हो। इसलिए हमेशा उच्च सोच रखो।</div></div>
+        <div class="thought-card"><div class="thought-text">🌸 हर दिन एक नया अवसर है, मुस्कुराओ, सीखो और आगे बढ़ो।</div></div>
+        <div class="thought-card"><div class="thought-text">🌻 मुश्किलें अस्थायी होती हैं, धैर्य और विश्वास रखो।</div></div>
+      `;
+    }
+    else if (type === 'poems') {
+      modalTitle.innerHTML = '📜 प्रेरक कविताएँ';
+      modalBody.innerHTML = `
+        <div class="poem-card"><div class="poem-title">★ उड़ान ★</div><div class="poem-content">"उड़ान उंची भरनी है,<br>हौसले बुलंद करने हैं,<br>हर असफलता से सीख ले,<br>फिर से नए इरादे रखने हैं।"</div></div>
+        <div class="poem-card"><div class="poem-title">★ मंजिल की ओर ★</div><div class="poem-content">थककर मत बैठ जाना ए दिल,<br>अभी तो सफर बाकी है,<br>हर मोड़ पर मुश्किलें आएंगी,<br>पर हौसला हर बार जीत का परचम लहराएगा।</div></div>
+        <div class="poem-card"><div class="poem-title">★ खुद पे भरोसा ★</div><div class="poem-content">खुद पे कर यकीन ऐ मुसाफिर,<br>तेरे अंदर है वो ताकत,<br>हर सपना होगा साकार,<br>बस लगातार करता जा कोशिश।</div></div>
+        <div class="poem-card"><div class="poem-title">★ जज़्बा जवां ★</div><div class="poem-content">हार नहीं मानूंगा मैं,<br>हर दिन नया संघर्ष है,<br>सपनों की उड़ान में,<br>पूरा आसमान मेरा है।</div></div>
+        <div class="poem-card"><div class="poem-title">★ नया सवेरा ★</div><div class="poem-content">हर सुबह नई किरण ले आए,<br>हर दिल में उम्मीद जगाए,<br>मुश्किलें चाहे जितनी भी हों,<br>हौसला हमें मंजिल तक ले जाए।</div></div>
+      `;
+    }
+    
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
   }
   
-  // QUOTES PAGE CONTENT
-  function getQuotesPage() {
-    return `<!DOCTYPE html>
-    <html lang="hi">
-    <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Best Quotes | Motivation Hub</title>
-    <style> *{margin:0;padding:0;box-sizing:border-box;} body{background: linear-gradient(145deg,#e9f0f5,#d9e4ec); font-family:'Segoe UI',sans-serif; padding:2rem 1rem;} .container{max-width:750px;margin:0 auto;} .header{text-align:center;margin-bottom:2rem;} .back-btn{background:#f39c12;color:white;padding:0.6rem 1.5rem;border-radius:40px;text-decoration:none;font-weight:bold;border:none;cursor:pointer;font-size:1rem;} .back-btn:hover{background:#e67e22;} h1{font-size:2.2rem;color:#1f6392;border-bottom:3px solid #ffb347;display:inline-block;padding-bottom:0.3rem;} .quote-card{background:white;border-radius:1.8rem;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 12px 22px rgba(0,0,0,0.08);border-right:6px solid #f39c12;} .quote-text{font-size:1.3rem;line-height:1.55;color:#2c3e2f;font-weight:500;text-align:center;} .quote-author{margin-top:0.6rem;color:#c26f1a;text-align:right;} footer{text-align:center;margin-top:2rem;color:#1f6392;} </style></head>
-    <body><div class="container"><div class="header"><button class="back-btn" onclick="window.location.href='javascript:history.back()'">← वापस होम</button><h1>💡 प्रेरणादायक Quotes</h1></div>
-    <div class="quote-card"><div class="quote-text">"Kamyabi ke raaste mehnat se hokar hi guzarate hain."</div><div class="quote-author">— मेहनत का फल</div></div>
-    <div class="quote-card"><div class="quote-text">"सफलता वह नहीं जो आपको मिलती है, सफलता वह है जो आप बन जाते हैं।"</div><div class="quote-author">— जिम रोहन</div></div>
-    <div class="quote-card"><div class="quote-text">"आपकी सोच ही आपकी जिंदगी की दिशा तय करती है। सकारात्मक सोचो, बड़ा सोचो।"</div><div class="quote-author">— प्रेरणा विचार</div></div>
-    <div class="quote-card"><div class="quote-text">"जो लोग कभी हार नहीं मानते, वही इतिहास रचते हैं।"</div><div class="quote-author">— संघर्ष सूत्र</div></div>
-    <div class="quote-card"><div class="quote-text">"आप जितना बड़ा सपना देख सकते हैं, उतना ही बड़ा आप कर सकते हैं।"</div><div class="quote-author">— पॉल कोएल्हो</div></div>
-    <footer>✨ Keep Shining ✨</footer></div></body></html>`;
+  function closeModal() {
+    const modal = document.getElementById('universalModal');
+    modal.classList.remove('active');
+    document.body.style.overflow = 'auto';
   }
   
-  // POSITIVE THOUGHTS PAGE CONTENT
-  function getPositiveThoughtsPage() {
-    return `<!DOCTYPE html>
-    <html lang="hi">
-    <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Positive Thoughts | Motivation Hub</title>
-    <style> *{margin:0;padding:0;box-sizing:border-box;} body{background: linear-gradient(145deg,#fef5e7,#fff0df); font-family:'Segoe UI',sans-serif; padding:2rem 1rem;} .container{max-width:750px;margin:0 auto;} .header{text-align:center;margin-bottom:2rem;} .back-btn{background:#f39c12;color:white;padding:0.6rem 1.5rem;border-radius:40px;border:none;cursor:pointer;font-weight:bold;} .back-btn:hover{background:#e67e22;} h1{font-size:2.2rem;color:#c2712e;border-bottom:3px solid #ffb347;display:inline-block;} .thought-card{background:#fffcf5;border-radius:2rem;padding:1.5rem;margin-bottom:1.5rem;box-shadow:0 8px 20px rgba(0,0,0,0.05);border-left:8px solid #ffaa44;} .thought-text{font-size:1.28rem;line-height:1.5;color:#3a2c1f;text-align:center;} footer{text-align:center;margin-top:2rem;color:#b95f1a;}</style></head>
-    <body><div class="container"><div class="header"><button class="back-btn" onclick="window.location.href='javascript:history.back()'">← होम पेज</button><h1>🌼 सकारात्मक विचार</h1></div>
-    <div class="thought-card"><div class="thought-text">✨ सोच अच्छी हो, तो जिंदगी खूबसूरत हो जाती है। ✨</div></div>
-    <div class="thought-card"><div class="thought-text">☀️ हर सुबह नई शुरुआत है, बीती कल को भूलकर आज को जियो।</div></div>
-    <div class="thought-card"><div class="thought-text">🌱 जब आप सकारात्मक सोचते हैं, तो पूरी दुनिया आपके साथ सकारात्मक हो जाती है।</div></div>
-    <div class="thought-card"><div class="thought-text">💫 आप जैसा सोचते हो, वैसे ही बन जाते हो। इसलिए हमेशा उच्च सोच रखो।</div></div>
-    <div class="thought-card"><div class="thought-text">🌸 हर दिन एक नया अवसर है, मुस्कुराओ, सीखो और आगे बढ़ो।</div></div>
-    <footer>✨ Purnima Motivation Hub ✨</footer></div></body></html>`;
-  }
+  // Close modal when clicking outside
+  document.getElementById('universalModal').addEventListener('click', function(e) {
+    if (e.target === this) {
+      closeModal();
+    }
+  });
   
-  // POEMS PAGE CONTENT
-  function getPoemsPage() {
-    return `<!DOCTYPE html>
-    <html lang="hi">
-    <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Motivational Poems | Hub</title>
-    <style> *{margin:0;padding:0;box-sizing:border-box;} body{background: linear-gradient(145deg,#f1ead7,#f5e5c8); font-family:'Georgia','Segoe UI',serif; padding:2rem 1rem;} .container{max-width:750px;margin:0 auto;} .header{text-align:center;margin-bottom:2rem;} .back-btn{background:#f39c12;color:white;padding:0.6rem 1.5rem;border-radius:40px;border:none;cursor:pointer;font-weight:bold;} h1{font-size:2rem;color:#8b4513;border-bottom:3px solid #e67e22;display:inline-block;} .poem-card{background:#fffaf0;border-radius:2rem;padding:1.7rem;margin-bottom:1.8rem;box-shadow:0 10px 20px rgba(0,0,0,0.1);text-align:center;} .poem-title{font-size:1.3rem;font-weight:bold;color:#c4450c;margin-bottom:0.8rem;} .poem-content{font-size:1.18rem;line
+  // Keyboard Escape key support
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      closeModal();
+    }
+  });
+  
+  console.log("✅ एकदम perfect website! सभी कार्ड पर क्लिक करें - Shayari, Quotes, Thoughts, Poems पॉपअप में खुलेंगे। आपकी अपनी image 'Purnima.jpg' सेट है।");
+</script>
+</body>
+</html>
