@@ -1,177 +1,77 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE<!DOCTYPE html>
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Purnima's Website</title>
-
-  <meta name="google-site-verification" content="rcIr3T2qEErJGNSP1zOpZncSXVsWqLj9rGqTCxzVJ-Y" />
 
   <style>
     body {
       margin: 0;
+      padding: 0;
+      background: skyblue;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
       font-family: Arial, sans-serif;
-      background: linear-gradient(to bottom, #87CEEB, #ffffff);
-      text-align: center;
-      color: #333;
+      animation: bgFade 5s infinite alternate;
     }
 
-    header {
-      padding: 40px 20px;
-      animation: fadeInDown 1.5s ease;
+    @keyframes bgFade {
+      0% {
+        background-color: skyblue;
+      }
+      100% {
+        background-color: #87ceeb;
+      }
+    }
+
+    .card {
+      text-align: center;
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+      animation: fadeIn 2s ease-in-out;
+    }
+
+    img {
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid skyblue;
+      animation: zoomIn 2s ease-in-out;
     }
 
     h1 {
-      margin: 10px 0;
-      font-size: 42px;
-      color: #222;
+      margin-top: 15px;
+      animation: slideUp 2s ease-in-out;
     }
 
-    .profile img {
-      width: 150px;
-      height: 150px;
-      object-fit: cover;
-      border-radius: 15px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
-      margin-top: 10px;
-      animation: zoomIn 1.5s ease;
-    }
-
-    .container {
-      max-width: 900px;
-      margin: auto;
-      padding: 20px;
-    }
-
-    .box {
-      background: white;
-      padding: 20px;
-      margin: 20px 0;
-      border-radius: 15px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.2);
-      transition: 0.3s;
-      animation: fadeInUp 1s ease;
-    }
-
-    .box:hover {
-      transform: translateY(-5px) scale(1.02);
-    }
-
-    h2 {
-      color: #0077b6;
-    }
-
-    button {
-      padding: 10px 20px;
-      background: #0077b6;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 16px;
-      transition: 0.3s;
-    }
-
-    button:hover {
-      background: #023e8a;
-    }
-
-    a {
-      text-decoration: none;
-    }
-
-    footer {
-      margin-top: 30px;
-      padding: 15px;
-      background: #0077b6;
-      color: white;
-    }
-
-    /* Animations */
-    @keyframes fadeInDown {
-      from {
-        opacity: 0;
-        transform: translateY(-30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
     }
 
     @keyframes zoomIn {
-      from {
-        opacity: 0;
-        transform: scale(0.5);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1);
-      }
+      from { transform: scale(0); }
+      to { transform: scale(1); }
     }
+
+    @keyframes slideUp {
+      from { transform: translateY(50px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
   </style>
 </head>
 
 <body>
 
-  <header>
-    <h1>Welcome to My Website 🚀</h1>
-
-    <div class="profile">
-      <img src="Purnima.jpg" alt="My Photo">
-      <h2>Purnima Nishad</h2>
-      <p>Beginner Web Developer 💻</p>
-    </div>
-  </header>
-
-  <div class="container">
-
-    <div class="box">
-      <h2>About Me</h2>
-      <p>Hi! I am Purnima. I love learning coding and building creative websites 🌟</p>
-    </div>
-
-    <div class="box">
-      <h2>My Skills</h2>
-      <p>HTML | CSS | Beginner Developer</p>
-    </div>
-
-    <div class="box">
-      <h2>Projects</h2>
-      <p>This is my first website hosted using GitHub Pages 🚀</p>
-    </div>
-
-    <div class="box">
-      <h2>Contact / Social</h2>
-      <p>Connect with me on Instagram</p>
-      <a href="https://instagram.com" target="_blank">
-        <button>Open Instagram</button>
-      </a>
-    </div>
-
-    <div class="box">
-      <h2>Click Magic ✨</h2>
-      <button onclick="alert('Hello Purnima! 😄 Keep learning 🚀')">
-        Click Here
-      </button>
-    </div>
-
+  <div class="card">
+    <img src="Purnima.jpg" alt="My Photo">
+    <h1>Welcome to My Website</h1>
   </div>
-
-  <footer>
-    <p>© 2026 Purnima's Website | Made with ❤️</p>
-  </footer>
 
 </body>
 </html>
