@@ -2,8 +2,8 @@
 <html lang="hi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Purnima's Motivation Hub</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Purnima's Motivation Hub | Smart AI Assistant</title>
   <style>
     * {
       margin: 0;
@@ -12,73 +12,112 @@
     }
 
     body {
-      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      padding: 1.5rem;
+      padding: 1rem;
       min-height: 100vh;
     }
 
-    .motivation-container {
-      max-width: 1300px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 1.5rem;
+    /* Page Navigation */
+    .page {
+      display: none;
+      animation: fadeIn 0.4s ease;
     }
 
+    .active-page {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Home Page Grid */
+    .motivation-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+    }
+
+    @media (min-width: 768px) {
+      .motivation-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .motivation-container {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Cards */
     .card {
       background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
       border-radius: 1.5rem;
-      padding: 1.5rem;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      padding: 1.3rem;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
       cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.3);
     }
 
     .card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+      transform: translateY(-8px);
+      box-shadow: 0 25px 40px rgba(0, 0, 0, 0.25);
     }
 
+    .card:active {
+      transform: scale(0.98);
+    }
+
+    /* Profile Card */
     .profile-card {
-      text-align: center;
       background: linear-gradient(135deg, #fff5e6, #ffe6d5);
+      text-align: center;
     }
 
     .profile-img {
-      width: 130px;
-      height: 130px;
+      width: 120px;
+      height: 120px;
       border-radius: 50%;
       object-fit: cover;
-      border: 4px solid #f39c12;
+      border: 4px solid #ff6b6b;
       margin-bottom: 1rem;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
     }
 
     h1 {
-      color: #e67e22;
+      color: #ff6b6b;
       font-size: 1.6rem;
       margin-bottom: 0.3rem;
     }
 
     .sub-name {
-      color: #f39c12;
-      font-size: 0.9rem;
+      color: #ff9f4a;
+      font-size: 0.85rem;
       margin-bottom: 1rem;
     }
 
     .about-text {
       background: white;
-      padding: 1rem;
+      padding: 0.8rem;
       border-radius: 1rem;
       line-height: 1.5;
       color: #5a3e2b;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
     }
 
     .welcome-tag {
       font-size: 1.3rem;
       font-weight: bold;
-      color: #e67e22;
+      background: linear-gradient(135deg, #ff6b6b, #ff9f4a);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       text-align: center;
       margin-bottom: 1rem;
     }
@@ -86,14 +125,14 @@
     .section-title {
       font-size: 1.2rem;
       font-weight: bold;
-      color: #e67e22;
+      color: #ff6b6b;
       margin-bottom: 0.8rem;
-      border-left: 4px solid #f39c12;
+      border-left: 4px solid #ff9f4a;
       padding-left: 0.8rem;
     }
 
     .shayari-text, .poem-line {
-      font-size: 1rem;
+      font-size: 0.95rem;
       line-height: 1.5;
       color: #5a3e2b;
       font-style: italic;
@@ -102,16 +141,16 @@
     }
 
     .inspire-text {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: bold;
-      color: #e67e22;
+      color: #ff6b6b;
       text-align: center;
       margin-top: 0.5rem;
     }
 
     .keep-going {
       text-align: center;
-      background: linear-gradient(135deg, #f39c12, #e67e22);
+      background: linear-gradient(135deg, #ff6b6b, #ff9f4a);
       color: white;
     }
 
@@ -122,7 +161,7 @@
     }
 
     .footer a {
-      color: #f39c12;
+      color: #ff9f4a;
       text-decoration: none;
     }
 
@@ -134,1007 +173,435 @@
     .nav-links {
       display: flex;
       justify-content: center;
-      gap: 1rem;
+      gap: 0.8rem;
       flex-wrap: wrap;
       margin: 0.5rem 0;
     }
 
-    .nav-links a {
+    .nav-links span {
       font-weight: 500;
-      text-decoration: none;
-      color: #e67e22;
       padding: 0.3rem 0.8rem;
-      border-radius: 1.5rem;
+      border-radius: 2rem;
+      background: linear-gradient(135deg, #ff6b6b, #ff9f4a);
+      color: white;
+      font-size: 0.85rem;
+      cursor: pointer;
       transition: 0.3s;
-      background: #fff0e0;
     }
 
-    .nav-links a:hover {
-      background: #e67e22;
-      color: white;
+    .nav-links span:hover {
+      transform: scale(1.05);
     }
   </style>
 </head>
 <body>
 
-<div class="motivation-container">
-  <!-- Header Card -->
-  <div class="card">
-    <div class="welcome-tag">✨ मेरा Motivation Hub ✨</div>
-    <div class="nav-links">
-      <a href="index.html">🏠 Home</a>
-      <a href="shayari.html">❤️ Shayari</a>
-      <a href="poems.html">📜 Poems</a>
-      <a href="quotes.html">💬 Quotes</a>
-      <a href="chat.html">🤖 Chat_2.0</a>
+<!-- ==================== HOME PAGE ==================== -->
+<div id="homePage" class="page active-page">
+  <div class="motivation-container">
+    <!-- Header Card -->
+    <div class="card">
+      <div class="welcome-tag">✨ Purnima's Motivation Hub ✨</div>
+      <div class="nav-links">
+        <span onclick="showPage('homePage')">🏠 Home</span>
+        <span onclick="showPage('shayariPage')">❤️ Shayari</span>
+        <span onclick="showPage('poemsPage')">📜 Poems</span>
+        <span onclick="showPage('quotesPage')">💬 Quotes</span>
+        <span onclick="showPage('thoughtsPage')">🌼 Thoughts</span>
+        <span onclick="showPage('chatPage')">🤖 AI Chat</span>
+      </div>
+      <hr>
+      <div style="font-size: 0.85rem; color: #ff9f4a;">🌟 Inspiration of the Day:</div>
+      <div class="inspire-text">
+        "Sapne wahi sach hote hain, <br> jinko poora karne ka junoon ho!"
+      </div>
     </div>
-    <hr>
-    <div style="font-size: 0.9rem; color: #a7581a;">🌟 Inspiration of the Day:</div>
-    <div class="inspire-text">
-      "Sapne wahi sach hote hain, <br> jinko poora karne ka junoon ho!"
-    </div>
-  </div>
 
-  <!-- Profile Card -->
-  <div class="card profile-card">
-    <div style="text-align: center;">
-      <img class="profile-img" src="Purnima.jpg" alt="Purnima Nishad" onerror="this.src='https://via.placeholder.com/130x130?text=Purnima'">
+    <!-- Profile Card -->
+    <div class="card profile-card">
+      <img class="profile-img" src="Purnima.jpg" alt="Purnima Nishad" onerror="this.src='https://via.placeholder.com/120x120?text=Purnima'">
       <h1>Purnima Nishad</h1>
       <div class="sub-name">✨ Believer | Creator | Learner ✨</div>
       <div class="about-text">
         <strong>मेरे बारे में :</strong><br>
-        Hello! Mera naam Purnima Nishad hai. Main ek student hoon aur mujhe web designing aur technology me interest hai. Yeh meri personal website hai aur isme Chat_2.0 AI Assistant bhi hai jo aapse dosti ki tarah baat karta hai! 💫
+        Hello! Mera naam Purnima Nishad hai. Main ek student hoon aur mujhe web designing aur technology me interest hai. Yeh meri personal website hai aur isme Smart AI Assistant hai jo aapse dosti ki tarah baat karta hai! 💫
       </div>
     </div>
-  </div>
 
-  <!-- Chat_2.0 AI Assistant Card -->
-  <a href="chat.html" style="text-decoration: none;">
-    <div class="card">
-      <div class="section-title">🤖 Chat_2.0 - AI Assistant</div>
+    <!-- Smart AI Assistant Card -->
+    <div class="card" onclick="showPage('chatPage')">
+      <div class="section-title">🤖 Smart AI Assistant</div>
       <div class="shayari-text">
-        💬 एक दोस्त की तरह! पढ़ाई हो या मोटिवेशन,<br>
-        सवाल पूछो, बातें करो, मैं हूँ ना तुम्हारे साथ!
+        💬 ChatGPT जैसा AI दोस्त!<br>
+        पढ़ाई, मोटिवेशन, साइंस, मैथ - कुछ भी पूछो!
       </div>
-      <div style="margin-top: 0.5rem; font-size: 0.8rem; color: #ffd966; text-align: right;">👇 दिल खोलकर बात करो!</div>
+      <div style="margin-top: 0.5rem; font-size: 0.7rem; color: #ff9f4a; text-align: right;">👇 बात करो मुझसे!</div>
     </div>
-  </a>
 
-  <!-- Trending Shayari Card -->
-  <a href="shayari.html" style="text-decoration: none;">
-    <div class="card">
-      <div class="section-title">📖 Trending Shayari</div>
+    <!-- Trending Shayari Card -->
+    <div class="card" onclick="showPage('shayariPage')">
+      <div class="section-title">❤️ Trending Shayari</div>
       <div class="shayari-text">
         ❝ Har mushkil mein jeet paoge,<br> Bas khud par vishwas rakhna hoga. ❞
       </div>
     </div>
-  </a>
 
-  <!-- Quote of the Day Card -->
-  <a href="quotes.html" style="text-decoration: none;">
-    <div class="card">
+    <!-- Quote of the Day Card -->
+    <div class="card" onclick="showPage('quotesPage')">
       <div class="section-title">💡 Quote of the Day</div>
       <div class="shayari-text">
         "Kamyabi ke raaste mehnat se hokar hi guzarate hain."
       </div>
     </div>
-  </a>
 
-  <!-- Positive Thoughts Card -->
-  <a href="motivation.html" style="text-decoration: none;">
-    <div class="card">
+    <!-- Positive Thoughts Card -->
+    <div class="card" onclick="showPage('thoughtsPage')">
       <div class="section-title">🌼 Positive Thoughts</div>
       <div class="shayari-text">
         ✨ Soch achhi ho, Toh zindagi khubsoorat ho jati hai. ✨
       </div>
     </div>
-  </a>
 
-  <!-- Motivational Poem Card -->
-  <a href="poems.html" style="text-decoration: none;">
-    <div class="card">
+    <!-- Motivational Poem Card -->
+    <div class="card" onclick="showPage('poemsPage')">
       <div class="section-title">📜 Motivational Poem</div>
       <div class="poem-line">
         "Udaan unchi bharni hai,<br> Hausle buland karne hain."
       </div>
     </div>
-  </a>
 
-  <!-- Keep Going Card -->
-  <div class="card keep-going">
-    <div style="font-size: 1.7rem;">🔥 Keep Going! 🔥</div>
-    <div style="margin-top: 0.5rem;">हर दिन नई शुरुआत ✨</div>
-  </div>
-
-  <!-- Footer Card -->
-  <div class="card footer">
-    <div style="font-size: 1.3rem; font-weight: bold;">🚀 Stay Motivated!</div>
-    <div style="margin: 0.5rem 0;">Believe in Yourself!</div>
-    <div>
-      🌟 Follow Us: 
-      <a href="#">Facebook</a> | 
-      <a href="#">Instagram</a> | 
-      <a href="#">Twitter</a>
+    <!-- Keep Going Card -->
+    <div class="card keep-going">
+      <div style="font-size: 1.5rem;">🔥 Keep Going! 🔥</div>
+      <div style="margin-top: 0.5rem;">हर दिन नई शुरुआत ✨</div>
     </div>
-    <div style="margin-top: 0.8rem; font-size: 0.8rem;">© Purnima Nishad | Motivation Hub | 🤖 Chat_2.0 AI Assistant</div>
+
+    <!-- Footer Card -->
+    <div class="card footer">
+      <div style="font-size: 1.2rem; font-weight: bold;">🚀 Stay Motivated!</div>
+      <div style="margin: 0.5rem 0;">Believe in Yourself!</div>
+      <div>
+        🌟 Follow Us: 
+        <a href="#">Facebook</a> | 
+        <a href="#">Instagram</a> | 
+        <a href="#">Twitter</a>
+      </div>
+      <div style="margin-top: 0.8rem; font-size: 0.7rem;">© Purnima Nishad | Motivation Hub | 🤖 Smart AI Assistant</div>
+    </div>
   </div>
 </div>
+<!-- ==================== SHAYARI PAGE ==================== -->
+<div id="shayariPage" class="page">
+  <div style="max-width: 800px; margin: 0 auto;">
+    <div style="background: linear-gradient(135deg, #ff6b6b, #ff9f4a); color: white; padding: 1.5rem; border-radius: 1.5rem; text-align: center; margin-bottom: 1.5rem;">
+      <h1 style="color: white;">❤️ Shayari Collection</h1>
+      <p>दिल को छूने वाली शायरी</p>
+      <span onclick="showPage('homePage')" style="display: inline-block; margin-top: 0.8rem; padding: 0.4rem 1rem; background: rgba(255,255,255,0.2); border-radius: 2rem; cursor: pointer;">← Home</span>
+    </div>
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shayari Collection - Purnima's Motivation Hub</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
+      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">❝ Har mushkil mein jeet paoge, Bas khud par vishwas rakhna hoga. ❞</div>
+    </div>
+    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
+      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">❝ Sapne wahi sach hote hain, Jinko poora karne ka junoon ho! ❞</div>
+    </div>
+    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
+      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">❝ Khud pe bharosa rakhna, Himmat se kadam badhana, Duniya ki parwah mat karna, Apne sapno ko apna bana lena! ❞</div>
+    </div>
+    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
+      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">❝ Manzil unhi ko milti hai, Jo raah ke pattharon ko pehchan lete hain. ❞</div>
+    </div>
+    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
+      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">❝ Zindagi ek sangharsh hai, Har din nayi ladai, Haar nahi manni, Jeetna hai ab toh aadat banani hai. ❞</div>
+    </div>
+    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
+      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">❝ Muskarahat ho labon pe, To duniya khubsurat lagti hai, Himmat ho dil mein, To har mushkil aasan lagti hai. ❞</div>
+    </div>
 
-    body {
-      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      min-height: 100vh;
-    }
-
-    .page-container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
-    .page-header {
-      background: linear-gradient(135deg, #f39c12, #e67e22);
-      color: white;
-      padding: 1.5rem;
-      border-radius: 1.5rem;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .page-header h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .back-home {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      background: rgba(255,255,255,0.2);
-      color: white;
-      text-decoration: none;
-      border-radius: 2rem;
-      transition: 0.3s;
-    }
-
-    .back-home:hover {
-      background: rgba(255,255,255,0.4);
-    }
-
-    .content-card {
-      background: white;
-      border-radius: 1rem;
-      padding: 1.5rem;
-      margin-bottom: 1.2rem;
-      border-left: 6px solid #f39c12;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
-    }
-
-    .content-card:hover {
-      transform: translateX(8px);
-    }
-
-    .content-text {
-      font-size: 1.2rem;
-      line-height: 1.6;
-      color: #2d2b26;
-      font-style: italic;
-    }
-
-    .footer-nav {
-      text-align: center;
-      margin-top: 2rem;
-      padding: 1rem;
-    }
-
-    .footer-nav a {
-      color: #e67e22;
-      text-decoration: none;
-      margin: 0 0.5rem;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
-
-<div class="page-container">
-  <div class="page-header">
-    <h1>❤️ Shayari Collection</h1>
-    <p>दिल को छूने वाली शायरी</p>
-    <a href="index.html" class="back-home">← होम पेज पर वापस</a>
-  </div>
-
-  <div class="content-card">
-    <div class="content-text">❝ Har mushkil mein jeet paoge, Bas khud par vishwas rakhna hoga. ❞</div>
-  </div>
-
-  <div class="content-card">
-    <div class="content-text">❝ Sapne wahi sach hote hain, Jinko poora karne ka junoon ho! ❞</div>
-  </div>
-
-  <div class="content-card">
-    <div class="content-text">❝ Khud pe bharosa rakhna, Himmat se kadam badhana, Duniya ki parwah mat karna, Apne sapno ko apna bana lena! ❞</div>
-  </div>
-
-  <div class="content-card">
-    <div class="content-text">❝ Manzil unhi ko milti hai, Jo raah ke pattharon ko pehchan lete hain. ❞</div>
-  </div>
-
-  <div class="content-card">
-    <div class="content-text">❝ Zindagi ek sangharsh hai, Har din nayi ladai, Haar nahi manni, Jeetna hai ab toh aadat banani hai. ❞</div>
-  </div>
-
-  <div class="content-card">
-    <div class="content-text">❝ Muskarahat ho labon pe, To duniya khubsurat lagti hai, Himmat ho dil mein, To har mushkil aasan lagti hai. ❞</div>
-  </div>
-
-  <div class="footer-nav">
-    <a href="index.html">🏠 Home</a> | 
-    <a href="poems.html">📜 Poems</a> | 
-    <a href="quotes.html">💬 Quotes</a> | 
-    <a href="chat.html">🤖 Chat_2.0</a>
+    <div style="text-align: center; margin-top: 1.5rem; padding: 1rem;">
+      <span onclick="showPage('homePage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">🏠 Home</span> | 
+      <span onclick="showPage('poemsPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">📜 Poems</span> | 
+      <span onclick="showPage('quotesPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">💬 Quotes</span> | 
+      <span onclick="showPage('chatPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">🤖 AI Chat</span>
+    </div>
   </div>
 </div>
-
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Poems Collection - Purnima's Motivation Hub</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      min-height: 100vh;
-    }
-
-    .page-container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
-    .page-header {
-      background: linear-gradient(135deg, #f39c12, #e67e22);
-      color: white;
-      padding: 1.5rem;
-      border-radius: 1.5rem;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .page-header h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .back-home {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      background: rgba(255,255,255,0.2);
-      color: white;
-      text-decoration: none;
-      border-radius: 2rem;
-      transition: 0.3s;
-    }
-
-    .back-home:hover {
-      background: rgba(255,255,255,0.4);
-    }
-
-    .poem-card {
-      background: white;
-      border-radius: 1rem;
-      padding: 1.8rem;
-      margin-bottom: 1.5rem;
-      border-bottom: 3px solid #f39c12;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-
-    .poem-text {
-      font-size: 1.2rem;
-      line-height: 1.8;
-      color: #2d2b26;
-      font-style: italic;
-      white-space: pre-line;
-    }
-
-    .footer-nav {
-      text-align: center;
-      margin-top: 2rem;
-      padding: 1rem;
-    }
-
-    .footer-nav a {
-      color: #e67e22;
-      text-decoration: none;
-      margin: 0 0.5rem;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
-
-<div class="page-container">
-  <div class="page-header">
-    <h1>📜 Motivational Poems</h1>
-    <p>हौसला बढ़ाने वाली कविताएँ</p>
-    <a href="index.html" class="back-home">← होम पेज पर वापस</a>
-  </div>
-
-  <div class="poem-card">
-    <div class="poem-text">
-      "उड़ान उंची भरनी है,<br>
-      हौसले बुलंद करने हैं।<br>
-      सपनों को पंख लगाना है,<br>
-      आसमान को छूना है।"
+<!-- ==================== POEMS PAGE ==================== -->
+<div id="poemsPage" class="page">
+  <div style="max-width: 800px; margin: 0 auto;">
+    <div style="background: linear-gradient(135deg, #ff6b6b, #ff9f4a); color: white; padding: 1.5rem; border-radius: 1.5rem; text-align: center; margin-bottom: 1.5rem;">
+      <h1 style="color: white;">📜 Motivational Poems</h1>
+      <p>हौसला बढ़ाने वाली कविताएँ</p>
+      <span onclick="showPage('homePage')" style="display: inline-block; margin-top: 0.8rem; padding: 0.4rem 1rem; background: rgba(255,255,255,0.2); border-radius: 2rem; cursor: pointer;">← Home</span>
     </div>
-  </div>
 
-  <div class="poem-card">
-    <div class="poem-text">
-      "हर सुबह नई उम्मीद,<br>
-      हर दिन नई शुरुआत।<br>
-      थोड़ा सा खुद पे भरोसा,<br>
-      थोड़ी सी अपनी आदत।"
+    <div style="background: white; border-radius: 1rem; padding: 1.5rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
+      <div style="font-size: 1rem; line-height: 1.7; color: #2d2b26; white-space: pre-line;">"उड़ान उंची भरनी है,<br>हौसले बुलंद करने हैं।<br>सपनों को पंख लगाना है,<br>आसमान को छूना है।"</div>
     </div>
-  </div>
-
-  <div class="poem-card">
-    <div class="poem-text">
-      "रुकना नहीं है, चलते रहना है।<br>
-      अंधेरों से लड़कर, रोशनी में रहना है।<br>
-      हार के बाद ही जीत मिलती है,<br>
-      हर शिकस्त को गले लगाकर बढ़ना है।"
+    <div style="background: white; border-radius: 1rem; padding: 1.5rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
+      <div style="font-size: 1rem; line-height: 1.7; color: #2d2b26; white-space: pre-line;">"हर सुबह नई उम्मीद,<br>हर दिन नई शुरुआत।<br>थोड़ा सा खुद पे भरोसा,<br>थोड़ी सी अपनी आदत।"</div>
     </div>
-  </div>
-
-  <div class="poem-card">
-    <div class="poem-text">
-      "ख्वाबों की उड़ान है,<br>
-      हौसलों की शान है।<br>
-      जो हिम्मत रखता है,<br>
-      उसी की पहचान है।"
+    <div style="background: white; border-radius: 1rem; padding: 1.5rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
+      <div style="font-size: 1rem; line-height: 1.7; color: #2d2b26; white-space: pre-line;">"रुकना नहीं है, चलते रहना है।<br>अंधेरों से लड़कर, रोशनी में रहना है।<br>हार के बाद ही जीत मिलती है,<br>हर शिकस्त को गले लगाकर बढ़ना है।"</div>
     </div>
-  </div>
-
-  <div class="poem-card">
-    <div class="poem-text">
-      "चाहे रास्ते कितने भी मुश्किल हों,<br>
-      मंजिल से प्यार करो।<br>
-      थककर रुकना नहीं,<br>
-      बस आगे बढ़ते रहो।"
+    <div style="background: white; border-radius: 1rem; padding: 1.5rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
+      <div style="font-size: 1rem; line-height: 1.7; color: #2d2b26; white-space: pre-line;">"ख्वाबों की उड़ान है,<br>हौसलों की शान है।<br>जो हिम्मत रखता है,<br>उसी की पहचान है।"</div>
     </div>
-  </div>
+    <div style="background: white; border-radius: 1rem; padding: 1.5rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
+      <div style="font-size: 1rem; line-height: 1.7; color: #2d2b26; white-space: pre-line;">"मंज़िलें उन्हीं को मिलती हैं,<br>जो रुकते नहीं, चलते रहते हैं।<br>हार के बाद भी संभल जाते हैं,<br>और फिर से संघर्ष करते हैं।"</div>
+    </div>
 
-  <div class="footer-nav">
-    <a href="index.html">🏠 Home</a> | 
-    <a href="shayari.html">❤️ Shayari</a> | 
-    <a href="quotes.html">💬 Quotes</a> | 
-    <a href="chat.html">🤖 Chat_2.0</a>
+    <div style="text-align: center; margin-top: 1.5rem; padding: 1rem;">
+      <span onclick="showPage('homePage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">🏠 Home</span> | 
+      <span onclick="showPage('shayariPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">❤️ Shayari</span> | 
+      <span onclick="showPage('quotesPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">💬 Quotes</span> | 
+      <span onclick="showPage('chatPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">🤖 AI Chat</span>
+    </div>
   </div>
 </div>
+<!-- ==================== QUOTES PAGE ==================== -->
+<div id="quotesPage" class="page">
+  <div style="max-width: 800px; margin: 0 auto;">
+    <div style="background: linear-gradient(135deg, #ff6b6b, #ff9f4a); color: white; padding: 1.5rem; border-radius: 1.5rem; text-align: center; margin-bottom: 1.5rem;">
+      <h1 style="color: white;">💬 Inspirational Quotes</h1>
+      <p>प्रेरणादायक विचार</p>
+      <span onclick="showPage('homePage')" style="display: inline-block; margin-top: 0.8rem; padding: 0.4rem 1rem; background: rgba(255,255,255,0.2); border-radius: 2rem; cursor: pointer;">← Home</span>
+    </div>
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Quotes Collection - Purnima's Motivation Hub</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
+      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">"Success is not final, failure is not fatal: it is the courage to continue that counts."</div>
+      <div style="margin-top: 0.5rem; color: #ff6b6b; text-align: right; font-weight: bold;">- Winston Churchill</div>
+    </div>
+    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
+      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">"Believe you can and you're halfway there."</div>
+      <div style="margin-top: 0.5rem; color: #ff6b6b; text-align: right; font-weight: bold;">- Theodore Roosevelt</div>
+    </div>
+    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
+      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">"The future belongs to those who believe in the beauty of their dreams."</div>
+      <div style="margin-top: 0.5rem; color: #ff6b6b; text-align: right; font-weight: bold;">- Eleanor Roosevelt</div>
+    </div>
+    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
+      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">"Don't watch the clock; do what it does. Keep going."</div>
+      <div style="margin-top: 0.5rem; color: #ff6b6b; text-align: right; font-weight: bold;">- Sam Levenson</div>
+    </div>
+    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
+      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">"The only way to do great work is to love what you do."</div>
+      <div style="margin-top: 0.5rem; color: #ff6b6b; text-align: right; font-weight: bold;">- Steve Jobs</div>
+    </div>
+    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
+      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">"It does not matter how slowly you go as long as you do not stop."</div>
+      <div style="margin-top: 0.5rem; color: #ff6b6b; text-align: right; font-weight: bold;">- Confucius</div>
+    </div>
+    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
+      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">"आप खुद पर भरोसा रखते हो, तो कोई भी चीज़ असंभव नहीं।"</div>
+      <div style="margin-top: 0.5rem; color: #ff6b6b; text-align: right; font-weight: bold;">- प्रेरणा</div>
+    </div>
 
-    body {
-      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      min-height: 100vh;
-    }
-
-    .page-container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
-    .page-header {
-      background: linear-gradient(135deg, #f39c12, #e67e22);
-      color: white;
-      padding: 1.5rem;
-      border-radius: 1.5rem;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .page-header h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .back-home {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      background: rgba(255,255,255,0.2);
-      color: white;
-      text-decoration: none;
-      border-radius: 2rem;
-      transition: 0.3s;
-    }
-
-    .back-home:hover {
-      background: rgba(255,255,255,0.4);
-    }
-
-    .quote-card {
-      background: white;
-      border-radius: 1rem;
-      padding: 1.8rem;
-      margin-bottom: 1.2rem;
-      border-left: 6px solid #f39c12;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
-    }
-
-    .quote-card:hover {
-      transform: translateX(8px);
-    }
-
-    .quote-text {
-      font-size: 1.2rem;
-      line-height: 1.6;
-      color: #2d2b26;
-      font-style: italic;
-    }
-
-    .quote-author {
-      margin-top: 0.8rem;
-      color: #e67e22;
-      text-align: right;
-      font-weight: bold;
-    }
-
-    .footer-nav {
-      text-align: center;
-      margin-top: 2rem;
-      padding: 1rem;
-    }
-
-    .footer-nav a {
-      color: #e67e22;
-      text-decoration: none;
-      margin: 0 0.5rem;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
-
-<div class="page-container">
-  <div class="page-header">
-    <h1>💬 Inspirational Quotes</h1>
-    <p>प्रेरणादायक विचार</p>
-    <a href="index.html" class="back-home">← होम पेज पर वापस</a>
-  </div>
-
-  <div class="quote-card">
-    <div class="quote-text">"Success is not final, failure is not fatal: it is the courage to continue that counts."</div>
-    <div class="quote-author">- Winston Churchill</div>
-  </div>
-
-  <div class="quote-card">
-    <div class="quote-text">"Believe you can and you're halfway there."</div>
-    <div class="quote-author">- Theodore Roosevelt</div>
-  </div>
-
-  <div class="quote-card">
-    <div class="quote-text">"The future belongs to those who believe in the beauty of their dreams."</div>
-    <div class="quote-author">- Eleanor Roosevelt</div>
-  </div>
-
-  <div class="quote-card">
-    <div class="quote-text">"Don't watch the clock; do what it does. Keep going."</div>
-    <div class="quote-author">- Sam Levenson</div>
-  </div>
-
-  <div class="quote-card">
-    <div class="quote-text">"The only way to do great work is to love what you do."</div>
-    <div class="quote-author">- Steve Jobs</div>
-  </div>
-
-  <div class="quote-card">
-    <div class="quote-text">"It does not matter how slowly you go as long as you do not stop."</div>
-    <div class="quote-author">- Confucius</div>
-  </div>
-
-  <div class="quote-card">
-    <div class="quote-text">"आप खुद पर भरोसा रखते हो, तो कोई भी चीज़ असंभव नहीं।"</div>
-    <div class="quote-author">- प्रेरणा</div>
-  </div>
-
-  <div class="footer-nav">
-    <a href="index.html">🏠 Home</a> | 
-    <a href="shayari.html">❤️ Shayari</a> | 
-    <a href="poems.html">📜 Poems</a> | 
-    <a href="chat.html">🤖 Chat_2.0</a>
+    <div style="text-align: center; margin-top: 1.5rem; padding: 1rem;">
+      <span onclick="showPage('homePage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">🏠 Home</span> | 
+      <span onclick="showPage('shayariPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">❤️ Shayari</span> | 
+      <span onclick="showPage('poemsPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">📜 Poems</span> | 
+      <span onclick="showPage('chatPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">🤖 AI Chat</span>
+    </div>
   </div>
 </div>
+<!-- ==================== POSITIVE THOUGHTS PAGE ==================== -->
+<div id="thoughtsPage" class="page">
+  <div style="max-width: 800px; margin: 0 auto;">
+    <div style="background: linear-gradient(135deg, #ff6b6b, #ff9f4a); color: white; padding: 1.5rem; border-radius: 1.5rem; text-align: center; margin-bottom: 1.5rem;">
+      <h1 style="color: white;">🌼 Positive Thoughts</h1>
+      <p>सकारात्मक सोच, सुंदर जीवन</p>
+      <span onclick="showPage('homePage')" style="display: inline-block; margin-top: 0.8rem; padding: 0.4rem 1rem; background: rgba(255,255,255,0.2); border-radius: 2rem; cursor: pointer;">← Home</span>
+    </div>
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Positive Thoughts - Purnima's Motivation Hub</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
+      <div style="font-size: 1.1rem; line-height: 1.6; color: #2d2b26;">🌅 "हर दिन नई शुरुआत है। कल की चिंता छोड़ो, आज पर ध्यान दो।"</div>
+    </div>
+    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
+      <div style="font-size: 1.1rem; line-height: 1.6; color: #2d2b26;">💪 "आप खुद पर भरोसा रखते हो, तो कोई भी चीज़ असंभव नहीं।"</div>
+    </div>
+    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
+      <div style="font-size: 1.1rem; line-height: 1.6; color: #2d2b26;">✨ "सफलता उन्हें मिलती है जो कोशिश करना कभी नहीं छोड़ते।"</div>
+    </div>
+    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
+      <div style="font-size: 1.1rem; line-height: 1.6; color: #2d2b26;">🌟 "खुद को हर दिन बेहतर बनाओ। कल का तुम, आज के तुमसे बेहतर हो!"</div>
+    </div>
+    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
+      <div style="font-size: 1.1rem; line-height: 1.6; color: #2d2b26;">🌸 "सकारात्मक सोच रखो, क्योंकि विचार ही तुम्हारी वास्तविकता बनाते हैं।"</div>
+    </div>
+    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
+      <div style="font-size: 1.1rem; line-height: 1.6; color: #2d2b26;">🎯 "आज का लक्ष्य: खुश रहना, सीखना, और बढ़ना। बस इतना ही काफी है।"</div>
+    </div>
+    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
+      <div style="font-size: 1.1rem; line-height: 1.6; color: #2d2b26;">🌻 "जो लोग दूसरों को खुशी देते हैं, वे खुद भी खुश रहते हैं।"</div>
+    </div>
+    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
+      <div style="font-size: 1.1rem; line-height: 1.6; color: #2d2b26;">💖 "आप जैसे हो, वैसे ही बहुत खास हो। बस खुद पर विश्वास रखो!"</div>
+    </div>
 
-    body {
-      background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      min-height: 100vh;
-    }
-
-    .page-container {
-      max-width: 900px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
-    .page-header {
-      background: linear-gradient(135deg, #f39c12, #e67e22);
-      color: white;
-      padding: 1.5rem;
-      border-radius: 1.5rem;
-      text-align: center;
-      margin-bottom: 2rem;
-    }
-
-    .page-header h1 {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .back-home {
-      display: inline-block;
-      margin-top: 1rem;
-      padding: 0.5rem 1rem;
-      background: rgba(255,255,255,0.2);
-      color: white;
-      text-decoration: none;
-      border-radius: 2rem;
-      transition: 0.3s;
-    }
-
-    .back-home:hover {
-      background: rgba(255,255,255,0.4);
-    }
-
-    .thought-card {
-      background: white;
-      border-radius: 1rem;
-      padding: 1.8rem;
-      margin-bottom: 1.2rem;
-      background: linear-gradient(135deg, #fff9f0, #fff5e6);
-      border-bottom: 3px solid #f39c12;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      text-align: center;
-    }
-
-    .thought-text {
-      font-size: 1.3rem;
-      line-height: 1.7;
-      color: #2d2b26;
-      font-weight: 500;
-    }
-
-    .thought-emoji {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-nav {
-      text-align: center;
-      margin-top: 2rem;
-      padding: 1rem;
-    }
-
-    .footer-nav a {
-      color: #e67e22;
-      text-decoration: none;
-      margin: 0 0.5rem;
-      font-weight: bold;
-    }
-  </style>
-</head>
-<body>
-
-<div class="page-container">
-  <div class="page-header">
-    <h1>🌼 Positive Thoughts</h1>
-    <p>सकारात्मक सोच, सुंदर जीवन</p>
-    <a href="index.html" class="back-home">← होम पेज पर वापस</a>
-  </div>
-
-  <div class="thought-card">
-    <div class="thought-emoji">🌅</div>
-    <div class="thought-text">"हर दिन नई शुरुआत है। कल की चिंता छोड़ो, आज पर ध्यान दो।"</div>
-  </div>
-
-  <div class="thought-card">
-    <div class="thought-emoji">💪</div>
-    <div class="thought-text">"आप खुद पर भरोसा रखते हो, तो कोई भी चीज़ असंभव नहीं।"</div>
-  </div>
-
-  <div class="thought-card">
-    <div class="thought-emoji">✨</div>
-    <div class="thought-text">"सफलता उन्हें मिलती है जो कोशिश करना कभी नहीं छोड़ते।"</div>
-  </div>
-
-  <div class="thought-card">
-    <div class="thought-emoji">🌟</div>
-    <div class="thought-text">"खुद को हर दिन बेहतर बनाओ। कल का तुम, आज के तुमसे बेहतर हो!"</div>
-  </div>
-
-  <div class="thought-card">
-    <div class="thought-emoji">🌸</div>
-    <div class="thought-text">"सकारात्मक सोच रखो, क्योंकि विचार ही तुम्हारी वास्तविकता बनाते हैं।"</div>
-  </div>
-
-  <div class="thought-card">
-    <div class="thought-emoji">🎯</div>
-    <div class="thought-text">"आज का लक्ष्य: खुश रहना, सीखना, और बढ़ना। बस इतना ही काफी है।"</div>
-  </div>
-
-  <div class="thought-card">
-    <div class="thought-emoji">🌻</div>
-    <div class="thought-text">"जो लोग दूसरों को खुशी देते हैं, वे खुद भी खुश रहते हैं।"</div>
-  </div>
-
-  <div class="footer-nav">
-    <a href="index.html">🏠 Home</a> | 
-    <a href="shayari.html">❤️ Shayari</a> | 
-    <a href="poems.html">📜 Poems</a> | 
-    <a href="quotes.html">💬 Quotes</a> | 
-    <a href="chat.html">🤖 Chat_2.0</a>
+    <div style="text-align: center; margin-top: 1.5rem; padding: 1rem;">
+      <span onclick="showPage('homePage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">🏠 Home</span> | 
+      <span onclick="showPage('shayariPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">❤️ Shayari</span> | 
+      <span onclick="showPage('poemsPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">📜 Poems</span> | 
+      <span onclick="showPage('quotesPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">💬 Quotes</span> | 
+      <span onclick="showPage('chatPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">🤖 AI Chat</span>
+    </div>
   </div>
 </div>
+<!-- ==================== SMART AI ASSISTANT PAGE ==================== -->
+<div id="chatPage" class="page">
+  <div style="max-width: 700px; margin: 0 auto;">
+    <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 1rem; border-radius: 1.5rem; text-align: center; margin-bottom: 1rem;">
+      <h1 style="color: white;">🤖 Smart AI Assistant</h1>
+      <p>ChatGPT जैसा | पढ़ाई | मैथ | साइंस | मोटिवेशन</p>
+      <span onclick="showPage('homePage')" style="display: inline-block; margin-top: 0.5rem; padding: 0.3rem 1rem; background: rgba(255,255,255,0.2); border-radius: 2rem; cursor: pointer;">← Home</span>
+    </div>
 
-</body>
-</html>
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Chat_2.0 - Smart AI Assistant</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    <div style="background: white; border-radius: 1.5rem; height: 70vh; display: flex; flex-direction: column; overflow: hidden;">
+      <div style="flex: 1; overflow-y: auto; padding: 1rem; background: #f8f9fa;" id="chatMessages">
+        <div class="message bot-message" style="display: flex; justify-content: flex-start; margin-bottom: 1rem;">
+          <div style="background: white; padding: 0.8rem 1rem; border-radius: 1.2rem; max-width: 80%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">
+            👋 Hello! Main hoon Smart AI Assistant.<br>
+            📚 पढ़ाई, 🔢 मैथ, 🔬 साइंस, 💪 मोटिवेशन - कुछ भी पूछो!<br>
+            😊 Hindi ya English mein baat kar sakte ho!
+          </div>
+        </div>
+      </div>
 
-    body {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 1rem;
-    }
+      <div style="display: flex; gap: 0.5rem; padding: 0.8rem; background: white; border-top: 1px solid #eee;">
+        <input type="text" id="chatInput" style="flex: 1; padding: 0.7rem; border: 1px solid #ddd; border-radius: 2rem; outline: none; font-size: 0.9rem;" placeholder="Hindi ya English mein sawaal likho...">
+        <button onclick="sendMessage()" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 0.7rem 1.2rem; border-radius: 2rem; cursor: pointer;">Send</button>
+      </div>
 
-    .chat-main {
-      width: 100%;
-      max-width: 800px;
-      height: 90vh;
-      background: white;
-      border-radius: 1.5rem;
-      display: flex;
-      flex-direction: column;
-      overflow: hidden;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-    }
-
-    .chat-header {
-      background: linear-gradient(135deg, #f39c12, #e67e22);
-      color: white;
-      padding: 1.2rem;
-      text-align: center;
-      position: relative;
-    }
-
-    .chat-header h1 {
-      font-size: 1.5rem;
-      margin-bottom: 0.3rem;
-    }
-
-    .chat-header p {
-      font-size: 0.8rem;
-      opacity: 0.9;
-    }
-
-    .back-home {
-      position: absolute;
-      left: 1rem;
-      top: 50%;
-      transform: translateY(-50%);
-      color: white;
-      text-decoration: none;
-      font-size: 0.9rem;
-      background: rgba(255,255,255,0.2);
-      padding: 0.3rem 0.8rem;
-      border-radius: 1rem;
-      transition: 0.3s;
-    }
-
-    .back-home:hover {
-      background: rgba(255,255,255,0.4);
-    }
-
-    .chat-messages {
-      flex: 1;
-      overflow-y: auto;
-      padding: 1.2rem;
-      background: #f8f9fa;
-    }
-
-    .message {
-      margin-bottom: 1rem;
-      display: flex;
-      animation: fadeIn 0.3s ease;
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    .user-message {
-      justify-content: flex-end;
-    }
-
-    .bot-message {
-      justify-content: flex-start;
-    }
-
-    .message-bubble {
-      max-width: 75%;
-      padding: 0.8rem 1.2rem;
-      border-radius: 1.2rem;
-      word-wrap: break-word;
-      line-height: 1.5;
-    }
-
-    .user-message .message-bubble {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
-      border-radius: 1.2rem 0.3rem 1.2rem 1.2rem;
-    }
-
-    .bot-message .message-bubble {
-      background: white;
-      color: #333;
-      border-radius: 0.3rem 1.2rem 1.2rem 1.2rem;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    }
-
-    .chat-input-area {
-      display: flex;
-      gap: 0.5rem;
-      padding: 1rem;
-      background: white;
-      border-top: 1px solid #eee;
-    }
-
-    .chat-input {
-      flex: 1;
-      padding: 0.8rem 1rem;
-      border: 1px solid #ddd;
-      border-radius: 2rem;
-      outline: none;
-      font-size: 1rem;
-    }
-
-    .chat-input:focus {
-      border-color: #f39c12;
-    }
-
-    .send-btn {
-      background: linear-gradient(135deg, #f39c12, #e67e22);
-      color: white;
-      border: none;
-      padding: 0.8rem 1.5rem;
-      border-radius: 2rem;
-      cursor: pointer;
-      font-weight: bold;
-      transition: transform 0.2s;
-    }
-
-    .send-btn:hover {
-      transform: scale(1.05);
-    }
-
-    .typing-dots {
-      display: flex;
-      gap: 4px;
-      padding: 0.5rem 1rem;
-      background: white;
-      border-radius: 1rem;
-      width: fit-content;
-    }
-
-    .typing-dots span {
-      width: 8px;
-      height: 8px;
-      background: #888;
-      border-radius: 50%;
-      animation: typing 1.4s infinite;
-    }
-
-    .typing-dots span:nth-child(2) {
-      animation-delay: 0.2s;
-    }
-
-    .typing-dots span:nth-child(3) {
-      animation-delay: 0.4s;
-    }
-
-    @keyframes typing {
-      0%, 60%, 100% {
-        transform: translateY(0);
-        opacity: 0.4;
-      }
-      30% {
-        transform: translateY(-8px);
-        opacity: 1;
-      }
-    }
-
-    .footer-nav {
-      text-align: center;
-      padding: 0.8rem;
-      background: #f8f9fa;
-      border-top: 1px solid #eee;
-    }
-
-    .footer-nav a {
-      color: #e67e22;
-      text-decoration: none;
-      margin: 0 0.5rem;
-      font-size: 0.8rem;
-    }
-  </style>
-</head>
-<body>
-
-<div class="chat-main">
-  <div class="chat-header">
-    <a href="index.html" class="back-home">← Home</a>
-    <h1>🤖 Chat_2.0</h1>
-    <p>Smart AI Assistant | Dost | Guide</p>
-  </div>
-
-  <div class="chat-messages" id="chatMessages">
-    <div class="message bot-message">
-      <div class="message-bubble">
-        🙏 Namaste! Main hoon Chat_2.0, aapka smart AI dost.<br>
-        📚 Padhai, 💪 motivation, 💻 coding, ya koi bhi sawaal ho, puchiye! 😊
+      <div style="text-align: center; padding: 0.5rem; background: #f8f9fa; font-size: 0.7rem;">
+        <span onclick="showPage('homePage')" style="color: #667eea; margin: 0 0.5rem; cursor: pointer;">🏠 Home</span> | 
+        <span onclick="showPage('shayariPage')" style="color: #667eea; margin: 0 0.5rem; cursor: pointer;">❤️ Shayari</span> | 
+        <span onclick="showPage('poemsPage')" style="color: #667eea; margin: 0 0.5rem; cursor: pointer;">📜 Poems</span> | 
+        <span onclick="showPage('quotesPage')" style="color: #667eea; margin: 0 0.5rem; cursor: pointer;">💬 Quotes</span>
       </div>
     </div>
   </div>
-
-  <div class="chat-input-area">
-    <input type="text" id="chatInput" class="chat-input" placeholder="Apna sawaal likho (Hindi ya English)...">
-    <button class="send-btn" onclick="sendMessage()">Send</button>
-  </div>
-
-  <div class="footer-nav">
-    <a href="index.html">🏠 Home</a> | 
-    <a href="shayari.html">❤️ Shayari</a> | 
-    <a href="poems.html">📜 Poems</a> | 
-    <a href="quotes.html">💬 Quotes</a> | 
-    <a href="motivation.html">🌼 Thoughts</a>
-  </div>
 </div>
 
+<style>
+  .message {
+    margin-bottom: 1rem;
+    display: flex;
+  }
+  .user-message {
+    justify-content: flex-end;
+  }
+  .bot-message {
+    justify-content: flex-start;
+  }
+  .user-message div {
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border-radius: 1.2rem 0.3rem 1.2rem 1.2rem;
+  }
+  .typing-dots {
+    display: flex;
+    gap: 4px;
+    padding: 0.5rem 1rem;
+    background: white;
+    border-radius: 1rem;
+    width: fit-content;
+  }
+  .typing-dots span {
+    width: 6px;
+    height: 6px;
+    background: #888;
+    border-radius: 50%;
+    animation: typing 1.4s infinite;
+  }
+  @keyframes typing {
+    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+    30% { transform: translateY(-8px); opacity: 1; }
+  }
+</style>
 <script>
-// ========== SMART AI ASSISTANT ==========
+// ==================== PAGE NAVIGATION ====================
+function showPage(pageId) {
+  document.querySelectorAll('.page').forEach(page => {
+    page.classList.remove('active-page');
+  });
+  document.getElementById(pageId).classList.add('active-page');
+  window.scrollTo(0, 0);
+}
 
-const smartResponses = {
-  'study tips|padhai kaise karein|how to study': "📚 Study Tips:\n• Pomodoro technique use karein (25 min study, 5 min break)\n• Distractions hatayein\n• Regular revision karein\n• Doubts clear karein. Main hoon help ke liye!",
-  'time management|samay ka sadupyog': "⏰ Time Management:\n1. To-do list banayein\n2. Priority set karein\n3. Break zaroor lein\n4. Phone use kam karein",
-  'exam preparation|exam ki taiyari': "📖 Exam Preparation:\n• Previous year papers solve karein\n• Important topics pe focus karein\n• Group study se doubt clear karein\n• Positive rahein!",
-  'coding|programming|html|css|javascript': "💻 Programming help chahiye! Specific language batao: HTML, CSS, JavaScript, Python, ya kuch aur? Main example code de sakta hoon!",
-  'motivation|motivate|inspire': "🔥 Yaad rakho: \"Manzil unhi ko milti hai jo sapne dekhna nahi bhoolte.\" Aap bahut kuch kar sakte ho! Believe in yourself! 💪",
-  'failure|fail|asafal': "🌟 Failure is not the opposite of success, it's part of success. Har great person ne failures dekhi hain. Aage badho, tum zaroor kamyab hoge!",
-  'confidence|confident|khud pe bharosa': "✨ Khud pe bharosa rakho! Tum already capable ho. Bas apni aankhon mein vishwas rakho aur aage badho!",
-  'stress|tension|anxiety': "😌 Stress ko dur rakhne ke liye:\n• Deep breathing karein\n• Break lein\n• Positive baatein sochein\n• Kisi se baat karein. Main hoon na!",
-  'hello|hi|hey|namaste': "Namaste! 🙏 Kaise ho aap? Main aapki madad kaise kar sakta hoon?",
+// ==================== SMART AI ASSISTANT KNOWLEDGE BASE ====================
+const aiKnowledge = {
+  // Study Related
+  'study tips|padhai kaise karein|how to study': "📚 Study Tips:\n• Pomodoro Technique: 25 min study, 5 min break\n• Distractions hatayein (phone silent mode)\n• Regular revision karein\n• Doubts turant clear karein\n• Group study se bhi help milti hai!",
+  'time management|samay ka sadupyog': "⏰ Time Management Tips:\n1. To-do list banayein\n2. Priority set karein (important pehle)\n3. Break zaroor lein\n4. Phone/social media use limited rakhein\n5. Early to bed, early to rise!",
+  'exam preparation|exam ki taiyari': "📖 Exam Preparation:\n• Previous year papers zaroor solve karein\n• Important topics pe focus karein\n• Notes banayein aur revise karein\n• Sleep 7-8 hours zaroor lein\n• Positive rahein! You can do it! 💪",
+  'coding|programming|html|css|javascript|python': "💻 Programming Help:\nHTML - Structure\nCSS - Styling\nJavaScript - Functionality\nPython - Backend/AI\nKisi specific language ya problem ke baare mein poocho, main example code de sakta hoon!",
+  
+  // Science Related
+  'science|physics|chemistry|biology': "🔬 Science:\nPhysics: Motion, Energy, Force\nChemistry: Reactions, Elements\nBiology: Cells, Human Body, Plants\nKoi specific topic poocho, main explain karunga!",
+  'gravity|गुरुत्वाकर्षण': "🌍 Gravity: Yeh wo force hai jo cheezein neeche girti hain. Newton ne apple dekh kar discover kiya! g = 9.8 m/s²",
+  'photosynthesis|प्रकाश संश्लेषण': "🌱 Photosynthesis: Plants sunlight se khana banate hain. CO2 + Water + Sunlight → Glucose + Oxygen",
+  'solar system|सौर मंडल': "🪐 Solar System: Sun (center), 8 planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune. Earth 3rd planet hai!",
+  
+  // Math Related
+  'math|mathematics|गणित': "🔢 Math Help:\nAddition (+), Subtraction (-), Multiplication (*), Division (/), Square (^2)\nExample: 25*4 = 100, 144/12 = 12\nKoi bhi calculation batao, main solve kar dunga!",
+  
+  // Motivation
+  'motivation|motivate|inspire|प्रेरणा': "🔥 Motivation:\n\"Manzil unhi ko milti hai jo sapne dekhna nahi bhoolte!\"\nAaj ka din naye sapno ki shuruaat hai! Believe in yourself! 💪✨",
+  'failure|fail|asafal|हार': "🌟 Success Story:\nWalt Disney ko 302 baar reject kiya gaya!\nThomas Edison ne 1000+ fails ke baad bulb banaya!\nFailure is not the opposite of success, it's part of success! Keep going!",
+  'confidence|confident|khud pe bharosa': "✨ Confidence:\nAap already capable ho! Bas apne aap par trust rakho. Jo aaj nahi kar sakte, kal zaroor karoge! Practice makes perfect!",
+  
+  // General
+  'hello|hi|hey|namaste': "Namaste! 🙏 Kaise ho aap? Main aapki kaise help kar sakta hoon?",
   'how are you|kaise ho': "Main badhiya hoon! Aap batao, aap kaise hain? 😊",
-  'what can you do|help': "Main study tips, motivation, coding help, math calculations, shayari, aur general knowledge me help kar sakta hoon. Kuch bhi poocho!",
-  'thanks|thank you|dhanyavaad': "Aapka swagat hai! 😊 Aur kuch help chahiye toh batao!",
-  'bye|goodbye|alvida': "Achcha, milke achha laga! Phir se baat karna. Apna khayal rakho! 🙏"
+  'what can you do|help': "🤖 Main help kar sakta hoon:\n📚 Study Tips\n🔢 Maths Calculation\n🔬 Science Facts\n💻 Coding Help\n💪 Motivation\n😊 Friendly Chat\nKuch bhi poocho!",
+  'thanks|thank you|dhanyavaad': "😊 Aapka swagat hai! Aur kuch help chahiye toh batao!",
+  'bye|goodbye|alvida': "✨ Milke achha laga! Phir se baat karna, main hamesha yahan hoon! Apna khayal rakhna! 🙏"
 };
 
-function getSmartResponse(userMsg) {
+function getAIResponse(userMsg) {
   const msg = userMsg.toLowerCase().trim();
   
-  // Math calculation
-  if (/[\d\+\-\*\/\^\(\)]/.test(msg)) {
+  // Math Calculation
+  const mathMatch = msg.match(/[\d\s\+\-\*\/\(\)\.]+/);
+  if (mathMatch && !isNaN(eval(mathMatch[0].replace(/[^0-9+\-*/()]/g, '')))) {
     try {
-      let calc = msg.replace(/[^0-9+\-*/^().]/g, '').replace(/\^/g, '**');
-      if (calc && !isNaN(eval(calc))) {
-        return `📊 Result: ${eval(calc)}\n\nAur kuch calculate karna hai?`;
+      let calc = mathMatch[0].replace(/[^0-9+\-*/()]/g, '');
+      let result = eval(calc);
+      if (result !== undefined && !isNaN(result)) {
+        return `🔢 Calculation Result: ${result}\n\nAur kuch calculate karna hai?`;
       }
     } catch(e) {}
   }
   
   // Check knowledge base
-  for (let [pattern, response] of Object.entries(smartResponses)) {
+  for (let [pattern, response] of Object.entries(aiKnowledge)) {
     if (new RegExp(pattern, 'i').test(msg)) {
       return response;
     }
   }
   
-  // Question handling
+  // Science/General Knowledge responses
+  if (msg.includes('what is') || msg.includes('क्या है') || msg.includes('meaning')) {
+    return "📚 Main iske baare mein abhi seekh raha hoon. Kya aap study tips, maths calculation, ya motivation me help chahiye?";
+  }
+  
   if (msg.includes('?')) {
-    return "❓ Aapka sawaal accha hai! Kya main study tips, motivation, ya coding me help kar sakta hoon?";
+    return "❓ Accha sawaal! Kya main study tips, science facts, maths, ya motivation me help kar sakta hoon? Thoda detail mein batao!";
   }
   
   // Friendly replies
-  const replies = [
-    "😊 Main aapki baat samajh gaya! Kya aapko study tips chahiye, motivation, ya kuch aur?",
-    "🌟 Aap jo bhi pooch rahe ho, main sun raha hoon! Thoda detail mein batao.",
-    "💫 Main aapka dost hoon! Padhai, coding, motivation - sab me help kar sakta hoon!"
+  const friendlyReplies = [
+    "😊 Main aapki baat samajh gaya! Kya aapko study tips, science facts, maths, ya motivation chahiye?",
+    "🌟 Aap jo bhi pooch rahe ho, main sun raha hoon! Thoda detail mein batao toh behtar help kar sakta hoon.",
+    "💫 Main aapka dost hoon! Padhai, science, coding, motivation - sab me help kar sakta hoon! Puchiye!",
+    "🤝 Aapki baat achhi hai! Maths calculation, study tips, ya kuch aur? Batao!"
   ];
-  return replies[Math.floor(Math.random() * replies.length)];
+  return friendlyReplies[Math.floor(Math.random() * friendlyReplies.length)];
 }
+
+// Chat Functions
+let conversationHistory = [];
 
 function sendMessage() {
   let input = document.getElementById('chatInput');
@@ -1146,9 +613,10 @@ function sendMessage() {
   showTyping();
   
   setTimeout(() => {
-    let reply = getSmartResponse(message);
+    let reply = getAIResponse(message);
     removeTyping();
     addMessage(reply, 'bot');
+    conversationHistory.push({ user: message, bot: reply });
   }, 500);
 }
 
@@ -1156,7 +624,10 @@ function addMessage(text, sender) {
   let container = document.getElementById('chatMessages');
   let div = document.createElement('div');
   div.className = `message ${sender}-message`;
-  div.innerHTML = `<div class="message-bubble">${escapeHtml(text)}</div>`;
+  div.style.display = 'flex';
+  div.style.marginBottom = '1rem';
+  div.style.justifyContent = sender === 'user' ? 'flex-end' : 'flex-start';
+  div.innerHTML = `<div style="max-width: 80%; padding: 0.8rem 1rem; border-radius: 1.2rem; ${sender === 'user' ? 'background: linear-gradient(135deg, #667eea, #764ba2); color: white;' : 'background: white; color: #333; box-shadow: 0 1px 2px rgba(0,0,0,0.1);'}">${escapeHtml(text)}</div>`;
   container.appendChild(div);
   container.scrollTop = container.scrollHeight;
 }
@@ -1166,6 +637,9 @@ function showTyping() {
   let div = document.createElement('div');
   div.className = 'message bot-message';
   div.id = 'typingIndicator';
+  div.style.display = 'flex';
+  div.style.justifyContent = 'flex-start';
+  div.style.marginBottom = '1rem';
   div.innerHTML = `<div class="typing-dots"><span></span><span></span><span></span></div>`;
   container.appendChild(div);
   container.scrollTop = container.scrollHeight;
@@ -1186,8 +660,13 @@ function escapeHtml(str) {
 }
 
 // Enter key support
-document.getElementById('chatInput').addEventListener('keypress', function(e) {
-  if (e.key === 'Enter') sendMessage();
+document.addEventListener('DOMContentLoaded', function() {
+  let chatInput = document.getElementById('chatInput');
+  if (chatInput) {
+    chatInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') sendMessage();
+    });
+  }
 });
 </script>
 
