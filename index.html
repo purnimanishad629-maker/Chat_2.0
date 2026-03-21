@@ -439,14 +439,39 @@
 </div>
 
 <script>
+document.addEventListener("DOMContentLoaded", function() {
+
   // Open Chatbot
   document.getElementById('chatbotOpenBtn').onclick = function() {
     document.getElementById('chatbotModal').classList.add('show');
   };
-  
+
   function closeChatbot() {
     document.getElementById('chatbotModal').classList.remove('show');
   }
+
+  // expose globally
+  window.closeChatbot = closeChatbot;
+
+  // Other buttons
+  document.getElementById('shayariBtn').onclick = function() {
+    alert("Shayari opened");
+  };
+
+  document.getElementById('quotesBtn').onclick = function() {
+    alert("Quotes opened");
+  };
+
+  document.getElementById('thoughtsBtn').onclick = function() {
+    alert("Thoughts opened");
+  };
+
+  document.getElementById('poemsBtn').onclick = function() {
+    alert("Poems opened");
+  };
+
+});
+</script>
   
   // Shayari, Quotes, etc alerts (simple popup for now)
   document.getElementById('shayariBtn').onclick = function() {
