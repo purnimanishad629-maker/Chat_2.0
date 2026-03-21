@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <meta name="theme-color" content="#ff6b6b">
   <title>Purnima's Motivation Hub | Smart AI Assistant</title>
   <style>
     * {
@@ -20,12 +21,12 @@
 
     /* Page Navigation */
     .page {
-      display: none;
-      animation: fadeIn 0.4s ease;
+      display: none !important;
     }
 
     .active-page {
-      display: block;
+      display: block !important;
+      animation: fadeIn 0.4s ease;
     }
 
     @keyframes fadeIn {
@@ -151,397 +152,314 @@
     .keep-going {
       text-align: center;
       background: linear-gradient(135deg, #ff6b6b, #ff9f4a);
+      color: white;
+    }
 
+    .footer {
+      text-align: center;
+      background: #2c3e50;
+      color: white;
+    }
+
+    .footer a {
+      color: #ff9f4a;
+      text-decoration: none;
+    }
+
+    hr {
+      margin: 0.5rem 0;
+      border-color: #ffddb0;
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: 0.8rem;
+      flex-wrap: wrap;
+      margin: 0.5rem 0;
+    }
+
+    .nav-links span {
+      font-weight: 500;
+      padding: 0.3rem 0.8rem;
+      border-radius: 2rem;
+      background: linear-gradient(135deg, #ff6b6b, #ff9f4a);
+      color: white;
+      font-size: 0.85rem;
+      cursor: pointer;
+      transition: 0.3s;
+      display: inline-block;
+    }
+
+    .nav-links span:hover {
+      transform: scale(1.05);
+    }
+
+    /* Page Header Styles */
+    .page-header {
+      background: linear-gradient(135deg, #ff6b6b, #ff9f4a);
+      color: white;
+      padding: 1.2rem;
+      border-radius: 1.5rem;
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .page-header h1 {
+      color: white;
+      font-size: 1.5rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .page-header p {
+      font-size: 0.8rem;
+      opacity: 0.9;
+    }
+
+    .back-home {
+      display: inline-block;
+      margin-top: 0.8rem;
+      padding: 0.4rem 1rem;
+      background: rgba(255,255,255,0.2);
+      color: white;
+      border-radius: 2rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    .back-home:hover {
+      background: rgba(255,255,255,0.3);
+    }
+
+    /* Content Cards */
+    .content-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 1.2rem;
+      margin-bottom: 1rem;
+      border-left: 6px solid #ff6b6b;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .content-text {
+      font-size: 1rem;
+      line-height: 1.6;
+      color: #2d2b26;
+      font-style: italic;
+    }
+
+    .content-author {
+      margin-top: 0.5rem;
+      color: #ff6b6b;
+      text-align: right;
+      font-weight: bold;
+      font-size: 0.85rem;
+    }
+
+    .poem-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 1.2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      border-bottom: 3px solid #ff6b6b;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .poem-text {
+      font-size: 1rem;
+      line-height: 1.7;
+      color: #2d2b26;
+      white-space: pre-line;
+    }
+
+    .thought-card {
+      background: white;
+      border-radius: 1rem;
+      padding: 1.2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      border-bottom: 3px solid #ff6b6b;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    }
+
+    .thought-text {
+      font-size: 1.1rem;
+      line-height: 1.6;
+      color: #2d2b26;
+    }
+
+    .thought-emoji {
+      font-size: 1.8rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Chat Styles */
+    .chat-main {
+      background: white;
+      border-radius: 1.5rem;
+      height: 70vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    }
+
+    .chat-header {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
+
+    .chat-header h3 {
+      font-size: 1.2rem;
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1rem;
+      background: #f8f9fa;
+    }
+
+    .message {
+      margin-bottom: 1rem;
+      display: flex;
+    }
+
+    .user-message {
+      justify-content: flex-end;
+    }
+
+    .bot-message {
+      justify-content: flex-start;
+    }
+
+    .message-bubble {
+      max-width: 85%;
+      padding: 0.8rem 1rem;
+      border-radius: 1.2rem;
+      word-wrap: break-word;
+      font-size: 0.9rem;
+      line-height: 1.4;
+    }
+
+    .user-message .message-bubble {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border-radius: 1.2rem 0.3rem 1.2rem 1.2rem;
+    }
+
+    .bot-message .message-bubble {
+      background: white;
+      color: #333;
+      border-radius: 0.3rem 1.2rem 1.2rem 1.2rem;
+      box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+    }
+
+    .chat-input-area {
+      display: flex;
+      gap: 0.5rem;
+      padding: 0.8rem;
+      background: white;
+      border-top: 1px solid #eee;
+    }
+
+    .chat-input {
+      flex: 1;
+      padding: 0.7rem 1rem;
+      border: 1px solid #ddd;
+      border-radius: 2rem;
+      outline: none;
+      font-size: 0.9rem;
+    }
+
+    .chat-input:focus {
+      border-color: #667eea;
+    }
+
+    .send-btn {
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: white;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 2rem;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .send-btn:hover {
+      transform: scale(1.02);
+    }
+
+    .typing-dots {
+      display: flex;
+      gap: 6px;
+      padding: 0.6rem 1rem;
+      background: white;
+      border-radius: 1rem;
+      width: fit-content;
+    }
+
+    .typing-dots span {
+      width: 8px;
+      height: 8px;
+      background: #888;
+      border-radius: 50%;
+      animation: typingAnim 1.4s infinite;
+    }
+
+    .typing-dots span:nth-child(2) {
+      animation-delay: 0.2s;
+    }
+
+    .typing-dots span:nth-child(3) {
+      animation-delay: 0.4s;
+    }
+
+    @keyframes typingAnim {
+      0%, 60%, 100% {
+        transform: translateY(0);
+        opacity: 0.4;
+      }
+      30% {
+        transform: translateY(-10px);
+        opacity: 1;
+      }
+    }
+
+    .footer-nav {
+      text-align: center;
+      padding: 0.8rem;
+      background: #f8f9fa;
+      border-top: 1px solid #eee;
+    }
+
+    .footer-nav span {
+      color: #ff6b6b;
+      margin: 0 0.5rem;
+      cursor: pointer;
+      font-size: 0.85rem;
+    }
+
+    .footer-nav span:hover {
+      text-decoration: underline;
+    }
+
+    button, .card, .nav-links span, .back-home, .footer-nav span {
+      cursor: pointer;
+    }
+
+    /* Container for pages */
+    .page-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+  </style>
 </head>
 <body>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  padding: 1rem;
-  min-height: 100vh;
-}
-
-/* Page Navigation - IMPORTANT */
-.page {
-  display: none !important;
-}
-
-.active-page {
-  display: block !important;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Home Page Grid */
-.motivation-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 1.2rem;
-}
-
-@media (min-width: 768px) {
-  .motivation-container {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (min-width: 1024px) {
-  .motivation-container {
-    grid-template-columns: repeat(3, 1fr);
-  }
-}
-
-/* Cards */
-.card {
-  background: rgba(255, 255, 255, 0.95);
-  backdrop-filter: blur(10px);
-  border-radius: 1.5rem;
-  padding: 1.3rem;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
-  transition: all 0.3s ease;
-  cursor: pointer;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 25px 40px rgba(0, 0, 0, 0.25);
-}
-
-.card:active {
-  transform: scale(0.98);
-}
-
-/* Profile Card */
-.profile-card {
-  background: linear-gradient(135deg, #fff5e6, #ffe6d5);
-  text-align: center;
-}
-
-.profile-img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #ff6b6b;
-  margin-bottom: 1rem;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-}
-
-h1 {
-  color: #ff6b6b;
-  font-size: 1.6rem;
-  margin-bottom: 0.3rem;
-}
-
-.sub-name {
-  color: #ff9f4a;
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
-}
-
-.about-text {
-  background: white;
-  padding: 0.8rem;
-  border-radius: 1rem;
-  line-height: 1.5;
-  color: #5a3e2b;
-  font-size: 0.85rem;
-}
-
-.welcome-tag {
-  font-size: 1.3rem;
-  font-weight: bold;
-  background: linear-gradient(135deg, #ff6b6b, #ff9f4a);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-align: center;
-  margin-bottom: 1rem;
-}
-
-.section-title {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #ff6b6b;
-  margin-bottom: 0.8rem;
-  border-left: 4px solid #ff9f4a;
-  padding-left: 0.8rem;
-}
-
-.shayari-text, .poem-line {
-  font-size: 0.95rem;
-  line-height: 1.5;
-  color: #5a3e2b;
-  font-style: italic;
-  text-align: center;
-  padding: 0.5rem;
-}
-
-.inspire-text {
-  font-size: 1rem;
-  font-weight: bold;
-  color: #ff6b6b;
-  text-align: center;
-  margin-top: 0.5rem;
-}
-
-.keep-going {
-  text-align: center;
-  background: linear-gradient(135deg, #ff6b6b, #ff9f4a);
-  color: white;
-}
-
-.footer {
-  text-align: center;
-  background: #2c3e50;
-  color: white;
-}
-
-.footer a {
-  color: #ff9f4a;
-  text-decoration: none;
-}
-
-hr {
-  margin: 0.5rem 0;
-  border-color: #ffddb0;
-}
-
-.nav-links {
-  display: flex;
-  justify-content: center;
-  gap: 0.8rem;
-  flex-wrap: wrap;
-  margin: 0.5rem 0;
-}
-
-.nav-links span {
-  font-weight: 500;
-  padding: 0.3rem 0.8rem;
-  border-radius: 2rem;
-  background: linear-gradient(135deg, #ff6b6b, #ff9f4a);
-  color: white;
-  font-size: 0.85rem;
-  cursor: pointer;
-  transition: 0.3s;
-  display: inline-block;
-}
-
-.nav-links span:hover {
-  transform: scale(1.05);
-}
-
-/* Page Header Styles */
-.page-header {
-  background: linear-gradient(135deg, #ff6b6b, #ff9f4a);
-  color: white;
-  padding: 1.2rem;
-  border-radius: 1.5rem;
-  text-align: center;
-  margin-bottom: 1.5rem;
-}
-
-.page-header h1 {
-  color: white;
-  font-size: 1.5rem;
-}
-
-.back-home {
-  display: inline-block;
-  margin-top: 0.8rem;
-  padding: 0.4rem 1rem;
-  background: rgba(255,255,255,0.2);
-  color: white;
-  border-radius: 2rem;
-  cursor: pointer;
-}
-
-/* Content Cards */
-.content-card {
-  background: white;
-  border-radius: 1rem;
-  padding: 1.2rem;
-  margin-bottom: 1rem;
-  border-left: 6px solid #ff6b6b;
-}
-
-.content-text {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #2d2b26;
-  font-style: italic;
-}
-
-.content-author {
-  margin-top: 0.5rem;
-  color: #ff6b6b;
-  text-align: right;
-  font-weight: bold;
-}
-
-.poem-card {
-  background: white;
-  border-radius: 1rem;
-  padding: 1.2rem;
-  margin-bottom: 1rem;
-  text-align: center;
-  border-bottom: 3px solid #ff6b6b;
-}
-
-.poem-text {
-  font-size: 1rem;
-  line-height: 1.7;
-  color: #2d2b26;
-  white-space: pre-line;
-}
-
-.thought-card {
-  background: white;
-  border-radius: 1rem;
-  padding: 1.2rem;
-  margin-bottom: 1rem;
-  text-align: center;
-  border-bottom: 3px solid #ff6b6b;
-}
-
-.thought-text {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #2d2b26;
-}
-
-/* Chat Styles */
-.chat-main {
-  background: white;
-  border-radius: 1.5rem;
-  height: 70vh;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
-.chat-header {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-  padding: 1rem;
-  text-align: center;
-}
-
-.chat-messages {
-  flex: 1;
-  overflow-y: auto;
-  padding: 1rem;
-  background: #f8f9fa;
-}
-
-.message {
-  margin-bottom: 1rem;
-  display: flex;
-}
-
-.user-message {
-  justify-content: flex-end;
-}
-
-.bot-message {
-  justify-content: flex-start;
-}
-
-.message-bubble {
-  max-width: 85%;
-  padding: 0.8rem 1rem;
-  border-radius: 1.2rem;
-  word-wrap: break-word;
-  font-size: 0.9rem;
-  line-height: 1.4;
-}
-
-.user-message .message-bubble {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-}
-
-.bot-message .message-bubble {
-  background: white;
-  color: #333;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.1);
-}
-
-.chat-input-area {
-  display: flex;
-  gap: 0.5rem;
-  padding: 0.8rem;
-  background: white;
-  border-top: 1px solid #eee;
-}
-
-.chat-input {
-  flex: 1;
-  padding: 0.7rem;
-  border: 1px solid #ddd;
-  border-radius: 2rem;
-  outline: none;
-}
-
-.send-btn {
-  background: linear-gradient(135deg, #667eea, #764ba2);
-  color: white;
-  border: none;
-  padding: 0.7rem 1.2rem;
-  border-radius: 2rem;
-  cursor: pointer;
-}
-
-.typing-dots {
-  display: flex;
-  gap: 6px;
-  padding: 0.6rem 1rem;
-  background: white;
-  border-radius: 1rem;
-  width: fit-content;
-}
-
-.typing-dots span {
-  width: 8px;
-  height: 8px;
-  background: #888;
-  border-radius: 50%;
-  animation: typingAnim 1.4s infinite;
-}
-
-@keyframes typingAnim {
-  0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-  30% { transform: translateY(-10px); opacity: 1; }
-}
-
-.footer-nav {
-  text-align: center;
-  padding: 0.8rem;
-  background: #f8f9fa;
-}
-
-.footer-nav span {
-  color: #ff6b6b;
-  margin: 0 0.5rem;
-  cursor: pointer;
-}
-
-button, .card, .nav-links span, .back-home, .footer-nav span {
-  cursor: pointer;
-}
-      
-<!-- ==================== HOME PAGE ==================== -->
+  <!-- ==================== HOME PAGE ==================== -->
 <div id="homePage" class="page active-page">
   <div class="motivation-container">
     <!-- Header Card -->
@@ -637,280 +555,166 @@ button, .card, .nav-links span, .back-home, .footer-nav span {
 </div>
 <!-- ==================== SHAYARI PAGE ==================== -->
 <div id="shayariPage" class="page">
-  <div style="max-width: 800px; margin: 0 auto;">
-    <div style="background: linear-gradient(135deg, #ff6b6b, #ff9f4a); color: white; padding: 1.5rem; border-radius: 1.5rem; text-align: center; margin-bottom: 1.5rem;">
-      <h1 style="color: white;">❤️ Shayari Collection</h1>
+  <div class="page-container">
+    <div class="page-header">
+      <h1>❤️ Shayari Collection</h1>
       <p>दिल को छूने वाली शायरी</p>
-      <span onclick="showPage('homePage')" style="display: inline-block; margin-top: 0.8rem; padding: 0.4rem 1rem; background: rgba(255,255,255,0.2); border-radius: 2rem; cursor: pointer;">← Home</span>
+      <span class="back-home" onclick="showPage('homePage')">← Home</span>
     </div>
 
-    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
-      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">❝ Har mushkil mein jeet paoge, Bas khud par vishwas rakhna hoga. ❞</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
-      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">❝ Sapne wahi sach hote hain, Jinko poora karne ka junoon ho! ❞</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
-      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">❝ Khud pe bharosa rakhna, Himmat se kadam badhana, Duniya ki parwah mat karna, Apne sapno ko apna bana lena! ❞</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
-      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">❝ Manzil unhi ko milti hai, Jo raah ke pattharon ko pehchan lete hain. ❞</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
-      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">❝ Zindagi ek sangharsh hai, Har din nayi ladai, Haar nahi manni, Jeetna hai ab toh aadat banani hai. ❞</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
-      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">❝ Muskarahat ho labon pe, To duniya khubsurat lagti hai, Himmat ho dil mein, To har mushkil aasan lagti hai. ❞</div>
-    </div>
+    <div class="content-card"><div class="content-text">❝ Har mushkil mein jeet paoge, Bas khud par vishwas rakhna hoga. ❞</div></div>
+    <div class="content-card"><div class="content-text">❝ Sapne wahi sach hote hain, Jinko poora karne ka junoon ho! ❞</div></div>
+    <div class="content-card"><div class="content-text">❝ Khud pe bharosa rakhna, Himmat se kadam badhana, Duniya ki parwah mat karna, Apne sapno ko apna bana lena! ❞</div></div>
+    <div class="content-card"><div class="content-text">❝ Manzil unhi ko milti hai, Jo raah ke pattharon ko pehchan lete hain. ❞</div></div>
+    <div class="content-card"><div class="content-text">❝ Zindagi ek sangharsh hai, Har din nayi ladai, Haar nahi manni, Jeetna hai ab toh aadat banani hai. ❞</div></div>
+    <div class="content-card"><div class="content-text">❝ Muskarahat ho labon pe, To duniya khubsurat lagti hai, Himmat ho dil mein, To har mushkil aasan lagti hai. ❞</div></div>
 
-    <div style="text-align: center; margin-top: 1.5rem; padding: 1rem;">
-      <span onclick="showPage('homePage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">🏠 Home</span> | 
-      <span onclick="showPage('poemsPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">📜 Poems</span> | 
-      <span onclick="showPage('quotesPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">💬 Quotes</span> | 
-      <span onclick="showPage('chatPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">🤖 AI Chat</span>
+    <div class="footer-nav">
+      <span onclick="showPage('homePage')">🏠 Home</span> | 
+      <span onclick="showPage('poemsPage')">📜 Poems</span> | 
+      <span onclick="showPage('quotesPage')">💬 Quotes</span> | 
+      <span onclick="showPage('thoughtsPage')">🌼 Thoughts</span> | 
+      <span onclick="showPage('chatPage')">🤖 AI Chat</span>
     </div>
   </div>
 </div>
 <!-- ==================== POEMS PAGE ==================== -->
 <div id="poemsPage" class="page">
-  <div style="max-width: 800px; margin: 0 auto;">
-    <div style="background: linear-gradient(135deg, #ff6b6b, #ff9f4a); color: white; padding: 1.5rem; border-radius: 1.5rem; text-align: center; margin-bottom: 1.5rem;">
-      <h1 style="color: white;">📜 Motivational Poems</h1>
+  <div class="page-container">
+    <div class="page-header">
+      <h1>📜 Motivational Poems</h1>
       <p>हौसला बढ़ाने वाली कविताएँ</p>
-      <span onclick="showPage('homePage')" style="display: inline-block; margin-top: 0.8rem; padding: 0.4rem 1rem; background: rgba(255,255,255,0.2); border-radius: 2rem; cursor: pointer;">← Home</span>
+      <span class="back-home" onclick="showPage('homePage')">← Home</span>
     </div>
 
-    <div style="background: white; border-radius: 1rem; padding: 1.5rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
-      <div style="font-size: 1rem; line-height: 1.7; color: #2d2b26; white-space: pre-line;">"उड़ान उंची भरनी है,<br>हौसले बुलंद करने हैं।<br>सपनों को पंख लगाना है,<br>आसमान को छूना है।"</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.5rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
-      <div style="font-size: 1rem; line-height: 1.7; color: #2d2b26; white-space: pre-line;">"हर सुबह नई उम्मीद,<br>हर दिन नई शुरुआत।<br>थोड़ा सा खुद पे भरोसा,<br>थोड़ी सी अपनी आदत।"</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.5rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
-      <div style="font-size: 1rem; line-height: 1.7; color: #2d2b26; white-space: pre-line;">"रुकना नहीं है, चलते रहना है।<br>अंधेरों से लड़कर, रोशनी में रहना है।<br>हार के बाद ही जीत मिलती है,<br>हर शिकस्त को गले लगाकर बढ़ना है।"</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.5rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
-      <div style="font-size: 1rem; line-height: 1.7; color: #2d2b26; white-space: pre-line;">"ख्वाबों की उड़ान है,<br>हौसलों की शान है।<br>जो हिम्मत रखता है,<br>उसी की पहचान है।"</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.5rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
-      <div style="font-size: 1rem; line-height: 1.7; color: #2d2b26; white-space: pre-line;">"मंज़िलें उन्हीं को मिलती हैं,<br>जो रुकते नहीं, चलते रहते हैं।<br>हार के बाद भी संभल जाते हैं,<br>और फिर से संघर्ष करते हैं।"</div>
-    </div>
+    <div class="poem-card"><div class="poem-text">"उड़ान उंची भरनी है,<br>हौसले बुलंद करने हैं।<br>सपनों को पंख लगाना है,<br>आसमान को छूना है।"</div></div>
+    <div class="poem-card"><div class="poem-text">"हर सुबह नई उम्मीद,<br>हर दिन नई शुरुआत।<br>थोड़ा सा खुद पे भरोसा,<br>थोड़ी सी अपनी आदत।"</div></div>
+    <div class="poem-card"><div class="poem-text">"रुकना नहीं है, चलते रहना है।<br>अंधेरों से लड़कर, रोशनी में रहना है।<br>हार के बाद ही जीत मिलती है,<br>हर शिकस्त को गले लगाकर बढ़ना है।"</div></div>
+    <div class="poem-card"><div class="poem-text">"ख्वाबों की उड़ान है,<br>हौसलों की शान है।<br>जो हिम्मत रखता है,<br>उसी की पहचान है।"</div></div>
+    <div class="poem-card"><div class="poem-text">"मंज़िलें उन्हीं को मिलती हैं,<br>जो रुकते नहीं, चलते रहते हैं।<br>हार के बाद भी संभल जाते हैं,<br>और फिर से संघर्ष करते हैं।"</div></div>
 
-    <div style="text-align: center; margin-top: 1.5rem; padding: 1rem;">
-      <span onclick="showPage('homePage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">🏠 Home</span> | 
-      <span onclick="showPage('shayariPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">❤️ Shayari</span> | 
-      <span onclick="showPage('quotesPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">💬 Quotes</span> | 
-      <span onclick="showPage('chatPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">🤖 AI Chat</span>
+    <div class="footer-nav">
+      <span onclick="showPage('homePage')">🏠 Home</span> | 
+      <span onclick="showPage('shayariPage')">❤️ Shayari</span> | 
+      <span onclick="showPage('quotesPage')">💬 Quotes</span> | 
+      <span onclick="showPage('thoughtsPage')">🌼 Thoughts</span> | 
+      <span onclick="showPage('chatPage')">🤖 AI Chat</span>
     </div>
   </div>
 </div>
 <!-- ==================== QUOTES PAGE ==================== -->
 <div id="quotesPage" class="page">
-  <div style="max-width: 800px; margin: 0 auto;">
-    <div style="background: linear-gradient(135deg, #ff6b6b, #ff9f4a); color: white; padding: 1.5rem; border-radius: 1.5rem; text-align: center; margin-bottom: 1.5rem;">
-      <h1 style="color: white;">💬 Inspirational Quotes</h1>
+  <div class="page-container">
+    <div class="page-header">
+      <h1>💬 Inspirational Quotes</h1>
       <p>प्रेरणादायक विचार</p>
-      <span onclick="showPage('homePage')" style="display: inline-block; margin-top: 0.8rem; padding: 0.4rem 1rem; background: rgba(255,255,255,0.2); border-radius: 2rem; cursor: pointer;">← Home</span>
+      <span class="back-home" onclick="showPage('homePage')">← Home</span>
     </div>
 
-    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
-      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">"Success is not final, failure is not fatal: it is the courage to continue that counts."</div>
-      <div style="margin-top: 0.5rem; color: #ff6b6b; text-align: right; font-weight: bold;">- Winston Churchill</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
-      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">"Believe you can and you're halfway there."</div>
-      <div style="margin-top: 0.5rem; color: #ff6b6b; text-align: right; font-weight: bold;">- Theodore Roosevelt</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
-      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">"The future belongs to those who believe in the beauty of their dreams."</div>
-      <div style="margin-top: 0.5rem; color: #ff6b6b; text-align: right; font-weight: bold;">- Eleanor Roosevelt</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
-      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">"Don't watch the clock; do what it does. Keep going."</div>
-      <div style="margin-top: 0.5rem; color: #ff6b6b; text-align: right; font-weight: bold;">- Sam Levenson</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
-      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">"The only way to do great work is to love what you do."</div>
-      <div style="margin-top: 0.5rem; color: #ff6b6b; text-align: right; font-weight: bold;">- Steve Jobs</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
-      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">"It does not matter how slowly you go as long as you do not stop."</div>
-      <div style="margin-top: 0.5rem; color: #ff6b6b; text-align: right; font-weight: bold;">- Confucius</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; border-left: 6px solid #ff6b6b;">
-      <div style="font-size: 1rem; line-height: 1.6; color: #2d2b26; font-style: italic;">"आप खुद पर भरोसा रखते हो, तो कोई भी चीज़ असंभव नहीं।"</div>
-      <div style="margin-top: 0.5rem; color: #ff6b6b; text-align: right; font-weight: bold;">- प्रेरणा</div>
-    </div>
+    <div class="content-card"><div class="content-text">"Success is not final, failure is not fatal: it is the courage to continue that counts."</div><div class="content-author">- Winston Churchill</div></div>
+    <div class="content-card"><div class="content-text">"Believe you can and you're halfway there."</div><div class="content-author">- Theodore Roosevelt</div></div>
+    <div class="content-card"><div class="content-text">"The future belongs to those who believe in the beauty of their dreams."</div><div class="content-author">- Eleanor Roosevelt</div></div>
+    <div class="content-card"><div class="content-text">"Don't watch the clock; do what it does. Keep going."</div><div class="content-author">- Sam Levenson</div></div>
+    <div class="content-card"><div class="content-text">"The only way to do great work is to love what you do."</div><div class="content-author">- Steve Jobs</div></div>
+    <div class="content-card"><div class="content-text">"It does not matter how slowly you go as long as you do not stop."</div><div class="content-author">- Confucius</div></div>
+    <div class="content-card"><div class="content-text">"आप खुद पर भरोसा रखते हो, तो कोई भी चीज़ असंभव नहीं।"</div><div class="content-author">- प्रेरणा</div></div>
 
-    <div style="text-align: center; margin-top: 1.5rem; padding: 1rem;">
-      <span onclick="showPage('homePage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">🏠 Home</span> | 
-      <span onclick="showPage('shayariPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">❤️ Shayari</span> | 
-      <span onclick="showPage('poemsPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">📜 Poems</span> | 
-      <span onclick="showPage('chatPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">🤖 AI Chat</span>
+    <div class="footer-nav">
+      <span onclick="showPage('homePage')">🏠 Home</span> | 
+      <span onclick="showPage('shayariPage')">❤️ Shayari</span> | 
+      <span onclick="showPage('poemsPage')">📜 Poems</span> | 
+      <span onclick="showPage('thoughtsPage')">🌼 Thoughts</span> | 
+      <span onclick="showPage('chatPage')">🤖 AI Chat</span>
     </div>
   </div>
 </div>
 <!-- ==================== POSITIVE THOUGHTS PAGE ==================== -->
 <div id="thoughtsPage" class="page">
-  <div style="max-width: 800px; margin: 0 auto;">
-    <div style="background: linear-gradient(135deg, #ff6b6b, #ff9f4a); color: white; padding: 1.5rem; border-radius: 1.5rem; text-align: center; margin-bottom: 1.5rem;">
-      <h1 style="color: white;">🌼 Positive Thoughts</h1>
+  <div class="page-container">
+    <div class="page-header">
+      <h1>🌼 Positive Thoughts</h1>
       <p>सकारात्मक सोच, सुंदर जीवन</p>
-      <span onclick="showPage('homePage')" style="display: inline-block; margin-top: 0.8rem; padding: 0.4rem 1rem; background: rgba(255,255,255,0.2); border-radius: 2rem; cursor: pointer;">← Home</span>
+      <span class="back-home" onclick="showPage('homePage')">← Home</span>
     </div>
 
-    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
-      <div style="font-size: 1.1rem; line-height: 1.6; color: #2d2b26;">🌅 "हर दिन नई शुरुआत है। कल की चिंता छोड़ो, आज पर ध्यान दो।"</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
-      <div style="font-size: 1.1rem; line-height: 1.6; color: #2d2b26;">💪 "आप खुद पर भरोसा रखते हो, तो कोई भी चीज़ असंभव नहीं।"</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
-      <div style="font-size: 1.1rem; line-height: 1.6; color: #2d2b26;">✨ "सफलता उन्हें मिलती है जो कोशिश करना कभी नहीं छोड़ते।"</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
-      <div style="font-size: 1.1rem; line-height: 1.6; color: #2d2b26;">🌟 "खुद को हर दिन बेहतर बनाओ। कल का तुम, आज के तुमसे बेहतर हो!"</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
-      <div style="font-size: 1.1rem; line-height: 1.6; color: #2d2b26;">🌸 "सकारात्मक सोच रखो, क्योंकि विचार ही तुम्हारी वास्तविकता बनाते हैं।"</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
-      <div style="font-size: 1.1rem; line-height: 1.6; color: #2d2b26;">🎯 "आज का लक्ष्य: खुश रहना, सीखना, और बढ़ना। बस इतना ही काफी है।"</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
-      <div style="font-size: 1.1rem; line-height: 1.6; color: #2d2b26;">🌻 "जो लोग दूसरों को खुशी देते हैं, वे खुद भी खुश रहते हैं।"</div>
-    </div>
-    <div style="background: white; border-radius: 1rem; padding: 1.2rem; margin-bottom: 1rem; text-align: center; border-bottom: 3px solid #ff6b6b;">
-      <div style="font-size: 1.1rem; line-height: 1.6; color: #2d2b26;">💖 "आप जैसे हो, वैसे ही बहुत खास हो। बस खुद पर विश्वास रखो!"</div>
-    </div>
+    <div class="thought-card"><div class="thought-emoji">🌅</div><div class="thought-text">"हर दिन नई शुरुआत है। कल की चिंता छोड़ो, आज पर ध्यान दो।"</div></div>
+    <div class="thought-card"><div class="thought-emoji">💪</div><div class="thought-text">"आप खुद पर भरोसा रखते हो, तो कोई भी चीज़ असंभव नहीं।"</div></div>
+    <div class="thought-card"><div class="thought-emoji">✨</div><div class="thought-text">"सफलता उन्हें मिलती है जो कोशिश करना कभी नहीं छोड़ते।"</div></div>
+    <div class="thought-card"><div class="thought-emoji">🌟</div><div class="thought-text">"खुद को हर दिन बेहतर बनाओ। कल का तुम, आज के तुमसे बेहतर हो!"</div></div>
+    <div class="thought-card"><div class="thought-emoji">🌸</div><div class="thought-text">"सकारात्मक सोच रखो, क्योंकि विचार ही तुम्हारी वास्तविकता बनाते हैं।"</div></div>
+    <div class="thought-card"><div class="thought-emoji">🎯</div><div class="thought-text">"आज का लक्ष्य: खुश रहना, सीखना, और बढ़ना। बस इतना ही काफी है।"</div></div>
+    <div class="thought-card"><div class="thought-emoji">🌻</div><div class="thought-text">"जो लोग दूसरों को खुशी देते हैं, वे खुद भी खुश रहते हैं।"</div></div>
+    <div class="thought-card"><div class="thought-emoji">💖</div><div class="thought-text">"आप जैसे हो, वैसे ही बहुत खास हो। बस खुद पर विश्वास रखो!"</div></div>
 
-    <div style="text-align: center; margin-top: 1.5rem; padding: 1rem;">
-      <span onclick="showPage('homePage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">🏠 Home</span> | 
-      <span onclick="showPage('shayariPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">❤️ Shayari</span> | 
-      <span onclick="showPage('poemsPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">📜 Poems</span> | 
-      <span onclick="showPage('quotesPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">💬 Quotes</span> | 
-      <span onclick="showPage('chatPage')" style="color: #ff6b6b; margin: 0 0.5rem; cursor: pointer;">🤖 AI Chat</span>
+    <div class="footer-nav">
+      <span onclick="showPage('homePage')">🏠 Home</span> | 
+      <span onclick="showPage('shayariPage')">❤️ Shayari</span> | 
+      <span onclick="showPage('poemsPage')">📜 Poems</span> | 
+      <span onclick="showPage('quotesPage')">💬 Quotes</span> | 
+      <span onclick="showPage('chatPage')">🤖 AI Chat</span>
     </div>
   </div>
 </div>
 <!-- ==================== SMART AI ASSISTANT PAGE ==================== -->
 <div id="chatPage" class="page">
-  <div style="max-width: 700px; margin: 0 auto;">
-    <div style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 1rem; border-radius: 1.5rem; text-align: center; margin-bottom: 1rem;">
-      <h1 style="color: white;">🤖 Smart AI Assistant</h1>
+  <div class="page-container">
+    <div class="page-header">
+      <h1>🤖 Smart AI Assistant</h1>
       <p>ChatGPT जैसा | पढ़ाई | मैथ | साइंस | मोटिवेशन</p>
-      <span onclick="showPage('homePage')" style="display: inline-block; margin-top: 0.5rem; padding: 0.3rem 1rem; background: rgba(255,255,255,0.2); border-radius: 2rem; cursor: pointer;">← Home</span>
+      <span class="back-home" onclick="showPage('homePage')">← Home</span>
     </div>
 
-    <div style="background: white; border-radius: 1.5rem; height: 70vh; display: flex; flex-direction: column; overflow: hidden;">
-      <div style="flex: 1; overflow-y: auto; padding: 1rem; background: #f8f9fa;" id="chatMessages">
-        <div class="message bot-message" style="display: flex; justify-content: flex-start; margin-bottom: 1rem;">
-          <div style="background: white; padding: 0.8rem 1rem; border-radius: 1.2rem; max-width: 80%; box-shadow: 0 1px 2px rgba(0,0,0,0.1);">
-            👋 Hello! Main hoon Smart AI Assistant.<br>
-            📚 पढ़ाई, 🔢 मैथ, 🔬 साइंस, 💪 मोटिवेशन - कुछ भी पूछो!<br>
+    <div class="chat-main">
+      <div class="chat-header">
+        <h3>🤖 Chat_2.0 - Your AI Friend</h3>
+      </div>
+
+      <div class="chat-messages" id="chatMessages">
+        <div class="message bot-message">
+          <div class="message-bubble">
+            🙏 Namaste! Main hoon Smart AI Assistant!<br><br>
+            📚 पढ़ाई, 🔢 मैथ, 🔬 साइंस, 💻 कोडिंग, 💪 मोटिवेशन - कुछ भी पूछो!<br><br>
             😊 Hindi ya English mein baat kar sakte ho!
           </div>
         </div>
       </div>
 
-      <div style="display: flex; gap: 0.5rem; padding: 0.8rem; background: white; border-top: 1px solid #eee;">
-        <input type="text" id="chatInput" style="flex: 1; padding: 0.7rem; border: 1px solid #ddd; border-radius: 2rem; outline: none; font-size: 0.9rem;" placeholder="Hindi ya English mein sawaal likho...">
-        <button onclick="sendMessage()" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white; border: none; padding: 0.7rem 1.2rem; border-radius: 2rem; cursor: pointer;">Send</button>
+      <div class="chat-input-area">
+        <input type="text" id="chatInput" class="chat-input" placeholder="अपना सवाल लिखो (Hindi/English)...">
+        <button class="send-btn" onclick="sendMessage()">📤 Send</button>
       </div>
 
-      <div style="text-align: center; padding: 0.5rem; background: #f8f9fa; font-size: 0.7rem;">
-        <span onclick="showPage('homePage')" style="color: #667eea; margin: 0 0.5rem; cursor: pointer;">🏠 Home</span> | 
-        <span onclick="showPage('shayariPage')" style="color: #667eea; margin: 0 0.5rem; cursor: pointer;">❤️ Shayari</span> | 
-        <span onclick="showPage('poemsPage')" style="color: #667eea; margin: 0 0.5rem; cursor: pointer;">📜 Poems</span> | 
-        <span onclick="showPage('quotesPage')" style="color: #667eea; margin: 0 0.5rem; cursor: pointer;">💬 Quotes</span>
+      <div class="footer-nav">
+        <span onclick="showPage('homePage')">🏠 Home</span> | 
+        <span onclick="showPage('shayariPage')">❤️ Shayari</span> | 
+        <span onclick="showPage('poemsPage')">📜 Poems</span> | 
+        <span onclick="showPage('quotesPage')">💬 Quotes</span> | 
+        <span onclick="showPage('thoughtsPage')">🌼 Thoughts</span>
       </div>
     </div>
   </div>
 </div>
-
-<style>
-  .message {
-    margin-bottom: 1rem;
-    display: flex;
-  }
-  .user-message {
-    justify-content: flex-end;
-  }
-  .bot-message {
-    justify-content: flex-start;
-  }
-  .user-message div {
-    background: linear-gradient(135deg, #667eea, #764ba2);
-    color: white;
-    border-radius: 1.2rem 0.3rem 1.2rem 1.2rem;
-  }
-  .typing-dots {
-    display: flex;
-    gap: 4px;
-    padding: 0.5rem 1rem;
-    background: white;
-    border-radius: 1rem;
-    width: fit-content;
-  }
-  .typing-dots span {
-    width: 6px;
-    height: 6px;
-    background: #888;
-    border-radius: 50%;
-    animation: typing 1.4s infinite;
-  }
-  @keyframes typing {
-    0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-    30% { transform: translateY(-8px); opacity: 1; }
-  }
-</style>
 <script>
-
-function getAIResponse(userMsg) {
-  const msg = userMsg.toLowerCase().trim();
-  
-  // Math Calculation
-  const mathMatch = msg.match(/[\d\s\+\-\*\/\(\)\.]+/);
-  if (mathMatch && !isNaN(eval(mathMatch[0].replace(/[^0-9+\-*/()]/g, '')))) {
-    try {
-      let calc = mathMatch[0].replace(/[^0-9+\-*/()]/g, '');
-      let result = eval(calc);
-      if (result !== undefined && !isNaN(result)) {
-        return `🔢 Calculation Result: ${result}\n\nAur kuch calculate karna hai?`;
-      }
-    } catch(e) {}
+// ==================== PAGE NAVIGATION ====================
+function showPage(pageId) {
+  // Hide all pages
+  var pages = document.querySelectorAll('.page');
+  for (var i = 0; i < pages.length; i++) {
+    pages[i].classList.remove('active-page');
   }
-  
-  // Check knowledge base
-  for (let [pattern, response] of Object.entries(aiKnowledge)) {
-    if (new RegExp(pattern, 'i').test(msg)) {
-      return response;
-    }
+  // Show selected page
+  var selectedPage = document.getElementById(pageId);
+  if (selectedPage) {
+    selectedPage.classList.add('active-page');
+    window.scrollTo(0, 0);
   }
-  
-  // Science/General Knowledge responses
-  if (msg.includes('what is') || msg.includes('क्या है') || msg.includes('meaning')) {
-    return "📚 Main iske baare mein abhi seekh raha hoon. Kya aap study tips, maths calculation, ya motivation me help chahiye?";
-  }
-  
-  if (msg.includes('?')) {
-    return "❓ Accha sawaal! Kya main study tips, science facts, maths, ya motivation me help kar sakta hoon? Thoda detail mein batao!";
-  }
-  
-  // Friendly replies
-  const friendlyReplies = [
-    "😊 Main aapki baat samajh gaya! Kya aapko study tips, science facts, maths, ya motivation chahiye?",
-    "🌟 Aap jo bhi pooch rahe ho, main sun raha hoon! Thoda detail mein batao toh behtar help kar sakta hoon.",
-    "💫 Main aapka dost hoon! Padhai, science, coding, motivation - sab me help kar sakta hoon! Puchiye!",
-    "🤝 Aapki baat achhi hai! Maths calculation, study tips, ya kuch aur? Batao!"
-  ];
-  return friendlyReplies[Math.floor(Math.random() * friendlyReplies.length)];
 }
+
 // ==================== SUPER SMART AI ASSISTANT ====================
 // ChatGPT jaisa intelligent AI - Study, Science, Math, Coding, GK
 
-const superAI = {
-  // ========== STUDY & EDUCATION ==========
+const smartResponses = {
+  // STUDY & EDUCATION
   'study tips|padhai kaise karein|how to study|study motivation': `📚 COMPLETE STUDY GUIDE:
   
 🎯 Effective Study Methods:
@@ -930,7 +734,7 @@ const superAI = {
 
   'time management|samay ka sadupyog|time table': `⏰ TIME MANAGEMENT MASTERCLASS:
 
-📅 Daily Schedule:
+📅 Ideal Daily Schedule:
 5:00-6:00 AM - Wake up & Exercise
 6:00-8:00 AM - Study (difficult subjects)
 8:00-9:00 AM - Breakfast & Break
@@ -967,7 +771,7 @@ const superAI = {
 
 ✨ Success Mantra: "Jo padha achhe se padho, jo nahi padha usse mat daro!"`,
 
-  // ========== SCIENCE & TECHNOLOGY ==========
+  // SCIENCE & TECHNOLOGY
   'science|physics|chemistry|biology|विज्ञान': `🔬 SCIENCE SIMPLIFIED:
 
 ⚛️ PHYSICS:
@@ -1043,7 +847,7 @@ const superAI = {
 🚀 Sun distance: 150 million km
 💫 Milky Way galaxy has 200 billion stars!`,
 
-  // ========== MATHEMATICS ==========
+  // MATHEMATICS
   'math|mathematics|गणित|maths': `🔢 MATHEMATICS HELP:
 
 📊 FORMULAS:
@@ -1062,11 +866,10 @@ const superAI = {
 • Practice daily 30 min
 • Learn tables up to 20
 • Understand concepts, don't memorize
-• Real-life examples se relate karein
 
 ⚡ Any calculation? Directly batao, main solve kar dunga!`,
 
-  // ========== CODING & PROGRAMMING ==========
+  // CODING
   'coding|programming|html|css|javascript|python|java': `💻 CODING MASTERCLASS:
 
 🌐 HTML (Structure):
@@ -1097,42 +900,7 @@ if x > 5:
 
 💡 Pro Tip: Practice 1 hour daily!`,
 
-  'what is html|html kya hai': `🌐 HTML (HyperText Markup Language):
-
-📌 Definition: Website ka skeleton/structure
-
-🔧 Basic Tags:
-• <h1> to <h6> - Headings
-• <p> - Paragraph
-• <div> - Container
-• <img> - Images
-• <a> - Links
-
-📝 Example:
-<h1>Hello World</h1>
-<p>This is my website</p>
-
-💡 HTML files ka extension: .html`,
-
-  'what is css|css kya hai': `🎨 CSS (Cascading Style Sheets):
-
-📌 Definition: Website ki styling/sundarta
-
-🔧 Properties:
-• color: text color
-• background: background color
-• font-size: text size
-• margin/padding: spacing
-
-📝 Example:
-h1 {
-  color: blue;
-  font-size: 32px;
-}
-
-💡 CSS files ka extension: .css`,
-
-  // ========== MOTIVATION & POSITIVITY ==========
+  // MOTIVATION
   'motivation|motivate|inspire|प्रेरणा|success story': `🔥 POWERFUL MOTIVATION:
 
 📖 INSPIRING STORIES:
@@ -1197,7 +965,7 @@ Ek chhoti si achievement aaj achieve karo!`,
 
 💪 TIP: Fake it till you make it!`,
 
-  // ========== GENERAL KNOWLEDGE ==========
+  // GENERAL KNOWLEDGE
   'gk|general knowledge|current affairs': `🌍 GENERAL KNOWLEDGE:
 
 🇮🇳 INDIA FACTS:
@@ -1221,7 +989,7 @@ Ek chhoti si achievement aaj achieve karo!`,
 
 💡 GK TIPS: Daily newspaper read karo!`,
 
-  // ========== HEALTH & FITNESS ==========
+  // HEALTH
   'health|fitness|exercise|diet|food': `🏃‍♀️ HEALTH & FITNESS GUIDE:
 
 🥗 NUTRITION:
@@ -1245,11 +1013,9 @@ Ek chhoti si achievement aaj achieve karo!`,
 • Meditate 5 min daily
 • Talk to family/friends
 • Take breaks
-• Stay positive
+• Stay positive`,
 
-💪 REMEMBER: Healthy body = Healthy mind!`,
-
-  // ========== FRIENDLY CHAT ==========
+  // FRIENDLY CHAT
   'hello|hi|hey|namaste|good morning|good evening': `🙏 Namaste! Kaise ho aap?
 
 Main aapka smart AI dost hoon! Main help kar sakta hoon:
@@ -1313,27 +1079,14 @@ Yaad rakho:
 💪 Believe in yourself!
 🔥 Keep going!
 
-Phir se baat karna, main hamesha yahan hoon! 🙏 Take care!`,
-
-  'love|pyaar|friend|dosti': `💝 Aap bahut special ho!
-
-Yaad rakho:
-• Aap unique ho
-• Aap strong ho
-• Aap capable ho
-• Aap deserving ho
-
-Dosti mein help chahiye? Main hoon na! 🤗`
+Phir se baat karna, main hamesha yahan hoon! 🙏 Take care!`
 };
 
 // Math calculation function
 function solveMath(expression) {
   try {
-    // Remove spaces and unwanted characters
     let clean = expression.replace(/[^0-9+\-*/%()]/g, '');
-    // Replace ^ with ** for power
     clean = clean.replace(/\^/g, '**');
-    // Handle percentage
     clean = clean.replace(/(\d+)%/g, '($1/100)');
     const result = eval(clean);
     if (result !== undefined && !isNaN(result)) {
@@ -1344,7 +1097,7 @@ function solveMath(expression) {
 }
 
 // Main AI response function
-function getSuperAIResponse(userMsg) {
+function getSmartResponse(userMsg) {
   const msg = userMsg.toLowerCase().trim();
   
   // 1. Check for math calculations
@@ -1353,67 +1106,47 @@ function getSuperAIResponse(userMsg) {
     if (mathResult) return mathResult;
   }
   
-  // 2. Check for specific numbers/questions
-  if (msg.match(/^\d+$/)) {
-    return `🔢 Aapne likha: ${msg}\n\nKya aap is number ke baare mein kuch janna chahte ho? Ya koi calculation karni hai?`;
-  }
-  
-  // 3. Check knowledge base
-  for (let [pattern, response] of Object.entries(superAI)) {
+  // 2. Check knowledge base
+  for (let [pattern, response] of Object.entries(smartResponses)) {
     if (new RegExp(pattern, 'i').test(msg)) {
       return response;
     }
   }
   
-  // 4. Check if it's a question
+  // 3. Check if it's a question
   if (msg.includes('?')) {
-    // Try to detect topic
     if (msg.includes('study') || msg.includes('padhai')) {
-      return superAI['study tips|padhai kaise karein|how to study|study motivation'];
+      return smartResponses['study tips|padhai kaise karein|how to study|study motivation'];
     }
     if (msg.includes('science') || msg.includes('physics') || msg.includes('chemistry')) {
-      return superAI['science|physics|chemistry|biology|विज्ञान'];
+      return smartResponses['science|physics|chemistry|biology|विज्ञान'];
     }
     if (msg.includes('math') || msg.includes('calculate')) {
       return "🔢 Kya aap math calculation karwana chahte ho? Direct number aur operator likho (+, -, *, /)\n\nExample: 25*4, 144/12, (10+5)*2";
     }
     if (msg.includes('code') || msg.includes('program')) {
-      return superAI['coding|programming|html|css|javascript|python|java'];
+      return smartResponses['coding|programming|html|css|javascript|python|java'];
     }
     if (msg.includes('motivation')) {
-      return superAI['motivation|motivate|inspire|प्रेरणा|success story'];
+      return smartResponses['motivation|motivate|inspire|प्रेरणा|success story'];
     }
     
-    // Smart response for unknown questions
-    const smartSuggestions = [
-      "📚 Study tips chahiye?",
-      "🔬 Science facts?",
-      "🔢 Maths calculation?",
-      "💻 Coding help?",
-      "💪 Motivation?",
-      "🌍 General knowledge?"
-    ];
-    return `❓ Aapka sawaal accha hai!\n\nMain is topic pe aur seekh raha hoon.\n\nAap ye pooch sakte ho:\n${smartSuggestions.join('\n')}\n\nYa koi specific sawaal batao! 😊`;
+    return `❓ Aapka sawaal accha hai!\n\nAap ye pooch sakte ho:\n📚 Study tips\n🔬 Science facts\n🔢 Maths calculation\n💻 Coding help\n💪 Motivation\n🌍 General knowledge\n\nYa koi specific sawaal batao! 😊`;
   }
   
-  // 5. Intelligent fallback responses
-  const intelligentReplies = [
-    "😊 Main aapki baat samajh gaya!\n\nAap mujhse pooch sakte ho:\n• Study tips 📚\n• Science facts 🔬\n• Maths calculation 🔢\n• Coding help 💻\n• Motivation 💪\n• General knowledge 🌍\n\nKya aapko inme se kuch chahiye?",
-    
+  // 4. Friendly replies
+  const replies = [
+    "😊 Main aapki baat samajh gaya!\n\nAap mujhse pooch sakte ho:\n• Study tips 📚\n• Science facts 🔬\n• Maths calculation 🔢\n• Coding help 💻\n• Motivation 💪\n\nKya aapko inme se kuch chahiye?",
     "🌟 Main aapka smart AI dost hoon!\n\nMain help kar sakta hoon:\n✅ Padhai kaise karein\n✅ Science facts\n✅ Math solve karna\n✅ Coding sikhna\n✅ Motivation dena\n✅ GK batana\n\nKuch bhi poocho!",
-    
     "💫 Aap jo bhi pooch rahe ho, main sun raha hoon!\n\nThoda detail mein batao, jaise:\n• \"study tips do\"\n• \"photosynthesis kya hai\"\n• \"25*14 calculate karo\"\n• \"HTML kya hai\"\n• \"motivation chahiye\"\n\nMain behtar help kar sakta hoon! 🤗"
   ];
-  
-  return intelligentReplies[Math.floor(Math.random() * intelligentReplies.length)];
+  return replies[Math.floor(Math.random() * replies.length)];
 }
 
-// Chat history
-let chatHistory = [];
-
-// Send message function
+// Chat functions
 function sendMessage() {
   let input = document.getElementById('chatInput');
+  if (!input) return;
   let message = input.value.trim();
   if (!message) return;
   
@@ -1422,140 +1155,29 @@ function sendMessage() {
   showTyping();
   
   setTimeout(() => {
-    let reply = getSuperAIResponse(message);
+    let reply = getSmartResponse(message);
     removeTyping();
     addMessage(reply, 'bot');
-    
-    // Save to history
-    chatHistory.push({ user: message, bot: reply });
-    if (chatHistory.length > 50) chatHistory.shift();
-  }, 600);
-}
-
-function addMessage(text, sender) {
-  let container = document.getElementById('chatMessages');
-  let div = document.createElement('div');
-  div.className = `message ${sender}-message`;
-  div.style.display = 'flex';
-  div.style.marginBottom = '1rem';
-  div.style.justifyContent = sender === 'user' ? 'flex-end' : 'flex-start';
-  
-  // Convert newlines to <br>
-  let formattedText = text.replace(/\n/g, '<br>');
-  
-  div.innerHTML = `<div style="max-width: 85%; padding: 0.8rem 1rem; border-radius: 1.2rem; ${sender === 'user' ? 'background: linear-gradient(135deg, #667eea, #764ba2); color: white;' : 'background: white; color: #333; box-shadow: 0 1px 2px rgba(0,0,0,0.1);'}">${formattedText}</div>`;
-  container.appendChild(div);
-  container.scrollTop = container.scrollHeight;
-}
-
-function showTyping() {
-  let container = document.getElementById('chatMessages');
-  let div = document.createElement('div');
-  div.className = 'message bot-message';
-  div.id = 'typingIndicator';
-  div.style.display = 'flex';
-  div.style.justifyContent = 'flex-start';
-  div.style.marginBottom = '1rem';
-  div.innerHTML = `<div class="typing-dots"><span></span><span></span><span></span></div>`;
-  container.appendChild(div);
-  container.scrollTop = container.scrollHeight;
-}
-
-function removeTyping() {
-  let typing = document.getElementById('typingIndicator');
-  if (typing) typing.remove();
-}
-
-function escapeHtml(str) {
-  return str.replace(/[&<>]/g, function(m) {
-    if (m === '&') return '&amp;';
-    if (m === '<') return '&lt;';
-    if (m === '>') return '&gt;';
-    return m;
-  });
-}
-
-// Enter key support
-document.addEventListener('DOMContentLoaded', function() {
-  let chatInput = document.getElementById('chatInput');
-  if (chatInput) {
-    chatInput.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') sendMessage();
-    });
-  }
-});
-
-// Add typing dots CSS if not exists
-if (!document.querySelector('#typingDotsStyle')) {
-  let style = document.createElement('style');
-  style.id = 'typingDotsStyle';
-  style.textContent = `
-    .typing-dots {
-      display: flex;
-      gap: 6px;
-      padding: 0.6rem 1rem;
-      background: white;
-      border-radius: 1rem;
-      width: fit-content;
-    }
-    .typing-dots span {
-      width: 8px;
-      height: 8px;
-      background: #888;
-      border-radius: 50%;
-      animation: typingAnim 1.4s infinite;
-    }
-    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
-    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
-    @keyframes typingAnim {
-      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
-      30% { transform: translateY(-10px); opacity: 1; }
-    }
-  `;
-  document.head.appendChild(style);
-}
-
-console.log("🤖 Super Smart AI Assistant Loaded! ChatGPT level intelligent!");
-// Chat Functions
-let conversationHistory = [];
-
-function sendMessage() {
-  let input = document.getElementById('chatInput');
-  let message = input.value.trim();
-  if (!message) return;
-  
-  addMessage(message, 'user');
-  input.value = '';
-  showTyping();
-  
-  setTimeout(() => {
-    let reply = getAIResponse(message);
-    removeTyping();
-    addMessage(reply, 'bot');
-    conversationHistory.push({ user: message, bot: reply });
   }, 500);
 }
 
 function addMessage(text, sender) {
   let container = document.getElementById('chatMessages');
+  if (!container) return;
   let div = document.createElement('div');
   div.className = `message ${sender}-message`;
-  div.style.display = 'flex';
-  div.style.marginBottom = '1rem';
-  div.style.justifyContent = sender === 'user' ? 'flex-end' : 'flex-start';
-  div.innerHTML = `<div style="max-width: 80%; padding: 0.8rem 1rem; border-radius: 1.2rem; ${sender === 'user' ? 'background: linear-gradient(135deg, #667eea, #764ba2); color: white;' : 'background: white; color: #333; box-shadow: 0 1px 2px rgba(0,0,0,0.1);'}">${escapeHtml(text)}</div>`;
+  let formattedText = text.replace(/\n/g, '<br>');
+  div.innerHTML = `<div class="message-bubble">${formattedText}</div>`;
   container.appendChild(div);
   container.scrollTop = container.scrollHeight;
 }
 
 function showTyping() {
   let container = document.getElementById('chatMessages');
+  if (!container) return;
   let div = document.createElement('div');
   div.className = 'message bot-message';
   div.id = 'typingIndicator';
-  div.style.display = 'flex';
-  div.style.justifyContent = 'flex-start';
-  div.style.marginBottom = '1rem';
   div.innerHTML = `<div class="typing-dots"><span></span><span></span><span></span></div>`;
   container.appendChild(div);
   container.scrollTop = container.scrollHeight;
@@ -1564,15 +1186,6 @@ function showTyping() {
 function removeTyping() {
   let typing = document.getElementById('typingIndicator');
   if (typing) typing.remove();
-}
-
-function escapeHtml(str) {
-  return str.replace(/[&<>]/g, function(m) {
-    if (m === '&') return '&amp;';
-    if (m === '<') return '&lt;';
-    if (m === '>') return '&gt;';
-    return m;
-  });
 }
 
 // Enter key support
@@ -1584,6 +1197,8 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 });
+
+console.log("🤖 Super Smart AI Assistant Loaded! ChatGPT level intelligent!");
 </script>
 
 </body>
