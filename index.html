@@ -520,44 +520,6 @@
   }
 </style>
 <script>
-// ==================== PAGE NAVIGATION ====================
-function showPage(pageId) {
-  document.querySelectorAll('.page').forEach(page => {
-    page.classList.remove('active-page');
-  });
-  document.getElementById(pageId).classList.add('active-page');
-  window.scrollTo(0, 0);
-}
-
-// ==================== SMART AI ASSISTANT KNOWLEDGE BASE ====================
-const aiKnowledge = {
-  // Study Related
-  'study tips|padhai kaise karein|how to study': "📚 Study Tips:\n• Pomodoro Technique: 25 min study, 5 min break\n• Distractions hatayein (phone silent mode)\n• Regular revision karein\n• Doubts turant clear karein\n• Group study se bhi help milti hai!",
-  'time management|samay ka sadupyog': "⏰ Time Management Tips:\n1. To-do list banayein\n2. Priority set karein (important pehle)\n3. Break zaroor lein\n4. Phone/social media use limited rakhein\n5. Early to bed, early to rise!",
-  'exam preparation|exam ki taiyari': "📖 Exam Preparation:\n• Previous year papers zaroor solve karein\n• Important topics pe focus karein\n• Notes banayein aur revise karein\n• Sleep 7-8 hours zaroor lein\n• Positive rahein! You can do it! 💪",
-  'coding|programming|html|css|javascript|python': "💻 Programming Help:\nHTML - Structure\nCSS - Styling\nJavaScript - Functionality\nPython - Backend/AI\nKisi specific language ya problem ke baare mein poocho, main example code de sakta hoon!",
-  
-  // Science Related
-  'science|physics|chemistry|biology': "🔬 Science:\nPhysics: Motion, Energy, Force\nChemistry: Reactions, Elements\nBiology: Cells, Human Body, Plants\nKoi specific topic poocho, main explain karunga!",
-  'gravity|गुरुत्वाकर्षण': "🌍 Gravity: Yeh wo force hai jo cheezein neeche girti hain. Newton ne apple dekh kar discover kiya! g = 9.8 m/s²",
-  'photosynthesis|प्रकाश संश्लेषण': "🌱 Photosynthesis: Plants sunlight se khana banate hain. CO2 + Water + Sunlight → Glucose + Oxygen",
-  'solar system|सौर मंडल': "🪐 Solar System: Sun (center), 8 planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune. Earth 3rd planet hai!",
-  
-  // Math Related
-  'math|mathematics|गणित': "🔢 Math Help:\nAddition (+), Subtraction (-), Multiplication (*), Division (/), Square (^2)\nExample: 25*4 = 100, 144/12 = 12\nKoi bhi calculation batao, main solve kar dunga!",
-  
-  // Motivation
-  'motivation|motivate|inspire|प्रेरणा': "🔥 Motivation:\n\"Manzil unhi ko milti hai jo sapne dekhna nahi bhoolte!\"\nAaj ka din naye sapno ki shuruaat hai! Believe in yourself! 💪✨",
-  'failure|fail|asafal|हार': "🌟 Success Story:\nWalt Disney ko 302 baar reject kiya gaya!\nThomas Edison ne 1000+ fails ke baad bulb banaya!\nFailure is not the opposite of success, it's part of success! Keep going!",
-  'confidence|confident|khud pe bharosa': "✨ Confidence:\nAap already capable ho! Bas apne aap par trust rakho. Jo aaj nahi kar sakte, kal zaroor karoge! Practice makes perfect!",
-  
-  // General
-  'hello|hi|hey|namaste': "Namaste! 🙏 Kaise ho aap? Main aapki kaise help kar sakta hoon?",
-  'how are you|kaise ho': "Main badhiya hoon! Aap batao, aap kaise hain? 😊",
-  'what can you do|help': "🤖 Main help kar sakta hoon:\n📚 Study Tips\n🔢 Maths Calculation\n🔬 Science Facts\n💻 Coding Help\n💪 Motivation\n😊 Friendly Chat\nKuch bhi poocho!",
-  'thanks|thank you|dhanyavaad': "😊 Aapka swagat hai! Aur kuch help chahiye toh batao!",
-  'bye|goodbye|alvida': "✨ Milke achha laga! Phir se baat karna, main hamesha yahan hoon! Apna khayal rakhna! 🙏"
-};
 
 function getAIResponse(userMsg) {
   const msg = userMsg.toLowerCase().trim();
@@ -599,7 +561,616 @@ function getAIResponse(userMsg) {
   ];
   return friendlyReplies[Math.floor(Math.random() * friendlyReplies.length)];
 }
+// ==================== SUPER SMART AI ASSISTANT ====================
+// ChatGPT jaisa intelligent AI - Study, Science, Math, Coding, GK
 
+const superAI = {
+  // ========== STUDY & EDUCATION ==========
+  'study tips|padhai kaise karein|how to study|study motivation': `📚 COMPLETE STUDY GUIDE:
+  
+🎯 Effective Study Methods:
+• Pomodoro Technique: 25 min study + 5 min break
+• Active Recall: Bina book ke yaad karne ki koshish
+• Spaced Repetition: Time gap repeat karein
+• Feynman Technique: Doosron ko padhao
+
+📝 Best Practices:
+✓ Distractions hatayein (phone silent)
+✓ To-do list banayein
+✓ Regular revision karein
+✓ Doubts turant clear karein
+✓ Group study se help milti hai
+
+💡 Pro Tip: Subah 5-7 AM study ke liye best time hai!`,
+
+  'time management|samay ka sadupyog|time table': `⏰ TIME MANAGEMENT MASTERCLASS:
+
+📅 Daily Schedule:
+5:00-6:00 AM - Wake up & Exercise
+6:00-8:00 AM - Study (difficult subjects)
+8:00-9:00 AM - Breakfast & Break
+9:00-12:00 PM - Study (medium subjects)
+12:00-1:00 PM - Lunch & Rest
+1:00-3:00 PM - Study (easy subjects)
+3:00-5:00 PM - Practice/Revision
+5:00-7:00 PM - Hobby/Exercise
+7:00-9:00 PM - Dinner & Family
+9:00-10:00 PM - Revision
+10:00 PM - Sleep
+
+⚠️ Golden Rules:
+• 8 hours sleep compulsory
+• No phone 1 hour before sleep
+• Take 5 min break every 25 min`,
+
+  'exam preparation|exam ki taiyari|how to score good marks': `📖 EXAM MASTER PLAN:
+
+📌 30 Days Before Exam:
+• Syllabus complete karein
+• Important topics mark karein
+• Previous year papers collect karein
+
+📌 15 Days Before Exam:
+• Daily 2 mock tests solve karein
+• Weak topics pe focus karein
+• Short notes banayein
+
+📌 1 Day Before Exam:
+• Light revision karein
+• 8 hours sleep compulsory
+• Positive rahein
+
+✨ Success Mantra: "Jo padha achhe se padho, jo nahi padha usse mat daro!"`,
+
+  // ========== SCIENCE & TECHNOLOGY ==========
+  'science|physics|chemistry|biology|विज्ञान': `🔬 SCIENCE SIMPLIFIED:
+
+⚛️ PHYSICS:
+• Newton's Laws: Force = mass × acceleration (F = ma)
+• Gravity: g = 9.8 m/s²
+• Light Speed: 3 × 10⁸ m/s
+• Energy: E = mc² (Einstein)
+
+🧪 CHEMISTRY:
+• Water: H₂O
+• Periodic Table: 118 elements
+• Acids: pH < 7, Bases: pH > 7
+• Chemical Reactions: Reactants → Products
+
+🧬 BIOLOGY:
+• Human Body: 206 bones, 600 muscles
+• Heart pumps 7,500 liters blood/day
+• Brain has 86 billion neurons
+• DNA: double helix structure
+
+🌡️ SCIENCE FACTS:
+• Human body 60% water
+• Earth 71% water
+• Sun 5,500°C surface temperature`,
+
+  'gravity|गुरुत्वाकर्षण|g force': `🌍 GRAVITY EXPLAINED:
+
+📌 Definition: Gravity wo force hai jo cheezein neeche girti hain.
+
+🔢 Key Numbers:
+• g = 9.8 m/s² (Earth)
+• Moon gravity = 1.62 m/s² (1/6 of Earth)
+• Jupiter gravity = 24.79 m/s² (2.5x Earth)
+
+💡 Fun Facts:
+• Newton discovered gravity watching apple fall (1666)
+• Gravity ke bina sab float karega
+• Black holes have extreme gravity
+• Light bhi gravity se bend hoti hai`,
+
+  'photosynthesis|प्रकाश संश्लेषण|plants': `🌱 PHOTOSYNTHESIS - Plants ka Khana Banana:
+
+📝 Formula: CO₂ + H₂O + Sunlight → Glucose + O₂
+
+🌿 Process:
+1. Plants absorb sunlight (chlorophyll)
+2. Carbon dioxide lete hain (CO₂)
+3. Water absorb karte hain (H₂O)
+4. Glucose (food) banate hain
+5. Oxygen release karte hain (O₂)
+
+🌳 Importance:
+• Oxygen production
+• Food for animals
+• Reduces CO₂
+• Maintains ecosystem balance`,
+
+  'solar system|सौर मंडल|planets|ग्रह': `🪐 SOLAR SYSTEM TOUR:
+
+☀️ SUN (Center) - 99.86% mass
+
+🪐 PLANETS (8):
+1. Mercury 🌑 - Smallest, hottest
+2. Venus 🟡 - Hottest planet
+3. Earth 🌍 - Our home
+4. Mars 🔴 - Red planet
+5. Jupiter 🟤 - Largest planet
+6. Saturn 🪐 - Beautiful rings
+7. Uranus 💚 - Sideways rotation
+8. Neptune 💙 - Windiest planet
+
+🌙 Earth's Moon: 384,400 km away
+🚀 Sun distance: 150 million km
+💫 Milky Way galaxy has 200 billion stars!`,
+
+  // ========== MATHEMATICS ==========
+  'math|mathematics|गणित|maths': `🔢 MATHEMATICS HELP:
+
+📊 FORMULAS:
+• Area of Circle: πr²
+• Pythagoras: a² + b² = c²
+• Speed = Distance/Time
+• Percentage: (Part/Whole) × 100
+
+🧮 QUICK CALCULATIONS:
+• Square of 25: 625
+• 15 × 15 = 225
+• 999 × 1 = 999
+• 50% of 100 = 50
+
+💡 Tips:
+• Practice daily 30 min
+• Learn tables up to 20
+• Understand concepts, don't memorize
+• Real-life examples se relate karein
+
+⚡ Any calculation? Directly batao, main solve kar dunga!`,
+
+  // ========== CODING & PROGRAMMING ==========
+  'coding|programming|html|css|javascript|python|java': `💻 CODING MASTERCLASS:
+
+🌐 HTML (Structure):
+<h1>Heading</h1>
+<p>Paragraph</p>
+<div>Container</div>
+
+🎨 CSS (Styling):
+color: blue;
+font-size: 16px;
+margin: 10px;
+
+⚡ JavaScript (Logic):
+function greet() {
+  alert('Hello!');
+}
+
+🐍 Python (Backend):
+print("Hello World")
+if x > 5:
+    print("Greater")
+
+📚 Learning Path:
+1. HTML (2 weeks)
+2. CSS (2 weeks)
+3. JavaScript (4 weeks)
+4. Python/React (Advanced)
+
+💡 Pro Tip: Practice 1 hour daily!`,
+
+  'what is html|html kya hai': `🌐 HTML (HyperText Markup Language):
+
+📌 Definition: Website ka skeleton/structure
+
+🔧 Basic Tags:
+• <h1> to <h6> - Headings
+• <p> - Paragraph
+• <div> - Container
+• <img> - Images
+• <a> - Links
+
+📝 Example:
+<h1>Hello World</h1>
+<p>This is my website</p>
+
+💡 HTML files ka extension: .html`,
+
+  'what is css|css kya hai': `🎨 CSS (Cascading Style Sheets):
+
+📌 Definition: Website ki styling/sundarta
+
+🔧 Properties:
+• color: text color
+• background: background color
+• font-size: text size
+• margin/padding: spacing
+
+📝 Example:
+h1 {
+  color: blue;
+  font-size: 32px;
+}
+
+💡 CSS files ka extension: .css`,
+
+  // ========== MOTIVATION & POSITIVITY ==========
+  'motivation|motivate|inspire|प्रेरणा|success story': `🔥 POWERFUL MOTIVATION:
+
+📖 INSPIRING STORIES:
+
+✨ Thomas Edison:
+• 1000+ fails before inventing bulb
+• "I didn't fail, I found 1000 ways that didn't work"
+
+✨ J.K. Rowling:
+• 12 publishers rejected Harry Potter
+• Now she's billionaire author
+
+✨ Albert Einstein:
+• Couldn't speak until age 4
+• Became greatest physicist ever
+
+💪 YOUR MANTRA:
+"Kal se nahi, aaj se shuru karo"
+"Jo sochoge wahi banoge"
+"Believe you can, you're halfway there"
+
+🌟 TODAY'S GOAL:
+Ek chhoti si achievement aaj achieve karo!`,
+
+  'failure|fail|asafal|हार|depression|tension': `🌟 EMBRACE FAILURE:
+
+📌 REMEMBER:
+• Failure = Feedback
+• Har successful person ne failures dekhi hain
+• Jo try nahi karta, woh kabhi fail nahi hota
+• Failure is not opposite of success, it's part of success
+
+💪 FAMOUS FAILURES:
+• Walt Disney: Fired for "lacking imagination"
+• Oprah Winfrey: Fired from TV job
+• Michael Jordan: Cut from high school team
+• Colonel Sanders: Rejected 1009 times
+
+🔆 HEALING TIPS:
+✓ Talk to someone you trust
+✓ Write your feelings
+✓ Take deep breaths (inhale 4 sec, exhale 6 sec)
+✓ Tomorrow is new day
+✓ You are stronger than you think!
+
+🌈 YOU GOT THIS!`,
+
+  'confidence|confident|khud pe bharosa|self esteem': `✨ BUILD UNBREAKABLE CONFIDENCE:
+
+🎯 DAILY PRACTICES:
+1. Mirror Talk: Subah 5 min aaina dekh kar positive baatein bolo
+2. Affirmations: "Main capable hoon", "Main strong hoon"
+3. Small Wins: Chhoti achievements celebrate karo
+4. Body Language: Shoulder straight, chin up
+5. Learn New Skills: Knowledge = Confidence
+
+📝 POWER AFFIRMATIONS:
+• Main kuch bhi kar sakti hoon
+• Main unique hoon
+• Meri koi value nahi hai
+• Har din main better hoti hoon
+
+💪 TIP: Fake it till you make it!`,
+
+  // ========== GENERAL KNOWLEDGE ==========
+  'gk|general knowledge|current affairs': `🌍 GENERAL KNOWLEDGE:
+
+🇮🇳 INDIA FACTS:
+• Capital: New Delhi
+• Population: 1.4 Billion (2nd)
+• Languages: 22 official
+• National Animal: Tiger
+• National Bird: Peacock
+
+🌎 WORLD FACTS:
+• Largest country: Russia
+• Smallest country: Vatican City
+• Tallest mountain: Mount Everest (8,848m)
+• Deepest ocean: Pacific
+• Hottest desert: Sahara
+
+🔬 SCIENCE:
+• Human body 206 bones
+• Heart beats 100,000 times/day
+• Blood type: A, B, AB, O
+
+💡 GK TIPS: Daily newspaper read karo!`,
+
+  // ========== HEALTH & FITNESS ==========
+  'health|fitness|exercise|diet|food': `🏃‍♀️ HEALTH & FITNESS GUIDE:
+
+🥗 NUTRITION:
+• Drink 8-10 glasses water daily
+• Eat colorful vegetables
+• Protein: Eggs, pulses, milk
+• Avoid: Junk food, soda
+
+🏋️‍♀️ EXERCISE:
+• 30 min daily walk
+• Stretching in morning
+• Yoga for flexibility
+• Home workouts possible
+
+😴 SLEEP:
+• 7-8 hours mandatory
+• Sleep before 11 PM
+• No phone 1 hour before sleep
+
+🌿 MENTAL HEALTH:
+• Meditate 5 min daily
+• Talk to family/friends
+• Take breaks
+• Stay positive
+
+💪 REMEMBER: Healthy body = Healthy mind!`,
+
+  // ========== FRIENDLY CHAT ==========
+  'hello|hi|hey|namaste|good morning|good evening': `🙏 Namaste! Kaise ho aap?
+
+Main aapka smart AI dost hoon! Main help kar sakta hoon:
+📚 Study Tips
+🔬 Science Facts
+🔢 Maths Calculations
+💻 Coding Help
+💪 Motivation
+🌍 GK
+🏃‍♀️ Health Tips
+
+Kuch bhi poocho! 😊`,
+
+  'how are you|kaise ho|what\'s up': `😊 Main badhiya hoon! Aap batao, aap kaise hain?
+
+Aapko aaj kya help chahiye? Study, motivation, ya kuch aur?`,
+
+  'what can you do|help|help me|your skills': `🤖 MY SKILLS:
+
+📚 STUDY & EDUCATION
+• Study tips & techniques
+• Time management
+• Exam preparation
+• Memory improvement
+
+🔬 SCIENCE
+• Physics, Chemistry, Biology
+• Space & Planets
+• Human body facts
+
+🔢 MATHEMATICS
+• Any calculation
+• Formulas
+• Quick maths
+
+💻 CODING
+• HTML, CSS, JavaScript
+• Python basics
+• Programming help
+
+💪 MOTIVATION
+• Inspiring stories
+• Confidence building
+• Stress management
+
+🌍 GENERAL KNOWLEDGE
+• India & World facts
+• Current affairs
+• Science facts
+
+Kuch bhi poocho, main ready hoon! 🚀`,
+
+  'thanks|thank you|shukriya|dhanyavaad': `😊 Aapka swagat hai! 
+
+Kya aapko kisi aur cheez mein help chahiye? Main hamesha aapke liye ready hoon! 🌟`,
+
+  'bye|goodbye|alvida|tata|see you': `✨ Milke bahut achha laga!
+
+Yaad rakho:
+🌟 Aap kuch bhi kar sakte ho!
+💪 Believe in yourself!
+🔥 Keep going!
+
+Phir se baat karna, main hamesha yahan hoon! 🙏 Take care!`,
+
+  'love|pyaar|friend|dosti': `💝 Aap bahut special ho!
+
+Yaad rakho:
+• Aap unique ho
+• Aap strong ho
+• Aap capable ho
+• Aap deserving ho
+
+Dosti mein help chahiye? Main hoon na! 🤗`
+};
+
+// Math calculation function
+function solveMath(expression) {
+  try {
+    // Remove spaces and unwanted characters
+    let clean = expression.replace(/[^0-9+\-*/%()]/g, '');
+    // Replace ^ with ** for power
+    clean = clean.replace(/\^/g, '**');
+    // Handle percentage
+    clean = clean.replace(/(\d+)%/g, '($1/100)');
+    const result = eval(clean);
+    if (result !== undefined && !isNaN(result)) {
+      return `🔢 CALCULATION RESULT: ${result}\n\n➡️ ${expression} = ${result}`;
+    }
+  } catch(e) {}
+  return null;
+}
+
+// Main AI response function
+function getSuperAIResponse(userMsg) {
+  const msg = userMsg.toLowerCase().trim();
+  
+  // 1. Check for math calculations
+  if (/[\d\+\-\*\/\^\%\(\)]/.test(msg)) {
+    const mathResult = solveMath(msg);
+    if (mathResult) return mathResult;
+  }
+  
+  // 2. Check for specific numbers/questions
+  if (msg.match(/^\d+$/)) {
+    return `🔢 Aapne likha: ${msg}\n\nKya aap is number ke baare mein kuch janna chahte ho? Ya koi calculation karni hai?`;
+  }
+  
+  // 3. Check knowledge base
+  for (let [pattern, response] of Object.entries(superAI)) {
+    if (new RegExp(pattern, 'i').test(msg)) {
+      return response;
+    }
+  }
+  
+  // 4. Check if it's a question
+  if (msg.includes('?')) {
+    // Try to detect topic
+    if (msg.includes('study') || msg.includes('padhai')) {
+      return superAI['study tips|padhai kaise karein|how to study|study motivation'];
+    }
+    if (msg.includes('science') || msg.includes('physics') || msg.includes('chemistry')) {
+      return superAI['science|physics|chemistry|biology|विज्ञान'];
+    }
+    if (msg.includes('math') || msg.includes('calculate')) {
+      return "🔢 Kya aap math calculation karwana chahte ho? Direct number aur operator likho (+, -, *, /)\n\nExample: 25*4, 144/12, (10+5)*2";
+    }
+    if (msg.includes('code') || msg.includes('program')) {
+      return superAI['coding|programming|html|css|javascript|python|java'];
+    }
+    if (msg.includes('motivation')) {
+      return superAI['motivation|motivate|inspire|प्रेरणा|success story'];
+    }
+    
+    // Smart response for unknown questions
+    const smartSuggestions = [
+      "📚 Study tips chahiye?",
+      "🔬 Science facts?",
+      "🔢 Maths calculation?",
+      "💻 Coding help?",
+      "💪 Motivation?",
+      "🌍 General knowledge?"
+    ];
+    return `❓ Aapka sawaal accha hai!\n\nMain is topic pe aur seekh raha hoon.\n\nAap ye pooch sakte ho:\n${smartSuggestions.join('\n')}\n\nYa koi specific sawaal batao! 😊`;
+  }
+  
+  // 5. Intelligent fallback responses
+  const intelligentReplies = [
+    "😊 Main aapki baat samajh gaya!\n\nAap mujhse pooch sakte ho:\n• Study tips 📚\n• Science facts 🔬\n• Maths calculation 🔢\n• Coding help 💻\n• Motivation 💪\n• General knowledge 🌍\n\nKya aapko inme se kuch chahiye?",
+    
+    "🌟 Main aapka smart AI dost hoon!\n\nMain help kar sakta hoon:\n✅ Padhai kaise karein\n✅ Science facts\n✅ Math solve karna\n✅ Coding sikhna\n✅ Motivation dena\n✅ GK batana\n\nKuch bhi poocho!",
+    
+    "💫 Aap jo bhi pooch rahe ho, main sun raha hoon!\n\nThoda detail mein batao, jaise:\n• \"study tips do\"\n• \"photosynthesis kya hai\"\n• \"25*14 calculate karo\"\n• \"HTML kya hai\"\n• \"motivation chahiye\"\n\nMain behtar help kar sakta hoon! 🤗"
+  ];
+  
+  return intelligentReplies[Math.floor(Math.random() * intelligentReplies.length)];
+}
+
+// Chat history
+let chatHistory = [];
+
+// Send message function
+function sendMessage() {
+  let input = document.getElementById('chatInput');
+  let message = input.value.trim();
+  if (!message) return;
+  
+  addMessage(message, 'user');
+  input.value = '';
+  showTyping();
+  
+  setTimeout(() => {
+    let reply = getSuperAIResponse(message);
+    removeTyping();
+    addMessage(reply, 'bot');
+    
+    // Save to history
+    chatHistory.push({ user: message, bot: reply });
+    if (chatHistory.length > 50) chatHistory.shift();
+  }, 600);
+}
+
+function addMessage(text, sender) {
+  let container = document.getElementById('chatMessages');
+  let div = document.createElement('div');
+  div.className = `message ${sender}-message`;
+  div.style.display = 'flex';
+  div.style.marginBottom = '1rem';
+  div.style.justifyContent = sender === 'user' ? 'flex-end' : 'flex-start';
+  
+  // Convert newlines to <br>
+  let formattedText = text.replace(/\n/g, '<br>');
+  
+  div.innerHTML = `<div style="max-width: 85%; padding: 0.8rem 1rem; border-radius: 1.2rem; ${sender === 'user' ? 'background: linear-gradient(135deg, #667eea, #764ba2); color: white;' : 'background: white; color: #333; box-shadow: 0 1px 2px rgba(0,0,0,0.1);'}">${formattedText}</div>`;
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+
+function showTyping() {
+  let container = document.getElementById('chatMessages');
+  let div = document.createElement('div');
+  div.className = 'message bot-message';
+  div.id = 'typingIndicator';
+  div.style.display = 'flex';
+  div.style.justifyContent = 'flex-start';
+  div.style.marginBottom = '1rem';
+  div.innerHTML = `<div class="typing-dots"><span></span><span></span><span></span></div>`;
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+}
+
+function removeTyping() {
+  let typing = document.getElementById('typingIndicator');
+  if (typing) typing.remove();
+}
+
+function escapeHtml(str) {
+  return str.replace(/[&<>]/g, function(m) {
+    if (m === '&') return '&amp;';
+    if (m === '<') return '&lt;';
+    if (m === '>') return '&gt;';
+    return m;
+  });
+}
+
+// Enter key support
+document.addEventListener('DOMContentLoaded', function() {
+  let chatInput = document.getElementById('chatInput');
+  if (chatInput) {
+    chatInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') sendMessage();
+    });
+  }
+});
+
+// Add typing dots CSS if not exists
+if (!document.querySelector('#typingDotsStyle')) {
+  let style = document.createElement('style');
+  style.id = 'typingDotsStyle';
+  style.textContent = `
+    .typing-dots {
+      display: flex;
+      gap: 6px;
+      padding: 0.6rem 1rem;
+      background: white;
+      border-radius: 1rem;
+      width: fit-content;
+    }
+    .typing-dots span {
+      width: 8px;
+      height: 8px;
+      background: #888;
+      border-radius: 50%;
+      animation: typingAnim 1.4s infinite;
+    }
+    .typing-dots span:nth-child(2) { animation-delay: 0.2s; }
+    .typing-dots span:nth-child(3) { animation-delay: 0.4s; }
+    @keyframes typingAnim {
+      0%, 60%, 100% { transform: translateY(0); opacity: 0.4; }
+      30% { transform: translateY(-10px); opacity: 1; }
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+console.log("🤖 Super Smart AI Assistant Loaded! ChatGPT level intelligent!");
 // Chat Functions
 let conversationHistory = [];
 
