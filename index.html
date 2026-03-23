@@ -1725,6 +1725,154 @@ if ('serviceWorker' in navigator) {
     .catch(err => console.log('❌ Service Worker Failed:', err));
 }
 </script>
+  <script>
+// FIX: Re-define all functions to make clicks work again
+
+function showPage(pageId) {
+    console.log("Opening page: " + pageId);
+    
+    // Hide all pages
+    var pages = document.querySelectorAll('.page');
+    for (var i = 0; i < pages.length; i++) {
+        pages[i].classList.remove('active-page');
+        pages[i].style.display = 'none';
+    }
+    
+    // Show selected page
+    var selectedPage = document.getElementById(pageId);
+    if (selectedPage) {
+        selectedPage.classList.add('active-page');
+        selectedPage.style.display = 'block';
+        window.scrollTo(0, 0);
+    }
+}
+
+// Fix sendMessage function
+function sendMessage() {
+    var input = document.getElementById('chatInput');
+    if (!input) return;
+    
+    var message = input.value.trim();
+    if (message === "") {
+        alert("Kuch likho!");
+        return;
+    }
+    
+    // Add user message
+    addToChat(message, 'user');
+    input.value = '';
+    
+    // Show typing
+    showTyping();
+    
+    // Get response
+    setTimeout(function() {
+        hideTyping();
+        var response = getSimpleResponse(message);
+        addToChat(response, 'bot');
+    }, 500);
+}
+
+// Simple response function
+function getSimpleResponse(message) {
+    var msg = message.toLowerCase();
+    
+    // Math formulas
+    if (msg.includes('(a+b)²') || (msg.includes('a+b') && msg.includes('square'))) {
+        return "📐 (a+b)² = a² + 2ab + b²\n\nExample: (x+3)² = x² + 6x + 9";
+    }
+    if (msg.includes('(a-b)²')) {
+        return "📐 (a-b)² = a² - 2ab + b²\n\nExample: (x-4)² = x² - 8x + 16";
+    }
+    if (msg.includes('a²-b²')) {
+        return "📐 a² - b² = (a-b)(a+b)\n\nExample: x² - 25 = (x-5)(x+5)";
+    }
+    if (msg.includes('area of circle')) {
+        return "🔵 Circle Area = πr²\n\nExample: r=7, Area = 154 sq units";
+    }
+    if (msg.includes('pythagoras')) {
+        return "📐 Pythagoras: a² + b² = c²\n\nExample: 3² + 4² = 5²";
+    }
+    
+    // Greetings
+    if (msg.includes('hello') || msg.includes('hi') || msg.includes('namaste')) {
+        return "🙏 Namaste! Main hoon Smart AI Assistant!\n\nMujhse poocho:\n• (a+b)² kitna hota hai?\n• Area of circle?\n• Study tips\n• Motivation";
+    }
+    
+    if (msg.includes('welcome')) {
+        return "✨ Aapka swagat hai! Main hoon Chat_2.0!\n\nTry karo: (a+b)² kitna hota hai?";
+    }
+    
+    // Study tips
+    if (msg.includes('study') || msg.includes('padhai')) {
+        return "📚 STUDY TIPS:\n\n• 25 min study + 5 min break\n• Morning 5-7 AM best time\n• Make short notes\n• Revise daily";
+    }
+    
+    // Motivation
+    if (msg.includes('motivation') || msg.includes('inspire')) {
+        return "💪 Believe in yourself! You can achieve anything!\n\nKeep going! 🔥";
+    }
+    
+    // Science
+    if (msg.includes('photosynthesis')) {
+        return "🌱 PHOTOSYNTHESIS:\n\nCO₂ + H₂O + Sunlight → Glucose + O₂\n\nPlants make their own food!";
+    }
+    
+    if (msg.includes('solar') || msg.includes('planet')) {
+        return "🌍 SOLAR SYSTEM:\n\n8 Planets: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune\n\nSun is at the center!";
+    }
+    
+    // Default response
+    return "🤔 Main aapki madad kar sakta hoon!\n\nTry karo:\n• (a+b)² kitna hota hai?\n• Area of circle?\n• Study tips\n• Motivation\n\nKuch bhi poocho!";
+}
+
+// Add message to chat
+function addToChat(text, sender) {
+    var chatMessages = document.getElementById('chatMessages');
+    if (!chatMessages) return;
+    
+    var messageDiv = document.createElement('div');
+    messageDiv.className = 'message ' + sender;
+    
+    var time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    
+    messageDiv.innerHTML = '<div class="message-content"><div class="message-bubble">' + 
+        text.replace(/\n/g, '<br>') + '</div><div class="message-time">' + time + '</div></div>';
+    
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+// Typing indicator
+function showTyping() {
+    var indicator = document.getElementById('typingIndicator');
+    if (indicator) {
+        indicator.style.display = 'flex';
+    }
+}
+
+function hideTyping() {
+    var indicator = document.getElementById('typingIndicator');
+    if (indicator) {
+        indicator.style.display = 'none';
+    }
+}
+
+// Handle Enter key
+function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+}
+
+// Welcome message on page load
+setTimeout(function() {
+    var chatMessages = document.getElementById('chatMessages');
+    if (chatMessages && chatMessages.children.length === 0) {
+        addToChat("🙏 Namaste! Main hoon Smart AI Assistant!\n\nMujhse poocho:\n• (a+b)² kitna hota hai?\n• Area of circle?\n• Study tips\n• Motivation\n\nKuch bhi poocho!", 'bot');
+    }
+}, 100);
+  </script>
   
 </body>
 </html>
