@@ -3039,6 +3039,203 @@ document.body.addEventListener('click', function(e) {
 
 console.log("✅ Emergency fix loaded! Pages should be clickable now.");
   </script>
+  <script>
+// ========== FIX: ALL RESPONSES WORKING ==========
+// Yeh code saare original responses wapas laayega
+
+// Save the current calculation function
+var checkCalculationExists = typeof checkCalculation === 'function' ? checkCalculation : null;
+
+// Create complete response function with ALL answers
+window.getSimpleResponse = function(message) {
+    var msg = message.toLowerCase().trim();
+    
+    // ========== STEP 1: CALCULATIONS (23*56, etc.) ==========
+    // Multiplication
+    var multMatch = message.match(/(\d+)\s*[×\*]\s*(\d+)/);
+    if (multMatch) {
+        var result = parseFloat(multMatch[1]) * parseFloat(multMatch[2]);
+        return "🔢 " + multMatch[1] + " × " + multMatch[2] + " = " + result;
+    }
+    
+    // Addition
+    var addMatch = message.match(/(\d+)\s*\+\s*(\d+)/);
+    if (addMatch) {
+        var result = parseFloat(addMatch[1]) + parseFloat(addMatch[2]);
+        return "🔢 " + addMatch[1] + " + " + addMatch[2] + " = " + result;
+    }
+    
+    // Subtraction
+    var subMatch = message.match(/(\d+)\s*\-\s*(\d+)/);
+    if (subMatch) {
+        var result = parseFloat(subMatch[1]) - parseFloat(subMatch[2]);
+        return "🔢 " + subMatch[1] + " - " + subMatch[2] + " = " + result;
+    }
+    
+    // Division
+    var divMatch = message.match(/(\d+)\s*[\/÷]\s*(\d+)/);
+    if (divMatch && parseFloat(divMatch[2]) !== 0) {
+        var result = parseFloat(divMatch[1]) / parseFloat(divMatch[2]);
+        return "🔢 " + divMatch[1] + " ÷ " + divMatch[2] + " = " + result;
+    }
+    
+    // Percentage
+    var percentMatch = message.match(/(\d+)\s*%\s*(?:of)?\s*(\d+)/);
+    if (percentMatch) {
+        var result = (parseFloat(percentMatch[1]) / 100) * parseFloat(percentMatch[2]);
+        return "💰 " + percentMatch[1] + "% of " + percentMatch[2] + " = " + result;
+    }
+    
+    // Square Root
+    var sqrtMatch = message.match(/(?:√|sqrt)\s*(\d+)/);
+    if (sqrtMatch) {
+        var result = Math.sqrt(parseFloat(sqrtMatch[1]));
+        return "🔢 √" + sqrtMatch[1] + " = " + result;
+    }
+    
+    // Power
+    var powerMatch = message.match(/(\d+)\s*[\^]\s*(\d+)/);
+    if (powerMatch) {
+        var result = Math.pow(parseFloat(powerMatch[1]), parseFloat(powerMatch[2]));
+        return "🔢 " + powerMatch[1] + "^" + powerMatch[2] + " = " + result;
+    }
+    
+    // ========== STEP 2: ALGEBRA FORMULAS ==========
+    
+    // (a+b)²
+    if (msg.includes('(a+b)²') || msg.includes('(a+b)^2') || 
+        (msg.includes('a+b') && msg.includes('square')) ||
+        msg.includes('a plus b whole square')) {
+        return "📐 (a+b)² = a² + 2ab + b²\n\n📝 Examples:\n• (x+3)² = x² + 6x + 9\n• (5+3)² = 25 + 30 + 9 = 64";
+    }
+    
+    // (a-b)²
+    if (msg.includes('(a-b)²') || msg.includes('(a-b)^2') ||
+        msg.includes('a minus b whole square')) {
+        return "📐 (a-b)² = a² - 2ab + b²\n\n📝 Examples:\n• (x-4)² = x² - 8x + 16\n• (5-3)² = 25 - 30 + 9 = 4";
+    }
+    
+    // a² - b²
+    if (msg.includes('a²-b²') || msg.includes('a^2-b^2') ||
+        msg.includes('a square minus b square')) {
+        return "📐 a² - b² = (a-b)(a+b)\n\n📝 Examples:\n• x² - 25 = (x-5)(x+5)\n• 100 - 36 = (10-6)(10+6) = 64";
+    }
+    
+    // (a+b)³
+    if (msg.includes('(a+b)³') || msg.includes('a+b whole cube')) {
+        return "📐 (a+b)³ = a³ + 3a²b + 3ab² + b³\n\n📝 Example: (x+2)³ = x³ + 6x² + 12x + 8";
+    }
+    
+    // ========== STEP 3: GEOMETRY FORMULAS ==========
+    
+    // Area of Circle
+    if (msg.includes('area of circle') || msg.includes('circle area')) {
+        return "🔵 Circle Area = πr²\n\n📝 Example: r = 7 cm\nArea = 22/7 × 49 = 154 cm²";
+    }
+    
+    // Area of Triangle
+    if (msg.includes('area of triangle')) {
+        return "📐 Triangle Area = ½ × base × height\n\n📝 Example: base=10, height=8\nArea = 40 sq units";
+    }
+    
+    // Pythagoras
+    if (msg.includes('pythagoras') || msg.includes('hypotenuse')) {
+        return "📐 Pythagoras Theorem: a² + b² = c²\n\n📝 Example: 3² + 4² = 5²";
+    }
+    
+    // ========== STEP 4: SCIENCE ==========
+    
+    // Photosynthesis
+    if (msg.includes('photosynthesis') || msg.includes('प्रकाश संश्लेषण')) {
+        return `🌱 **PHOTOSYNTHESIS**\n\n📐 **Formula:** CO₂ + H₂O + Sunlight → Glucose + O₂\n\n📌 **Process:**\n1. Plants absorb sunlight (chlorophyll)\n2. Carbon dioxide lete hain (CO₂)\n3. Water absorb karte hain (H₂O)\n4. Glucose (food) banate hain\n5. Oxygen release karte hain (O₂)\n\n💚 **Importance:**\n• Oxygen production\n• Food for animals\n• Reduces CO₂\n• Maintains ecosystem balance`;
+    }
+    
+    // Solar System
+    if (msg.includes('solar system') || msg.includes('planet') || msg.includes('ग्रह')) {
+        return `🪐 **SOLAR SYSTEM TOUR**\n\n☀️ **SUN** (Center) - 99.86% mass\n\n🪐 **8 PLANETS:**\n1. Mercury - Smallest, hottest\n2. Venus - Hottest planet\n3. Earth - Our home\n4. Mars - Red planet\n5. Jupiter - Largest planet\n6. Saturn - Beautiful rings\n7. Uranus - Sideways rotation\n8. Neptune - Windiest planet\n\n📏 Earth's Moon: 384,400 km away\n🌞 Sun distance: 150 million km\n✨ Milky Way has 200 billion stars!`;
+    }
+    
+    // Gravity
+    if (msg.includes('gravity') || msg.includes('गुरुत्वाकर्षण')) {
+        return `🌍 **GRAVITY EXPLAINED**\n\n📖 Definition: Gravity wo force hai jo cheezein neeche girti hain.\n\n🔢 **KEY NUMBERS:**\n• g = 9.8 m/s² (Earth)\n• Moon gravity = 1.62 m/s² (1/6 of Earth)\n• Jupiter gravity = 24.79 m/s² (2.5x Earth)\n\n✨ **FUN FACTS:**\n• Newton discovered gravity watching apple fall (1666)\n• Gravity ke bina sab float karega\n• Black holes have extreme gravity\n• Light bhi gravity se bend hoti hai`;
+    }
+    
+    // ========== STEP 5: GREETINGS & ABOUT ==========
+    
+    // Who are you / About
+    if (msg.includes('who are you') || msg.includes('about you') || msg.includes('your name') || 
+        msg.includes('what are you') || msg.includes('tell me about yourself')) {
+        return `🤖 **About Me - Smart AI Assistant**\n\nMain hoon aapka personal AI assistant! 🚀\n\n**My Skills:**\n🔢 Mathematics (23*56, √144, percentages)\n📐 Algebra Formulas ((a+b)², a²-b²)\n🔬 Science (Photosynthesis, Solar System, Gravity)\n📚 Study Tips & Time Management\n💻 Coding Help (HTML, CSS, JavaScript)\n💪 Motivation & Inspiration\n🌍 General Knowledge\n\n**Languages:** Hindi & English\n\nKuch bhi poochiye, main hoon ready! 😊`;
+    }
+    
+    // Hello / Hi
+    if (msg.includes('hello') || msg.includes('hi') || msg.includes('namaste') || msg.includes('hey')) {
+        return `🙏 **Namaste! Kaise ho aap?**\n\nMain hoon aapka Smart AI Assistant! 🤖\n\nAap mujhse pooch sakte ho:\n🔢 23*56 = ?\n📐 (a+b)² kitna hota hai?\n🔵 Area of circle?\n🌱 What is photosynthesis?\n📚 Study tips\n💪 Motivation\n\nKuch bhi poocho, main jawab dunga! 😊`;
+    }
+    
+    // How are you
+    if (msg.includes('how are you')) {
+        return `😊 Main badhiya hoon! Aap batao, aap kaise hain?\n\nAapko aaj kya help chahiye? Study, motivation, ya kuch aur?`;
+    }
+    
+    // Thank you
+    if (msg.includes('thank')) {
+        return `🙏 Aapka swagat hai! ❤️\n\nKya aapko kisi aur cheez mein help chahiye? Main hamesha aapke liye ready hoon! 🌟`;
+    }
+    
+    // Bye
+    if (msg.includes('bye') || msg.includes('goodbye') || msg.includes('alvida')) {
+        return `✨ **Milke bahut achha laga!** ✨\n\nYaad rakho:\n🌟 Aap kuch bhi kar sakte ho!\n💪 Believe in yourself!\n🔥 Keep going!\n\nPhir se baat karna, main hamesha yahan hoon! 🙏 Take care!`;
+    }
+    
+    // ========== STEP 6: STUDY TIPS ==========
+    
+    if (msg.includes('study tip') || msg.includes('padhai') || msg.includes('how to study') || msg.includes('study motivation')) {
+        return `📚 **SMART STUDY TIPS**\n\n🎯 **Effective Methods:**\n• Pomodoro: 25 min study + 5 min break\n• Active Recall: Bina book ke yaad karne ki koshish\n• Spaced Repetition: Time gap repeat karein\n• Feynman Technique: Doosron ko padhao\n\n✅ **Best Practices:**\n• Distractions hatayein (phone silent)\n• To-do list banayein\n• Regular revision karen\n• Doubts turant clear karen\n• Group study se help milti hai\n\n💡 **PRO TIP:** Subah 5-7 AM study ke liye best time hai!`;
+    }
+    
+    // Time Management
+    if (msg.includes('time management') || msg.includes('schedule') || msg.includes('time table')) {
+        return `⏰ **TIME MANAGEMENT MASTERCLASS**\n\n🌅 **Ideal Daily Schedule:**\n5:00-6:00 AM - Wake up & Exercise\n6:00-8:00 AM - Study (difficult subjects)\n8:00-9:00 AM - Breakfast & Break\n9:00-12:00 PM - Study (medium subjects)\n12:00-1:00 PM - Lunch & Rest\n1:00-3:00 PM - Study (easy subjects)\n3:00-5:00 PM - Practice/Revision\n5:00-7:00 PM - Hobby/Exercise\n7:00-9:00 PM - Dinner & Family\n9:00-10:00 PM - Revision\n10:00 PM - Sleep\n\n✨ **Golden Rules:**\n• 8 hours sleep compulsory\n• No phone 1 hour before sleep\n• Take 5 min break every 25 min`;
+    }
+    
+    // Exam Preparation
+    if (msg.includes('exam') || msg.includes('test preparation')) {
+        return `📝 **EXAM MASTER PLAN**\n\n🗓️ **30 Days Before Exam:**\n• Syllabus complete karen\n• Important topics mark karen\n• Previous year papers collect karen\n\n📌 **15 Days Before Exam:**\n• Daily 2 mock tests solve karen\n• Weak topics pe focus karen\n• Short notes banyein\n\n⭐ **1 Day Before Exam:**\n• Light revision karen\n• 8 hours sleep compulsory\n• Positive rahen\n\n🎯 **SUCCESS MANTRA:** "Jo padha achhe se padho, jo nahi padha usse mat daro!"`;
+    }
+    
+    // ========== STEP 7: MOTIVATION ==========
+    
+    if (msg.includes('motivation') || msg.includes('inspire') || msg.includes('himmat') || msg.includes('प्रेरणा')) {
+        var quotes = [
+            "💪 **Khud pe bharosa rakho! Tum kuch bhi kar sakte ho!**\n\n• Thomas Edison: 1000+ fails before inventing bulb\n• J.K. Rowling: 12 publishers rejected Harry Potter\n• Now they are legends!\n\n✨ **Your mantra:** 'Kal se nahi, aaj se shuru karo'",
+            "🌟 **Success is not final, failure is not fatal. Keep going!**\n\n• Walt Disney was fired for 'lacking imagination'\n• Oprah Winfrey was fired from TV job\n• Michael Jordan was cut from high school team\n\n🔥 **Never give up!**",
+            "🎯 **Manzil unhi ko milti hai, jo raah ke pattharon ko pehchan lete hain!**\n\n• Colonel Sanders was rejected 1009 times\n• At age 65, he started KFC\n\n💪 **You are stronger than you think!**",
+            "✨ **Sapne wahi sach hote hain, jinko poora karne ka junoon ho!**\n\n• Einstein couldn't speak until age 4\n• Became the greatest physicist ever\n\n🚀 **Believe in yourself!**"
+        ];
+        return quotes[Math.floor(Math.random() * quotes.length)];
+    }
+    
+    // ========== STEP 8: TIME & DATE ==========
+    
+    if (msg.includes('time') && !msg.includes('management')) {
+        var now = new Date();
+        return "🕐 **Current Time:** " + now.toLocaleTimeString() + "\n📅 **Date:** " + now.toLocaleDateString();
+    }
+    
+    // ========== STEP 9: CODING HELP ==========
+    
+    if (msg.includes('coding') || msg.includes('html') || msg.includes('css') || msg.includes('javascript') || msg.includes('python')) {
+        return `💻 **CODING HELP**\n\n📄 **HTML:**\n<h1>Hello World</h1>\n<p>Paragraph</p>\n\n🎨 **CSS:**\ncolor: blue;\nfont-size: 20px;\n\n⚡ **JavaScript:**\nfunction greet() {\n    alert('Hello!');\n}\n\n🐍 **Python:**\nprint("Hello World")\n\n💡 **Learning Path:** HTML → CSS → JavaScript → Python`;
+    }
+    
+    // ========== STEP 10: DEFAULT RESPONSE ==========
+    
+    return `🤖 **Smart AI Assistant**\n\nMain aapki madad kar sakta hoon! ✨\n\n**Try karo:**\n🔢 23*56\n🔢 144/12\n💰 50% of 200\n📐 (a+b)²\n🔵 area of circle\n🌱 photosynthesis\n📚 study tips\n💪 motivation\n🕐 time\n\nKuch bhi poocho, main jawab dunga! 😊`;
+};
+
+console.log("✅ Complete AI Assistant Loaded! All responses working!");
+  </script>
   
 </body>
 </html>
