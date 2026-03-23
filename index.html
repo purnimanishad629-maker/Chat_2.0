@@ -2841,6 +2841,204 @@ console.log('✅ Smart AI Assistant Loaded Successfully!');
     
 })();
         </script>
+  <script>
+// ========== EMERGENCY FIX - PAGES CLICKABLE ==========
+// Yeh code pages ko dobara clickable banayega
+
+// Make sure showPage function works
+window.showPage = function(pageId) {
+    console.log("Opening page: " + pageId);
+    
+    // Get all pages
+    var allPages = document.querySelectorAll('.page');
+    for (var i = 0; i < allPages.length; i++) {
+        allPages[i].classList.remove('active-page');
+        allPages[i].style.display = 'none';
+    }
+    
+    // Show selected page
+    var selectedPage = document.getElementById(pageId);
+    if (selectedPage) {
+        selectedPage.classList.add('active-page');
+        selectedPage.style.display = 'block';
+        window.scrollTo(0, 0);
+    } else {
+        console.log("Page not found: " + pageId);
+    }
+};
+
+// Fix sendMessage function
+window.sendMessage = function() {
+    var input = document.getElementById('chatInput');
+    if (!input) {
+        console.log("Chat input not found");
+        return;
+    }
+    
+    var message = input.value.trim();
+    if (message === "") {
+        input.placeholder = "Kuch likho...";
+        setTimeout(function() {
+            if (input) input.placeholder = "Type your message here...";
+        }, 2000);
+        return;
+    }
+    
+    // Check for calculation first
+    var calcResult = checkCalculation(message);
+    if (calcResult) {
+        addToChat(message, 'user');
+        addToChat(calcResult, 'bot');
+        input.value = '';
+        return;
+    }
+    
+    // Add user message
+    addToChat(message, 'user');
+    input.value = '';
+    
+    // Show typing
+    showTyping();
+    
+    // Get response
+    setTimeout(function() {
+        hideTyping();
+        var response = getSimpleResponse(message);
+        addToChat(response, 'bot');
+    }, 500);
+};
+
+// Calculation checker function
+function checkCalculation(msg) {
+    // Multiplication
+    var multMatch = msg.match(/(\d+)\s*[×\*]\s*(\d+)/);
+    if (multMatch) {
+        var result = parseFloat(multMatch[1]) * parseFloat(multMatch[2]);
+        return "🔢 " + multMatch[1] + " × " + multMatch[2] + " = " + result;
+    }
+    
+    // Addition
+    var addMatch = msg.match(/(\d+)\s*\+\s*(\d+)/);
+    if (addMatch) {
+        var result = parseFloat(addMatch[1]) + parseFloat(addMatch[2]);
+        return "🔢 " + addMatch[1] + " + " + addMatch[2] + " = " + result;
+    }
+    
+    // Subtraction
+    var subMatch = msg.match(/(\d+)\s*\-\s*(\d+)/);
+    if (subMatch) {
+        var result = parseFloat(subMatch[1]) - parseFloat(subMatch[2]);
+        return "🔢 " + subMatch[1] + " - " + subMatch[2] + " = " + result;
+    }
+    
+    // Division
+    var divMatch = msg.match(/(\d+)\s*[\/÷]\s*(\d+)/);
+    if (divMatch && parseFloat(divMatch[2]) !== 0) {
+        var result = parseFloat(divMatch[1]) / parseFloat(divMatch[2]);
+        return "🔢 " + divMatch[1] + " ÷ " + divMatch[2] + " = " + result;
+    }
+    
+    // Percentage
+    var percentMatch = msg.match(/(\d+)\s*%\s*(?:of)?\s*(\d+)/);
+    if (percentMatch) {
+        var result = (parseFloat(percentMatch[1]) / 100) * parseFloat(percentMatch[2]);
+        return "💰 " + percentMatch[1] + "% of " + percentMatch[2] + " = " + result;
+    }
+    
+    return null;
+}
+
+// Make sure addToChat works
+if (typeof window.addToChat !== 'function') {
+    window.addToChat = function(text, sender) {
+        var chatMessages = document.getElementById('chatMessages');
+        if (!chatMessages) {
+            console.log("Chat messages container not found");
+            return;
+        }
+        
+        var messageDiv = document.createElement('div');
+        messageDiv.className = 'message ' + sender;
+        
+        var time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        var formattedText = text.replace(/\n/g, '<br>');
+        
+        messageDiv.innerHTML = `
+            <div class="message-content">
+                <div class="message-bubble">${formattedText}</div>
+                <div class="message-time">${time}</div>
+            </div>
+        `;
+        
+        chatMessages.appendChild(messageDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    };
+}
+
+// Make sure showTyping works
+if (typeof window.showTyping !== 'function') {
+    window.showTyping = function() {
+        var chatMessages = document.getElementById('chatMessages');
+        if (!chatMessages) return;
+        
+        var typingDiv = document.createElement('div');
+        typingDiv.id = 'typingIndicator';
+        typingDiv.className = 'typing-indicator';
+        typingDiv.innerHTML = '<span></span><span></span><span></span>';
+        chatMessages.appendChild(typingDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    };
+}
+
+// Make sure hideTyping works
+if (typeof window.hideTyping !== 'function') {
+    window.hideTyping = function() {
+        var typing = document.getElementById('typingIndicator');
+        if (typing) typing.remove();
+    };
+}
+
+// Make sure handleKeyPress works
+window.handleKeyPress = function(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+};
+
+// Add click listeners to all cards after page loads
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("Page loaded, fixing clicks...");
+    
+    // Fix all card clicks
+    var cards = document.querySelectorAll('.card');
+    for (var i = 0; i < cards.length; i++) {
+        cards[i].style.cursor = 'pointer';
+    }
+    
+    // Make sure home page is visible
+    var homePage = document.getElementById('homePage');
+    if (homePage) {
+        homePage.classList.add('active-page');
+        homePage.style.display = 'block';
+    }
+    
+    console.log("All fixes applied! Pages should work now.");
+});
+
+// Also fix onclick attributes
+document.body.addEventListener('click', function(e) {
+    var target = e.target.closest('[onclick]');
+    if (target) {
+        var onclickAttr = target.getAttribute('onclick');
+        if (onclickAttr && onclickAttr.includes('showPage')) {
+            e.preventDefault();
+            eval(onclickAttr);
+        }
+    }
+});
+
+console.log("✅ Emergency fix loaded! Pages should be clickable now.");
+  </script>
   
 </body>
 </html>
