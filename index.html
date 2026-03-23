@@ -2750,6 +2750,97 @@ console.log('✅ Smart AI Assistant Loaded Successfully!');
   
 </script>
   
+        <script>
+// ========== CALCULATION FIX - WITHOUT BREAKING ANYTHING ==========
+// Yeh code sirf calculations add karega, aapka existing code delete nahi hoga
+
+(function fixCalculations() {
+    
+    // Save the original getSimpleResponse function if it exists
+    var originalGetSimpleResponse = window.getSimpleResponse;
+    
+    // Create calculation checker
+    function calculateNow(question) {
+        var msg = question.toString().trim();
         
+        // 1. Multiplication: 23*56 or 23×56
+        var multMatch = msg.match(/(\d+)\s*[×\*]\s*(\d+)/);
+        if (multMatch) {
+            var result = parseFloat(multMatch[1]) * parseFloat(multMatch[2]);
+            return "🔢 " + multMatch[1] + " × " + multMatch[2] + " = " + result;
+        }
+        
+        // 2. Addition: 23+56
+        var addMatch = msg.match(/(\d+)\s*\+\s*(\d+)/);
+        if (addMatch) {
+            var result = parseFloat(addMatch[1]) + parseFloat(addMatch[2]);
+            return "🔢 " + addMatch[1] + " + " + addMatch[2] + " = " + result;
+        }
+        
+        // 3. Subtraction: 56-23
+        var subMatch = msg.match(/(\d+)\s*\-\s*(\d+)/);
+        if (subMatch) {
+            var result = parseFloat(subMatch[1]) - parseFloat(subMatch[2]);
+            return "🔢 " + subMatch[1] + " - " + subMatch[2] + " = " + result;
+        }
+        
+        // 4. Division: 144/12 or 144÷12
+        var divMatch = msg.match(/(\d+)\s*[\/÷]\s*(\d+)/);
+        if (divMatch) {
+            var num2 = parseFloat(divMatch[2]);
+            if (num2 !== 0) {
+                var result = parseFloat(divMatch[1]) / num2;
+                return "🔢 " + divMatch[1] + " ÷ " + divMatch[2] + " = " + result;
+            }
+        }
+        
+        // 5. Percentage: 50% of 200
+        var percentMatch = msg.match(/(\d+)\s*%\s*(?:of)?\s*(\d+)/);
+        if (percentMatch) {
+            var percent = parseFloat(percentMatch[1]);
+            var total = parseFloat(percentMatch[2]);
+            var result = (percent / 100) * total;
+            return "💰 " + percent + "% of " + total + " = " + result;
+        }
+        
+        // 6. Square Root: √144
+        var sqrtMatch = msg.match(/(?:√|sqrt)\s*(\d+)/);
+        if (sqrtMatch) {
+            var result = Math.sqrt(parseFloat(sqrtMatch[1]));
+            return "🔢 √" + sqrtMatch[1] + " = " + result;
+        }
+        
+        // 7. Power: 2^5
+        var powerMatch = msg.match(/(\d+)\s*[\^]\s*(\d+)/);
+        if (powerMatch) {
+            var result = Math.pow(parseFloat(powerMatch[1]), parseFloat(powerMatch[2]));
+            return "🔢 " + powerMatch[1] + "^" + powerMatch[2] + " = " + result;
+        }
+        
+        return null; // No calculation found
+    }
+    
+    // Create new getSimpleResponse that checks calculations first
+    window.getSimpleResponse = function(message) {
+        // First check if it's a calculation
+        var calcResult = calculateNow(message);
+        if (calcResult) {
+            return calcResult;
+        }
+        
+        // If original function exists, use it for everything else
+        if (originalGetSimpleResponse) {
+            return originalGetSimpleResponse(message);
+        }
+        
+        // Fallback if no original function
+        return "🤖 Main aapki madad kar sakta hoon!\n\nTry karo:\n• 23*56\n• 144/12\n• 50% of 200\n• (a+b)²\n• Study tips";
+    };
+    
+    console.log("✅ Calculation fix added! Pages and chat working normally.");
+    
+})();
+        </script>
+  
 </body>
 </html>
