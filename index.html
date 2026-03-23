@@ -3394,6 +3394,243 @@ if (typeof window.sendMessage === 'function') {
 
 console.log("✅ FINAL FIX LOADED! AI Assistant is ready!");
   </script>
+  <script>
+// ========== FIX: ADD PYTHAGORAS THEOREM ==========
+
+// Save the existing getSimpleResponse function
+var originalGetSimpleResponse = window.getSimpleResponse;
+
+// Create enhanced version with Pythagoras
+window.getSimpleResponse = function(message) {
+    var msg = message.toLowerCase().trim();
+    
+    // ========== PYTHAGORAS THEOREM ==========
+    
+    // Check for Pythagoras related questions
+    if (msg.includes('pythagoras') || msg.includes('pythagorean') || 
+        msg.includes('hypotenuse') || msg.includes('कर्ण') ||
+        msg.includes('पाइथागोरस') || msg.includes('right angle triangle')) {
+        
+        // Check if numbers are provided (like "pythagoras 3 4")
+        var numbers = message.match(/\d+/g);
+        if (numbers && numbers.length >= 2) {
+            var a = parseFloat(numbers[0]);
+            var b = parseFloat(numbers[1]);
+            var c = Math.sqrt(a*a + b*b);
+            return `📐 **PYTHAGORAS THEOREM**\n\n**Formula:** a² + b² = c²\n\n**Given:**\na = ${a}\nb = ${b}\n\n**Calculation:**\nc² = ${a}² + ${b}²\nc² = ${a*a} + ${b*b}\nc² = ${a*a + b*b}\n\n**Hypotenuse (c) = ${c.toFixed(2)}**\n\n💡 *Pythagoras theorem right-angled triangle ke liye use hota hai!*`;
+        }
+        
+        // If no numbers, give formula with example
+        return `📐 **PYTHAGORAS THEOREM**\n\n**Formula:** a² + b² = c²\n\n**Where:**\n• a = perpendicular (height)\n• b = base\n• c = hypotenuse (longest side)\n\n**Example:**\nIf a = 3, b = 4\nThen c² = 3² + 4²\nc² = 9 + 16 = 25\nc = √25 = 5\n\n**Try:** "pythagoras 3 4" for calculation!\n\n💡 *Right-angled triangle ke liye use hota hai!*`;
+    }
+    
+    // ========== AREA OF TRIANGLE ==========
+    
+    if (msg.includes('area of triangle') || msg.includes('triangle area')) {
+        var numbers = message.match(/\d+/g);
+        if (numbers && numbers.length >= 2) {
+            var base = parseFloat(numbers[0]);
+            var height = parseFloat(numbers[1]);
+            var area = 0.5 * base * height;
+            return `📐 **AREA OF TRIANGLE**\n\n**Formula:** ½ × base × height\n\n**Given:**\nBase = ${base}\nHeight = ${height}\n\n**Calculation:**\nArea = ½ × ${base} × ${height}\nArea = ${area} sq units\n\n💡 *Try: "triangle area 10 8"*`;
+        }
+        return `📐 **AREA OF TRIANGLE**\n\n**Formula:** ½ × base × height\n\n**Example:** base = 10, height = 8\nArea = ½ × 10 × 8 = 40 sq units\n\n💡 *Base aur height batao, main calculate kar dunga!*`;
+    }
+    
+    // ========== (a-b)² ==========
+    
+    if (msg.includes('(a-b)²') || msg.includes('(a-b)^2') || 
+        msg.includes('a minus b whole square')) {
+        return `📐 **(a-b)² = a² - 2ab + b²**\n\n**Examples:**\n• (x-4)² = x² - 8x + 16\n• (5-3)² = 25 - 30 + 9 = 4\n\n💡 *Koi aur formula chahiye? (a+b)², a²-b² pooch sakte ho!*`;
+    }
+    
+    // ========== a² - b² ==========
+    
+    if (msg.includes('a²-b²') || msg.includes('a^2-b^2') || 
+        msg.includes('a square minus b square')) {
+        return `📐 **a² - b² = (a-b)(a+b)**\n\n**Examples:**\n• x² - 25 = (x-5)(x+5)\n• 100 - 36 = (10-6)(10+6) = 64\n\n💡 *Difference of squares formula!*`;
+    }
+    
+    // ========== Call original function for other responses ==========
+    if (originalGetSimpleResponse) {
+        return originalGetSimpleResponse(message);
+    }
+    
+    // ========== DEFAULT FALLBACK ==========
+    return "🤖 **Smart AI Assistant**\n\nMain aapki madad kar sakta hoon! ✨\n\n**Try karo:**\n🔢 23*56\n📐 (a+b)²\n📐 pythagoras 3 4\n🔵 area of circle\n📐 triangle area 10 8\n🌱 photosynthesis\n📚 study tips\n💪 motivation\n🕐 time\n\nKuch bhi poocho! 😊";
+};
+
+console.log("✅ Pythagoras Theorem added! Try: pythagoras 3 4");
+  </script>
+  <script>
+// ========== ADVANCED GK SYSTEM ==========
+// Yeh code aapke AI assistant ko GK expert banayega
+
+// Save existing function
+var existingGetSimpleResponse = window.getSimpleResponse;
+
+// Advanced GK Database
+const gkDatabase = {
+    // ========== INDIA GK ==========
+    'capital of india': '🇮🇳 **Capital of India:** New Delhi',
+    'india capital': '🇮🇳 **Capital of India:** New Delhi',
+    'national animal of india': '🐅 **National Animal of India:** Tiger (Panthera tigris)',
+    'national bird of india': '🦚 **National Bird of India:** Peacock (Pavo cristatus)',
+    'national flower of india': '🌺 **National Flower of India:** Lotus (Nelumbo nucifera)',
+    'national fruit of india': '🥭 **National Fruit of India:** Mango (Mangifera indica)',
+    'national tree of india': '🌳 **National Tree of India:** Banyan Tree (Ficus benghalensis)',
+    'national river of india': '🏞️ **National River of India:** Ganga (Ganges)',
+    'national anthem of india': '🎵 **National Anthem of India:** Jana Gana Mana (written by Rabindranath Tagore)',
+    'national song of india': '🎶 **National Song of India:** Vande Mataram (written by Bankim Chandra Chatterjee)',
+    'national sport of india': '🏑 **National Sport of India:** Hockey',
+    'national emblem of india': '🦁 **National Emblem of India:** Lion Capital of Ashoka (4 lions)',
+    'national currency of india': '💰 **National Currency of India:** Indian Rupee (₹)',
+    'indian president': '👨‍💼 **President of India:** Droupadi Murmu (15th President)',
+    'prime minister of india': '👨‍💼 **Prime Minister of India:** Narendra Modi',
+    'indian constitution': '📜 **Indian Constitution:** Adopted on 26 January 1950, Dr. B.R. Ambedkar is the father of Indian Constitution',
+    
+    // ========== WORLD GK ==========
+    'largest country': '🌍 **Largest Country by Area:** Russia (17.1 million sq km)',
+    'smallest country': '🌍 **Smallest Country:** Vatican City (0.44 sq km)',
+    'largest population': '👥 **Largest Population:** China (1.4 billion), India (1.4 billion) - 2nd',
+    'tallest mountain': '🏔️ **Tallest Mountain:** Mount Everest (8,848.86 meters)',
+    'longest river': '🏞️ **Longest River:** Nile River (6,650 km)',
+    'largest ocean': '🌊 **Largest Ocean:** Pacific Ocean (165.25 million sq km)',
+    'largest desert': '🏜️ **Largest Desert:** Antarctica (14 million sq km) - cold desert, Sahara is largest hot desert',
+    'highest waterfall': '💦 **Highest Waterfall:** Angel Falls (979 meters, Venezuela)',
+    'deepest ocean': '🌊 **Deepest Ocean:** Pacific Ocean (Mariana Trench - 11,034 meters)',
+    'largest continent': '🌏 **Largest Continent:** Asia (44.58 million sq km)',
+    'smallest continent': '🌏 **Smallest Continent:** Australia (8.6 million sq km)',
+    
+    // ========== SCIENCE GK ==========
+    'hottest planet': '🔥 **Hottest Planet:** Venus (462°C)',
+    'coldest planet': '❄️ **Coldest Planet:** Neptune (-201°C)',
+    'largest planet': '🪐 **Largest Planet:** Jupiter',
+    'smallest planet': '🪐 **Smallest Planet:** Mercury',
+    'closest planet to sun': '☀️ **Closest Planet to Sun:** Mercury',
+    'farthest planet from sun': '🌌 **Farthest Planet from Sun:** Neptune',
+    'earth\'s satellite': '🌙 **Earth\'s Natural Satellite:** Moon',
+    'gas giants': '🪐 **Gas Giants:** Jupiter, Saturn, Uranus, Neptune',
+    'red planet': '🔴 **Red Planet:** Mars (due to iron oxide/rust)',
+    'blue planet': '💙 **Blue Planet:** Earth (70% water)',
+    'morning star': '⭐ **Morning Star:** Venus (appears in morning)',
+    'evening star': '⭐ **Evening Star:** Venus (appears in evening)',
+    
+    // ========== HUMAN BODY GK ==========
+    'largest organ': '🧠 **Largest Organ:** Skin (about 2 sq meters)',
+    'largest bone': '🦴 **Largest Bone:** Femur (thigh bone)',
+    'smallest bone': '🦴 **Smallest Bone:** Stapes (in ear, 3mm)',
+    'largest muscle': '💪 **Largest Muscle:** Gluteus Maximus (buttocks)',
+    'largest gland': '🧬 **Largest Gland:** Liver',
+    'longest nerve': '🧠 **Longest Nerve:** Sciatic Nerve',
+    'blood pumping organ': '❤️ **Blood Pumping Organ:** Heart (pumps 7,500 liters/day)',
+    'brain capacity': '🧠 **Brain:** 86 billion neurons, weighs about 1.4 kg',
+    'human bones': '🦴 **Human Bones:** 206 bones in adult body',
+    'human muscles': '💪 **Human Muscles:** 600+ muscles',
+    
+    // ========== SPORTS GK ==========
+    'olympic games': '🏅 **Olympic Games:** Started in 776 BC in Greece, Modern Olympics started 1896',
+    'world cup football': '⚽ **FIFA World Cup:** First held in 1930, Brazil won 5 times (most)',
+    'cricket world cup': '🏏 **Cricket World Cup:** First held in 1975, Australia won 5 times (most)',
+    'most olympic medals': '🥇 **Most Olympic Medals:** Michael Phelps (28 medals - 23 gold)',
+    'fastest man': '🏃 **Fastest Man:** Usain Bolt (100m - 9.58 seconds)',
+    
+    // ========== AWARDS GK ==========
+    'nobel prize': '🏆 **Nobel Prize:** Started in 1901, awarded in Physics, Chemistry, Medicine, Literature, Peace, Economics',
+    'highest civilian award india': '🏅 **Highest Civilian Award India:** Bharat Ratna',
+    'oscar award': '🎬 **Oscar Award:** Academy Awards for films, started 1929',
+    'grammy award': '🎵 **Grammy Award:** Music awards',
+    
+    // ========== DAYS & DATES ==========
+    'republic day': '🇮🇳 **Republic Day:** 26 January (India became republic in 1950)',
+    'independence day': '🇮🇳 **Independence Day:** 15 August (India got freedom in 1947)',
+    'gandhi jayanti': '🕊️ **Gandhi Jayanti:** 2 October (Mahatma Gandhi\'s birthday)',
+    'teachers day': '👩‍🏫 **Teachers Day:** 5 September (Dr. Sarvepalli Radhakrishnan\'s birthday)',
+    'childrens day': '👧 **Children\'s Day:** 14 November (Jawaharlal Nehru\'s birthday)',
+    'world environment day': '🌍 **World Environment Day:** 5 June',
+    'world health day': '🏥 **World Health Day:** 7 April',
+    'world yoga day': '🧘 **International Yoga Day:** 21 June',
+};
+
+// Advanced GK Function
+function getGKResponse(message) {
+    var msg = message.toLowerCase().trim();
+    
+    // Check exact matches in GK database
+    for (var [key, value] of Object.entries(gkDatabase)) {
+        if (msg.includes(key) || msg.includes(key.replace(/\s/g, ''))) {
+            return value;
+        }
+    }
+    
+    // ========== RANDOM GK FACTS ==========
+    if (msg.includes('random fact') || msg.includes('tell me a fact') || msg.includes('interesting fact')) {
+        var facts = [
+            "💡 **Interesting Fact:** A day on Venus is longer than a year on Venus!",
+            "💡 **Interesting Fact:** Octopuses have three hearts!",
+            "💡 **Interesting Fact:** Honey never spoils - archaeologists found 3000-year-old honey!",
+            "💡 **Interesting Fact:** Your nose can remember 50,000 different scents!",
+            "💡 **Interesting Fact:** The Eiffel Tower can grow 15 cm in summer due to heat expansion!",
+            "💡 **Interesting Fact:** A human sneeze can travel up to 100 mph!",
+            "💡 **Interesting Fact:** The Great Wall of China is visible from space? Actually, it's NOT visible with naked eye!",
+            "💡 **Interesting Fact:** Bananas are berries, but strawberries aren't!",
+            "💡 **Interesting Fact:** An octopus has three hearts and blue blood!",
+            "💡 **Interesting Fact:** The world's oldest known living tree is over 5,000 years old!"
+        ];
+        return facts[Math.floor(Math.random() * facts.length)];
+    }
+    
+    // ========== GK QUIZ MODE ==========
+    if (msg.includes('quiz') || msg.includes('gk quiz') || msg.includes('test me')) {
+        var quizzes = [
+            "📝 **GK QUIZ:**\n\nQ1. What is the capital of India?\nType your answer!",
+            "📝 **GK QUIZ:**\n\nQ2. Which planet is known as the Red Planet?\nType your answer!",
+            "📝 **GK QUIZ:**\n\nQ3. How many bones are in the human body?\nType your answer!",
+            "📝 **GK QUIZ:**\n\nQ4. Who wrote the Indian National Anthem?\nType your answer!",
+            "📝 **GK QUIZ:**\n\nQ5. What is the largest ocean on Earth?\nType your answer!"
+        ];
+        return quizzes[Math.floor(Math.random() * quizzes.length)] + "\n\n💡 *Answer batao, main check karunga!*";
+    }
+    
+    // ========== GK QUIZ ANSWER CHECK ==========
+    if (msg.includes('new delhi')) return "✅ **Correct!** New Delhi is the capital of India! 🎉\n\nWant another quiz? Type 'quiz'!";
+    if (msg.includes('mars')) return "✅ **Correct!** Mars is the Red Planet! 🎉\n\nWant another quiz? Type 'quiz'!";
+    if (msg.includes('206')) return "✅ **Correct!** Adult human has 206 bones! 🎉\n\nWant another quiz? Type 'quiz'!";
+    if (msg.includes('tagore') || msg.includes('rabindranath')) return "✅ **Correct!** Rabindranath Tagore wrote Jana Gana Mana! 🎉\n\nWant another quiz? Type 'quiz'!";
+    if (msg.includes('pacific')) return "✅ **Correct!** Pacific Ocean is the largest! 🎉\n\nWant another quiz? Type 'quiz'!";
+    
+    return null;
+}
+
+// Enhanced getSimpleResponse with GK
+window.getSimpleResponse = function(message) {
+    var msg = message.toLowerCase().trim();
+    
+    // ========== STEP 1: Check GK First ==========
+    var gkResponse = getGKResponse(message);
+    if (gkResponse) {
+        return gkResponse;
+    }
+    
+    // ========== STEP 2: Special GK Commands ==========
+    
+    // List all GK topics
+    if (msg.includes('gk topics') || msg.includes('what can i ask') || msg.includes('gk list')) {
+        return `📚 **ADVANCED GK TOPICS**\n\n**India GK:**\n• Capital of India\n• National Animal/Bird/Flower\n• President/PM of India\n• Republic Day, Independence Day\n\n**World GK:**\n• Largest/Smallest Country\n• Tallest Mountain\n• Longest River\n• Largest Ocean\n\n**Science GK:**\n• Hottest/Coldest Planet\n• Red Planet, Blue Planet\n• Human Body Facts\n\n**Sports GK:**\n• Olympic Games\n• World Cup\n\n**Awards GK:**\n• Nobel Prize\n• Bharat Ratna\n\n**Try:**\n• "random fact"\n• "quiz"\n• "capital of india"\n• "largest planet"\n\n💡 *Koi specific topic poocho!*`;
+    }
+    
+    // ========== STEP 3: Call original function ==========
+    if (existingGetSimpleResponse) {
+        return existingGetSimpleResponse(message);
+    }
+    
+    // ========== STEP 4: Default ==========
+    return "🤖 **Smart AI Assistant with Advanced GK!**\n\n**Try GK Questions:**\n🇮🇳 capital of india\n🐅 national animal of india\n🪐 largest planet\n🏔️ tallest mountain\n💡 random fact\n📝 quiz\n📚 gk topics\n\nKuch bhi poocho! 😊";
+};
+
+console.log("✅ Advanced GK System Loaded!");
+console.log("Try: capital of india, largest planet, random fact, quiz");
+  </script>
   
 </body>
 </html>
