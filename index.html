@@ -3236,6 +3236,164 @@ window.getSimpleResponse = function(message) {
 
 console.log("✅ Complete AI Assistant Loaded! All responses working!");
   </script>
+  <script>
+// ========== FINAL FIX - COMPLETE WORKING AI ==========
+// Ye code sab kuch theek kar dega
+
+// Make sure all functions are properly defined
+window.getSimpleResponse = function(message) {
+    var msg = message.toLowerCase().trim();
+    
+    console.log("Processing: " + message); // For debugging
+    
+    // ========== CALCULATIONS ==========
+    
+    // Multiplication
+    var multMatch = message.match(/(\d+)\s*[×\*]\s*(\d+)/);
+    if (multMatch) {
+        var result = parseFloat(multMatch[1]) * parseFloat(multMatch[2]);
+        return "🔢 " + multMatch[1] + " × " + multMatch[2] + " = " + result;
+    }
+    
+    // Addition
+    var addMatch = message.match(/(\d+)\s*\+\s*(\d+)/);
+    if (addMatch) {
+        var result = parseFloat(addMatch[1]) + parseFloat(addMatch[2]);
+        return "🔢 " + addMatch[1] + " + " + addMatch[2] + " = " + result;
+    }
+    
+    // Subtraction
+    var subMatch = message.match(/(\d+)\s*\-\s*(\d+)/);
+    if (subMatch) {
+        var result = parseFloat(subMatch[1]) - parseFloat(subMatch[2]);
+        return "🔢 " + subMatch[1] + " - " + subMatch[2] + " = " + result;
+    }
+    
+    // Division
+    var divMatch = message.match(/(\d+)\s*[\/÷]\s*(\d+)/);
+    if (divMatch && parseFloat(divMatch[2]) !== 0) {
+        var result = parseFloat(divMatch[1]) / parseFloat(divMatch[2]);
+        return "🔢 " + divMatch[1] + " ÷ " + divMatch[2] + " = " + result;
+    }
+    
+    // Percentage
+    var percentMatch = message.match(/(\d+)\s*%\s*(?:of)?\s*(\d+)/);
+    if (percentMatch) {
+        var result = (parseFloat(percentMatch[1]) / 100) * parseFloat(percentMatch[2]);
+        return "💰 " + percentMatch[1] + "% of " + percentMatch[2] + " = " + result;
+    }
+    
+    // Square Root
+    var sqrtMatch = message.match(/(?:√|sqrt)\s*(\d+)/);
+    if (sqrtMatch) {
+        var result = Math.sqrt(parseFloat(sqrtMatch[1]));
+        return "🔢 √" + sqrtMatch[1] + " = " + result;
+    }
+    
+    // ========== WHO ARE YOU ==========
+    
+    if (msg.includes('who are you') || msg.includes('about you') || msg.includes('your name')) {
+        return "🤖 **Namaste! Main hoon Smart AI Assistant!**\n\nMain aapka personal dost hoon jo aapki madad karta hoon!\n\n**Meri skills:**\n✅ Maths calculations (23*56, 144/12)\n✅ Algebra formulas ((a+b)²)\n✅ Science facts (Photosynthesis, Solar System)\n✅ Study tips & Time management\n✅ Coding help (HTML, CSS, JavaScript)\n✅ Motivation & Inspiration\n✅ General Knowledge\n\n**Languages:** Hindi & English\n\nKuch bhi poochiye, main jawab dunga! 😊";
+    }
+    
+    // ========== PHOTOSYNTHESIS ==========
+    
+    if (msg.includes('photosynthesis') || msg.includes('प्रकाश संश्लेषण')) {
+        return "🌱 **PHOTOSYNTHESIS**\n\n**Formula:** CO₂ + H₂O + Sunlight → Glucose + O₂\n\n**Process:**\n1️⃣ Plants absorb sunlight (chlorophyll)\n2️⃣ Carbon dioxide lete hain (CO₂)\n3️⃣ Water absorb karte hain (H₂O)\n4️⃣ Glucose (food) banate hain\n5️⃣ Oxygen release karte hain (O₂)\n\n**Importance:**\n🌍 Oxygen production\n🍎 Food for animals\n🌡️ Reduces CO₂\n⚖️ Maintains ecosystem balance\n\n💡 *Plants apna khana khud banate hain!*";
+    }
+    
+    // ========== (a+b)² FORMULA ==========
+    
+    if (msg.includes('(a+b)²') || msg.includes('(a+b)^2') || 
+        (msg.includes('a+b') && msg.includes('square')) ||
+        msg.includes('a plus b whole square')) {
+        return "📐 **(a+b)² = a² + 2ab + b²**\n\n**Examples:**\n• (x+3)² = x² + 6x + 9\n• (5+3)² = 25 + 30 + 9 = 64\n\n💡 *Koi aur formula chahiye? (a-b)², a²-b², (a+b)³ pooch sakte ho!*";
+    }
+    
+    // ========== AREA OF CIRCLE ==========
+    
+    if (msg.includes('area of circle') || msg.includes('circle area')) {
+        return "🔵 **Area of Circle = πr²**\n\n**Example:** r = 7 cm\nArea = 22/7 × 49 = 154 cm²\n\n💡 *Radius batao, main calculate kar dunga!*";
+    }
+    
+    // ========== STUDY TIPS ==========
+    
+    if (msg.includes('study tip') || msg.includes('padhai') || msg.includes('how to study')) {
+        return "📚 **SMART STUDY TIPS**\n\n**Pomodoro Technique:** 25 min study + 5 min break\n**Active Recall:** Bina book ke yaad karne ki koshish\n**Spaced Repetition:** Time gap repeat karein\n**Feynman Technique:** Doosron ko padhao\n\n**Best Time:** Subah 5-7 AM\n**Sleep:** 7-8 hours mandatory\n\n💡 *Consistency is the key!*";
+    }
+    
+    // ========== MOTIVATION ==========
+    
+    if (msg.includes('motivation') || msg.includes('inspire')) {
+        return "💪 **MOTIVATION**\n\n**Thomas Edison:** 1000+ fails before inventing bulb\n\"I didn't fail, I found 1000 ways that didn't work\"\n\n**J.K. Rowling:** 12 publishers rejected Harry Potter\nNow she's a billionaire author!\n\n**Your Mantra:**\n✨ \"Kal se nahi, aaj se shuru karo\"\n✨ \"Jo sochoge wahi banoge\"\n✨ \"Believe you can, you're halfway there\"\n\n🔥 **YOU CAN DO IT!**";
+    }
+    
+    // ========== TIME ==========
+    
+    if (msg.includes('time') && !msg.includes('management')) {
+        var now = new Date();
+        return "🕐 **Current Time:** " + now.toLocaleTimeString() + "\n📅 **Date:** " + now.toLocaleDateString();
+    }
+    
+    // ========== HELLO ==========
+    
+    if (msg.includes('hello') || msg.includes('hi') || msg.includes('namaste')) {
+        return "🙏 **Namaste! Kaise ho aap?**\n\nMain hoon aapka Smart AI Assistant! 🤖\n\n**Mujhse pooch sakte ho:**\n🔢 23*56 = ?\n📐 (a+b)² = ?\n🌱 What is photosynthesis?\n📚 Study tips\n💪 Motivation\n🕐 Time\n\nKuch bhi poocho, main jawab dunga! 😊";
+    }
+    
+    // ========== THANK YOU ==========
+    
+    if (msg.includes('thank')) {
+        return "🙏 **Aapka swagat hai!** ❤️\n\nKya aapko kisi aur cheez mein help chahiye? Main hamesha aapke liye ready hoon! 🌟";
+    }
+    
+    // ========== BYE ==========
+    
+    if (msg.includes('bye') || msg.includes('goodbye')) {
+        return "✨ **Milke bahut achha laga!** ✨\n\nYaad rakho:\n🌟 Aap kuch bhi kar sakte ho!\n💪 Believe in yourself!\n🔥 Keep going!\n\nPhir se baat karna! 🙏";
+    }
+    
+    // ========== DEFAULT ==========
+    
+    return "🤖 **Smart AI Assistant**\n\nMain aapki madad kar sakta hoon! ✨\n\n**Try karo:**\n🔢 23*56\n🔢 144/12\n💰 50% of 200\n📐 (a+b)²\n🔵 area of circle\n🌱 photosynthesis\n📚 study tips\n💪 motivation\n🕐 time\n\nKuch bhi poocho, main jawab dunga! 😊";
+};
+
+// Make sure sendMessage works properly
+if (typeof window.sendMessage === 'function') {
+    var originalSend = window.sendMessage;
+    window.sendMessage = function() {
+        var input = document.getElementById('chatInput');
+        if (!input) return;
+        
+        var message = input.value.trim();
+        if (message === "") return;
+        
+        // Add user message
+        if (typeof addToChat === 'function') {
+            addToChat(message, 'user');
+        }
+        input.value = '';
+        
+        // Show typing
+        if (typeof showTyping === 'function') {
+            showTyping();
+        }
+        
+        // Get response
+        setTimeout(function() {
+            if (typeof hideTyping === 'function') {
+                hideTyping();
+            }
+            var response = window.getSimpleResponse(message);
+            if (typeof addToChat === 'function') {
+                addToChat(response, 'bot');
+            }
+        }, 300);
+    };
+}
+
+console.log("✅ FINAL FIX LOADED! AI Assistant is ready!");
+  </script>
   
 </body>
 </html>
