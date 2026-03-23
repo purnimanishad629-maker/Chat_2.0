@@ -857,142 +857,56 @@ const smartResponses = {
   // MATHEMATICS
   'math|mathematics|गणित|maths': `🔢 MATHEMATICS HELP:
   // ==================== COMPLETE MATHEMATICS MASTER SECTION ====================
-
-// Advanced Math Formulas Database
-const mathMasterDB = {
-    // Algebra Formulas
-    algebra: {
-        '(a+b)²': 'a² + 2ab + b²',
-        '(a-b)²': 'a² - 2ab + b²',
-        'a² - b²': '(a-b)(a+b)',
-        '(a+b)³': 'a³ + 3a²b + 3ab² + b³',
-        '(a-b)³': 'a³ - 3a²b + 3ab² - b³',
-        'a³ + b³': '(a+b)(a² - ab + b²)',
-        'a³ - b³': '(a-b)(a² + ab + b²)',
-        '(a+b+c)²': 'a² + b² + c² + 2ab + 2bc + 2ca',
-        'x² + (a+b)x + ab': '(x+a)(x+b)',
-        'quadratic formula': 'x = [-b ± √(b² - 4ac)] / 2a',
-        'discriminant': 'Δ = b² - 4ac',
-    },
+// ==================== PAGE NAVIGATION ====================
+function showPage(pageId) {
+    const pages = document.querySelectorAll('.page');
+    pages.forEach(page => {
+        page.classList.remove('active-page');
+        page.style.display = 'none';
+    });
     
-    // Geometry Formulas
-    geometry: {
-        'circle area': 'πr²',
-        'circle circumference': '2πr',
-        'rectangle area': 'length × breadth',
-        'rectangle perimeter': '2(l + b)',
-        'square area': 'side²',
-        'square perimeter': '4 × side',
-        'triangle area': '½ × base × height',
-        'triangle (heron)': '√[s(s-a)(s-b)(s-c)], where s = (a+b+c)/2',
-        'right triangle (pythagoras)': 'hypotenuse² = base² + height²',
-        'trapezium area': '½ × (a + b) × h',
-        'parallelogram area': 'base × height',
-        'rhombus area': '½ × d₁ × d₂',
-        'cube volume': 'side³',
-        'cuboid volume': 'l × b × h',
-        'cylinder volume': 'πr²h',
-        'cylinder surface area': '2πr(r + h)',
-        'sphere volume': '⁴⁄₃πr³',
-        'sphere surface area': '4πr²',
-        'cone volume': '⅓πr²h',
-        'cone surface area': 'πr(r + l)',
-    },
-    
-    // Trigonometry Formulas
-    trigonometry: {
-        'sin θ': 'opposite/hypotenuse',
-        'cos θ': 'adjacent/hypotenuse',
-        'tan θ': 'opposite/adjacent',
-        'sin²θ + cos²θ': '1',
-        '1 + tan²θ': 'sec²θ',
-        '1 + cot²θ': 'cosec²θ',
-        'sin(90°-θ)': 'cosθ',
-        'cos(90°-θ)': 'sinθ',
-        'tan(90°-θ)': 'cotθ',
-        'sin(A+B)': 'sinA cosB + cosA sinB',
-        'sin(A-B)': 'sinA cosB - cosA sinB',
-        'cos(A+B)': 'cosA cosB - sinA sinB',
-        'cos(A-B)': 'cosA cosB + sinA sinB',
-        'tan(A+B)': '(tanA + tanB)/(1 - tanA tanB)',
-        'tan(A-B)': '(tanA - tanB)/(1 + tanA tanB)',
-        'sin2θ': '2 sinθ cosθ',
-        'cos2θ': 'cos²θ - sin²θ = 2cos²θ - 1 = 1 - 2sin²θ',
-        'tan2θ': '2tanθ/(1 - tan²θ)',
-    },
-    
-    // Mensuration Formulas
-    mensuration: {
-        'cube lateral surface': '4 × side²',
-        'cube total surface': '6 × side²',
-        'cuboid lateral': '2h(l + b)',
-        'cuboid total': '2(lb + bh + hl)',
-        'cylinder curved': '2πrh',
-        'cylinder total': '2πr(r + h)',
-        'cone curved': 'πrl',
-        'cone total': 'πr(l + r)',
-        'sphere area': '4πr²',
-        'hemisphere volume': '⅔πr³',
-        'hemisphere surface': '3πr²',
-        'sector area': '(θ/360) × πr²',
-        'arc length': '(θ/360) × 2πr',
-    },
-    
-    // Number System
-    numberSystem: {
-        'natural numbers': '1, 2, 3, 4, 5...',
-        'whole numbers': '0, 1, 2, 3, 4...',
-        'integers': '...-3, -2, -1, 0, 1, 2, 3...',
-        'rational numbers': 'Numbers in p/q form where q ≠ 0',
-        'irrational numbers': 'π, √2, √3, e, etc.',
-        'prime numbers': '2, 3, 5, 7, 11, 13, 17, 19, 23, 29...',
-        'composite numbers': '4, 6, 8, 9, 10, 12, 14, 15...',
-        'real numbers': 'All rational + irrational numbers',
-    },
-    
-    // Arithmetic
-    arithmetic: {
-        'percentage formula': '(Part/Whole) × 100',
-        'profit formula': 'SP - CP',
-        'loss formula': 'CP - SP',
-        'profit%': '(Profit/CP) × 100',
-        'loss%': '(Loss/CP) × 100',
-        'simple interest': '(P × R × T)/100',
-        'compound interest': 'P(1 + R/100)ⁿ - P',
-        'speed formula': 'Distance/Time',
-        'average formula': 'Sum of terms/Number of terms',
+    const selectedPage = document.getElementById(pageId);
+    if (selectedPage) {
+        selectedPage.classList.add('active-page');
+        selectedPage.style.display = 'block';
+        window.scrollTo(0, 0);
     }
-};
+}
 
-// Advanced Math Problem Solver
-function solveAdvancedMath(question) {
+// ==================== COMPLETE MATH SOLVER ====================
+
+function solveMathProblem(question) {
     const msg = question.toLowerCase().trim();
-    
-    // ========== ALGEBRA FORMULAS ==========
     
     // (a+b)²
     if (msg.includes('(a+b)²') || msg.includes('(a+b)^2') || 
-        (msg.includes('a+b') && msg.includes('square'))) {
-        return `📐 **ALGEBRA FORMULA:**\n\n✨ (a+b)² = a² + 2ab + b²\n\n📝 **Example:**\n(x+3)² = x² + 2(x)(3) + 3²\n        = x² + 6x + 9\n\n📝 (2x+5)² = 4x² + 20x + 25`;
+        (msg.includes('a+b') && msg.includes('square')) ||
+        msg.includes('a plus b whole square') ||
+        msg.includes('a plus b ka square')) {
+        return `📐 **ALGEBRA FORMULA:**\n\n✨ (a+b)² = a² + 2ab + b²\n\n📝 **Example:**\n(x+3)² = x² + 2(x)(3) + 3² = x² + 6x + 9\n\n📝 (2x+5)² = 4x² + 20x + 25`;
     }
     
     // (a-b)²
-    if (msg.includes('(a-b)²') || msg.includes('(a-b)^2')) {
-        return `📐 **ALGEBRA FORMULA:**\n\n✨ (a-b)² = a² - 2ab + b²\n\n📝 **Example:**\n(x-4)² = x² - 2(x)(4) + 4²\n       = x² - 8x + 16`;
+    if (msg.includes('(a-b)²') || msg.includes('(a-b)^2') ||
+        msg.includes('a minus b whole square')) {
+        return `📐 **ALGEBRA FORMULA:**\n\n✨ (a-b)² = a² - 2ab + b²\n\n📝 **Example:**\n(x-4)² = x² - 2(x)(4) + 4² = x² - 8x + 16`;
     }
     
     // a² - b²
-    if (msg.includes('a²-b²') || msg.includes('a^2-b^2') || msg.includes('a square minus b square')) {
+    if (msg.includes('a²-b²') || msg.includes('a^2-b^2') || 
+        msg.includes('a square minus b square')) {
         return `📐 **ALGEBRA FORMULA:**\n\n✨ a² - b² = (a-b)(a+b)\n\n📝 **Example:**\nx² - 25 = (x-5)(x+5)\n\n16x² - 9 = (4x-3)(4x+3)`;
     }
     
     // (a+b)³
-    if (msg.includes('(a+b)³') || msg.includes('(a+b)^3') || msg.includes('a plus b whole cube')) {
-        return `📐 **ALGEBRA FORMULA:**\n\n✨ (a+b)³ = a³ + 3a²b + 3ab² + b³\n\n📝 **Example:**\n(x+2)³ = x³ + 3x²(2) + 3x(4) + 8\n       = x³ + 6x² + 12x + 8`;
+    if (msg.includes('(a+b)³') || msg.includes('(a+b)^3') ||
+        msg.includes('a plus b whole cube')) {
+        return `📐 **ALGEBRA FORMULA:**\n\n✨ (a+b)³ = a³ + 3a²b + 3ab² + b³\n\n📝 **Example:**\n(x+2)³ = x³ + 6x² + 12x + 8`;
     }
     
     // (a-b)³
-    if (msg.includes('(a-b)³') || msg.includes('(a-b)^3') || msg.includes('a minus b whole cube')) {
+    if (msg.includes('(a-b)³') || msg.includes('(a-b)^3') ||
+        msg.includes('a minus b whole cube')) {
         return `📐 **ALGEBRA FORMULA:**\n\n✨ (a-b)³ = a³ - 3a²b + 3ab² - b³\n\n📝 **Example:**\n(x-2)³ = x³ - 6x² + 12x - 8`;
     }
     
@@ -1006,63 +920,59 @@ function solveAdvancedMath(question) {
         return `📐 **ALGEBRA FORMULA:**\n\n✨ a³ - b³ = (a-b)(a² + ab + b²)\n\n📝 **Example:**\nx³ - 64 = (x-4)(x² + 4x + 16)`;
     }
     
-    // ========== QUADRATIC EQUATIONS ==========
-    
-    if (msg.includes('quadratic') || msg.includes('ax²+bx+c') || msg.includes('ax^2+bx+c')) {
-        return `📐 **QUADRATIC EQUATIONS:**\n\n✨ **Standard Form:** ax² + bx + c = 0\n\n✨ **Quadratic Formula:**\nx = [-b ± √(b² - 4ac)] / 2a\n\n✨ **Discriminant (Δ) = b² - 4ac**\n\n🔍 **Nature of Roots:**\n• If Δ > 0 → Two distinct real roots\n• If Δ = 0 → One real root (equal roots)\n• If Δ < 0 → No real roots (imaginary)\n\n📝 **Example:** x² - 5x + 6 = 0\nx = [5 ± √(25 - 24)] / 2 = [5 ± 1]/2\nx = 3 or x = 2`;
+    // Quadratic Formula
+    if (msg.includes('quadratic') || msg.includes('ax²+bx+c')) {
+        return `📐 **QUADRATIC EQUATIONS:**\n\n✨ Formula: x = [-b ± √(b² - 4ac)] / 2a\n\n✨ Discriminant (Δ) = b² - 4ac\n\n🔍 **Nature of Roots:**\n• Δ > 0 → Two real roots\n• Δ = 0 → One real root\n• Δ < 0 → No real roots\n\n📝 **Example:** x² - 5x + 6 = 0\nx = 2 or x = 3`;
     }
     
-    // ========== GEOMETRY AREA & PERIMETER ==========
-    
-    if (msg.includes('area of circle') || (msg.includes('circle') && msg.includes('area'))) {
+    // Circle Area
+    if (msg.includes('area of circle')) {
         const numbers = msg.match(/\d+/g);
         if (numbers) {
             const r = parseFloat(numbers[0]);
             const area = Math.PI * r * r;
-            return `🔵 **Circle Area:**\n\n✨ Formula: πr²\n📝 Radius = ${r}\n📐 Area = π × ${r}² = ${area.toFixed(2)} square units`;
+            return `🔵 **Circle Area:**\n\n✨ Area = πr²\n📝 Radius = ${r}\n✅ Area = ${area.toFixed(2)} square units`;
         }
-        return `🔵 **Circle Area Formula:**\n\n✨ Area = πr²\n📝 π = 3.14159\n\n📝 **Example:** If radius = 7\nArea = 22/7 × 49 = 154 sq units`;
+        return `🔵 **Circle Area Formula:**\n\n✨ Area = πr²\n📝 π = 3.14159\n\n📝 **Example:** Radius = 7\nArea = 22/7 × 49 = 154 sq units`;
     }
     
+    // Triangle Area
     if (msg.includes('area of triangle')) {
         const numbers = msg.match(/\d+/g);
         if (numbers && numbers.length >= 2) {
             const base = parseFloat(numbers[0]);
             const height = parseFloat(numbers[1]);
             const area = 0.5 * base * height;
-            return `📐 **Triangle Area:**\n\n✨ Formula: ½ × base × height\n📝 Base = ${base}, Height = ${height}\n📐 Area = ½ × ${base} × ${height} = ${area} square units`;
+            return `📐 **Triangle Area:**\n\n✨ Area = ½ × base × height\n📝 Base = ${base}, Height = ${height}\n✅ Area = ${area} square units`;
         }
-        return `📐 **Triangle Area Formula:**\n\n✨ Area = ½ × base × height\n\n📝 **Example:** Base = 10, Height = 8\nArea = ½ × 10 × 8 = 40 sq units\n\n✨ **Heron's Formula:**\nArea = √[s(s-a)(s-b)(s-c)]\nwhere s = (a+b+c)/2`;
+        return `📐 **Triangle Area:**\n\n✨ Area = ½ × base × height\n\n📝 **Example:** Base = 10, Height = 8\nArea = 40 sq units`;
     }
     
-    // ========== PYTHAGORAS THEOREM ==========
-    
+    // Pythagoras Theorem
     if (msg.includes('pythagoras') || msg.includes('hypotenuse')) {
         const numbers = msg.match(/\d+/g);
         if (numbers && numbers.length >= 2) {
             const a = parseFloat(numbers[0]);
             const b = parseFloat(numbers[1]);
             const c = Math.sqrt(a*a + b*b);
-            return `📐 **Pythagoras Theorem:**\n\n✨ Formula: a² + b² = c²\n📝 a = ${a}, b = ${b}\n\nc² = ${a}² + ${b}²\nc² = ${a*a} + ${b*b}\nc² = ${a*a + b*b}\n\n✅ **Hypotenuse = ${c.toFixed(2)}**`;
+            return `📐 **Pythagoras Theorem:**\n\n✨ a² + b² = c²\n📝 Base = ${a}, Height = ${b}\n✅ Hypotenuse = ${c.toFixed(2)}`;
         }
-        return `📐 **PYTHAGORAS THEOREM:**\n\n✨ a² + b² = c²\n\n📝 **Example:** If base = 3, height = 4\nc² = 3² + 4² = 9 + 16 = 25\nc = √25 = 5 (hypotenuse)\n\n💡 Use for right-angled triangles only!`;
+        return `📐 **PYTHAGORAS THEOREM:**\n\n✨ a² + b² = c²\n\n📝 **Example:** Base = 3, Height = 4\nHypotenuse = 5`;
     }
     
-    // ========== PERCENTAGE CALCULATIONS ==========
-    
-    if (msg.includes('percent') || msg.includes('%') || msg.includes('percentage')) {
+    // Percentage
+    if (msg.includes('percent') || msg.includes('%')) {
         const numbers = msg.match(/\d+/g);
         if (numbers && numbers.length >= 2) {
             const percent = parseFloat(numbers[0]);
             const value = parseFloat(numbers[1]);
             const result = (percent / 100) * value;
-            return `💰 **PERCENTAGE CALCULATION:**\n\n✨ ${percent}% of ${value} = (${percent}/100) × ${value}\n📐 **Answer = ${result.toFixed(2)}**\n\n📝 **Formula:** Percentage = (Part/Whole) × 100`;
+            return `💰 **Percentage:**\n\n✨ ${percent}% of ${value} = ${result.toFixed(2)}`;
         }
-        return `💰 **PERCENTAGE FORMULAS:**\n\n✨ Percentage = (Part/Whole) × 100\n✨ Part = (Percentage × Whole)/100\n✨ Whole = (Part × 100)/Percentage\n\n📝 **Example:** 20% of 500 = 100`;
+        return `💰 **Percentage Formula:**\n\n✨ Percentage = (Part/Whole) × 100\n\n📝 **Example:** 20% of 500 = 100`;
     }
     
-    // ========== SIMPLE & COMPOUND INTEREST ==========
-    
+    // Simple Interest
     if (msg.includes('simple interest') || msg.includes('si')) {
         const numbers = msg.match(/\d+/g);
         if (numbers && numbers.length >= 3) {
@@ -1070,89 +980,61 @@ function solveAdvancedMath(question) {
             const R = parseFloat(numbers[1]);
             const T = parseFloat(numbers[2]);
             const SI = (P * R * T) / 100;
-            const Amount = P + SI;
-            return `💰 **SIMPLE INTEREST CALCULATION:**\n\n📝 Principal (P) = ₹${P}\n📝 Rate (R) = ${R}%\n📝 Time (T) = ${T} years\n\n✨ SI = (P × R × T)/100\n✨ SI = (${P} × ${R} × ${T})/100\n✨ SI = ₹${SI.toFixed(2)}\n\n✅ **Total Amount = ₹${Amount.toFixed(2)}**`;
+            return `💰 **Simple Interest:**\n\n✨ SI = (P × R × T)/100\n📝 Principal = ₹${P}, Rate = ${R}%, Time = ${T} years\n✅ SI = ₹${SI.toFixed(2)}`;
         }
-        return `💰 **SIMPLE INTEREST FORMULA:**\n\n✨ SI = (P × R × T)/100\n\nWhere:\nP = Principal (Initial amount)\nR = Rate of Interest (% per annum)\nT = Time (in years)\n\n📝 **Example:** P=1000, R=10%, T=2 years\nSI = (1000 × 10 × 2)/100 = ₹200\nAmount = ₹1200`;
+        return `💰 **Simple Interest Formula:**\n\n✨ SI = (P × R × T)/100\n\n📝 **Example:** P=1000, R=10%, T=2 years\nSI = ₹200`;
     }
     
-    if (msg.includes('compound interest') || msg.includes('ci')) {
-        const numbers = msg.match(/\d+/g);
-        if (numbers && numbers.length >= 3) {
-            const P = parseFloat(numbers[0]);
-            const R = parseFloat(numbers[1]);
-            const T = parseFloat(numbers[2]);
-            const Amount = P * Math.pow((1 + R/100), T);
-            const CI = Amount - P;
-            return `💰 **COMPOUND INTEREST CALCULATION:**\n\n📝 Principal (P) = ₹${P}\n📝 Rate (R) = ${R}%\n📝 Time (T) = ${T} years\n\n✨ A = P(1 + R/100)ⁿ\n✨ A = ${P}(1 + ${R}/100)^${T}\n✨ A = ₹${Amount.toFixed(2)}\n✨ CI = A - P = ₹${CI.toFixed(2)}\n\n✅ **Total Amount = ₹${Amount.toFixed(2)}**`;
-        }
-        return `💰 **COMPOUND INTEREST FORMULA:**\n\n✨ A = P(1 + R/100)ⁿ\n✨ CI = A - P\n\nWhere:\nA = Final Amount\nP = Principal\nR = Rate of Interest\nn = Number of years\n\n📝 **Example:** P=1000, R=10%, T=2 years\nA = 1000(1.1)² = ₹1210\nCI = ₹210`;
-    }
-    
-    // ========== VOLUME & SURFACE AREA ==========
-    
+    // Volume of Cube
     if (msg.includes('volume of cube')) {
         const numbers = msg.match(/\d+/g);
         if (numbers) {
             const side = parseFloat(numbers[0]);
             const volume = side * side * side;
-            return `📦 **Cube Volume:**\n\n✨ Formula: side³\n📝 Side = ${side}\n📐 Volume = ${side}³ = ${volume} cubic units`;
+            return `📦 **Cube Volume:**\n\n✨ Volume = side³\n📝 Side = ${side}\n✅ Volume = ${volume} cubic units`;
         }
-        return `📦 **Cube Volume:**\n\n✨ Volume = side³\n✨ Surface Area = 6 × side²\n\n📝 **Example:** Side = 5 cm\nVolume = 125 cm³\nSurface Area = 150 cm²`;
+        return `📦 **Cube Volume:**\n\n✨ Volume = side³\n\n📝 **Example:** Side = 5 cm\nVolume = 125 cm³`;
     }
     
+    // Volume of Cylinder
     if (msg.includes('volume of cylinder')) {
         const numbers = msg.match(/\d+/g);
         if (numbers && numbers.length >= 2) {
             const r = parseFloat(numbers[0]);
             const h = parseFloat(numbers[1]);
             const volume = Math.PI * r * r * h;
-            return `🥫 **Cylinder Volume:**\n\n✨ Formula: πr²h\n📝 Radius = ${r}, Height = ${h}\n📐 Volume = π × ${r}² × ${h}\n✅ Volume = ${volume.toFixed(2)} cubic units`;
+            return `🥫 **Cylinder Volume:**\n\n✨ Volume = πr²h\n📝 Radius = ${r}, Height = ${h}\n✅ Volume = ${volume.toFixed(2)} cubic units`;
         }
-        return `🥫 **Cylinder Formulas:**\n\n✨ Volume = πr²h\n✨ Curved Surface = 2πrh\n✨ Total Surface = 2πr(r + h)\n\n📝 **Example:** r=7, h=10\nVolume = 22/7 × 49 × 10 = 1540 cm³`;
+        return `🥫 **Cylinder Volume:**\n\n✨ Volume = πr²h\n\n📝 **Example:** r=7, h=10\nVolume = 1540 cm³`;
     }
     
-    // ========== SPEED, DISTANCE, TIME ==========
-    
-    if (msg.includes('speed') || msg.includes('distance') || msg.includes('time')) {
+    // Speed, Distance, Time
+    if (msg.includes('speed') && msg.includes('distance')) {
         const numbers = msg.match(/\d+/g);
         if (numbers && numbers.length >= 2) {
-            if (msg.includes('speed') && msg.includes('distance')) {
-                const d = parseFloat(numbers[0]);
-                const t = parseFloat(numbers[1]);
-                const s = d / t;
-                return `🚗 **Speed Calculation:**\n\n✨ Speed = Distance/Time\n📝 Distance = ${d} km\n📝 Time = ${t} hours\n✅ Speed = ${s.toFixed(2)} km/h`;
-            } else if (msg.includes('speed') && msg.includes('time')) {
-                const s = parseFloat(numbers[0]);
-                const t = parseFloat(numbers[1]);
-                const d = s * t;
-                return `🚗 **Distance Calculation:**\n\n✨ Distance = Speed × Time\n📝 Speed = ${s} km/h\n📝 Time = ${t} hours\n✅ Distance = ${d} km`;
-            }
+            const d = parseFloat(numbers[0]);
+            const t = parseFloat(numbers[1]);
+            const s = d / t;
+            return `🚗 **Speed = Distance/Time**\n📝 Distance = ${d} km, Time = ${t} hours\n✅ Speed = ${s.toFixed(2)} km/h`;
         }
-        return `🚗 **SPEED, DISTANCE, TIME FORMULAS:**\n\n✨ Speed = Distance/Time\n✨ Distance = Speed × Time\n✨ Time = Distance/Speed\n\n📝 **Example:** Distance = 100 km, Time = 2 hours\nSpeed = 50 km/h`;
     }
     
-    // ========== AVERAGE CALCULATION ==========
-    
+    // Average
     if (msg.includes('average') || msg.includes('mean')) {
         const numbers = msg.match(/\d+/g);
         if (numbers && numbers.length > 0) {
             let sum = 0;
             numbers.forEach(n => sum += parseFloat(n));
             const avg = sum / numbers.length;
-            return `📊 **Average Calculation:**\n\n✨ Average = Sum of terms / Number of terms\n📝 Numbers: ${numbers.join(', ')}\n📝 Sum = ${sum}\n📝 Count = ${numbers.length}\n✅ **Average = ${avg.toFixed(2)}**`;
+            return `📊 **Average = ${avg.toFixed(2)}**\n\nNumbers: ${numbers.join(', ')}\nSum = ${sum}, Count = ${numbers.length}`;
         }
-        return `📊 **AVERAGE FORMULA:**\n\n✨ Average = (Sum of all terms)/(Number of terms)\n\n📝 **Example:** Find average of 10, 20, 30\nSum = 60, Count = 3\nAverage = 60/3 = 20`;
     }
     
-    // ========== GENERAL MATH CALCULATIONS ==========
-    
+    // General Calculations
     try {
-        // Detect calculation requests
         if (msg.includes('what is') || msg.includes('calculate') || 
             msg.includes('solve') || msg.includes('=') || 
-            msg.includes('plus') || msg.includes('minus') ||
-            msg.includes('multiply') || msg.includes('divide')) {
+            msg.includes('plus') || msg.includes('minus')) {
             
             let expression = msg
                 .replace(/what is/gi, '')
@@ -1163,10 +1045,198 @@ function solveAdvancedMath(question) {
                 .replace(/into/gi, '*')
                 .replace(/times/gi, '*')
                 .replace(/divided by/gi, '/')
-                .replace(/square of/gi, '**2')
-                .replace(/cube of/gi, '**3')
-                .replace(/√/gi, 'Math.sqrt')
-                .replace(/[^0-9+\-*/%.()√Math.sqrt]/g, '');
+                .replace(/[^0-9+\-*/%.]/g, '');
+            
+            if (expression.match(/[\d+\-*/]/) && expression.length > 0) {
+                const result = eval(expression);
+                if (!isNaN(result) && isFinite(result)) {
+                    return `🔢 **Answer:** ${result.toFixed(4)}`;
+                }
+            }
+        }
+    } catch(e) {}
+    
+    return null;
+}
+
+// ==================== SMART AI RESPONSE ====================
+
+function getSmartResponse(message) {
+    const msg = message.toLowerCase().trim();
+    
+    // First check for math problems
+    const mathAnswer = solveMathProblem(message);
+    if (mathAnswer) {
+        return mathAnswer;
+    }
+    
+    // Greetings
+    if (msg.includes('hello') || msg.includes('hi') || msg.includes('namaste') || msg.includes('hey')) {
+        return "🙏 Namaste! Main hoon Smart AI Assistant! 🚀\n\nMain help kar sakta hoon:\n• 📐 Maths formulas like (a+b)²\n• 🔬 Science facts\n• 💻 Coding help\n• 💪 Motivation\n• 📚 Study tips\n\nKuch bhi poocho!";
+    }
+    
+    // Welcome
+    if (msg.includes('welcome') || msg.includes('apna swagat')) {
+        return "✨ **Aapka swagat hai!** ✨\n\nMain hoon Chat_2.0 - Aapka Smart AI Dost!\n\n✅ Main kya kar sakta hoon:\n• Maths formulas solve karna\n• Study tips dena\n• Motivation dena\n• Coding sikhana\n• Science facts batana\n\nAb poocho! (a+b)² kitna hota hai?";
+    }
+    
+    // What can you do
+    if (msg.includes('kya kar sakte') || msg.includes('what can you do')) {
+        return "🤖 **Main kya kar sakta hoon:**\n\n📐 **MATHS:**\n• (a+b)², (a-b)², a²-b²\n• Area of circle, triangle\n• Pythagoras theorem\n• Percentage, Interest\n• Volume of cube, cylinder\n\n🔬 **SCIENCE:**\n• Physics, Chemistry, Biology\n• Solar system, Photosynthesis\n• Newton's laws\n\n💻 **CODING:**\n• HTML, CSS, JavaScript\n• Python, Programming tips\n\n💪 **MOTIVATION:**\n• Inspirational quotes\n• Study motivation\n\n📚 **STUDY TIPS:**\n• Time management\n• Exam preparation\n\nKuch bhi poocho!";
+    }
+    
+    // Study Tips
+    if (msg.includes('study tip') || msg.includes('padhai kaise karein')) {
+        return "📚 **SMART STUDY TIPS:**\n\n1️⃣ Pomodoro: 25 min study + 5 min break\n2️⃣ Active Recall: Bina book ke yaad karo\n3️⃣ Spaced Repetition: Time gap se revise karo\n4️⃣ Morning 5-7 AM best time hai study ke liye\n5️⃣ Distractions hatado, phone silent karo\n6️⃣ Short notes banao revision ke liye\n\n💪 Consistency is key!";
+    }
+    
+    // Motivation
+    if (msg.includes('motivation') || msg.includes('inspire') || msg.includes('himmat')) {
+        const quotes = [
+            "💪 Khud pe bharosa rakho! Tum kuch bhi kar sakte ho!",
+            "✨ Success is not final, failure is not fatal. Keep going!",
+            "🌟 Your only limit is your mind. Stay positive!",
+            "🔥 Manzil unhi ko milti hai, jo raah ke pattharon ko pehchan lete hain!",
+            "🎯 Sapne wahi sach hote hain, jinko poora karne ka junoon ho!"
+        ];
+        return quotes[Math.floor(Math.random() * quotes.length)];
+    }
+    
+    // Science - Photosynthesis
+    if (msg.includes('photosynthesis') || msg.includes('प्रकाश संश्लेषण')) {
+        return "🌱 **PHOTOSYNTHESIS (प्रकाश संश्लेषण):**\n\nPlants ka khana banana process:\n\n✅ Sunlight (सूरज की रोशनी)\n✅ CO₂ (कार्बन डाइऑक्साइड)\n✅ Water (पानी)\n\n↓\n\n🍃 **Glucose (food)** + 🌬️ **Oxygen**\n\nImportance:\n• Oxygen production\n• Food for animals\n• Reduces CO₂";
+    }
+    
+    // Solar System
+    if (msg.includes('solar system') || msg.includes('planet')) {
+        return "🌍 **SOLAR SYSTEM TOUR:**\n\n☀️ **Sun** (Center)\n\n🪐 **8 Planets:**\n1. Mercury 🔥 (Hottest)\n2. Venus 🌋\n3. Earth 🌎 (Our home)\n4. Mars 🔴 (Red planet)\n5. Jupiter 🪐 (Largest)\n6. Saturn 💍 (Beautiful rings)\n7. Uranus 🔄 (Sideways rotation)\n8. Neptune 🌊 (Windiest)\n\n🌙 Earth's Moon: 384,400 km away\n⭐ Milky Way has 200 billion stars!";
+    }
+    
+    // Newton's Laws
+    if (msg.includes('newton') || msg.includes('law of motion')) {
+        return "🔬 **NEWTON'S LAWS OF MOTION:**\n\n**1st Law (Inertia):**\nObject at rest stays at rest, object in motion stays in motion\n\n**2nd Law:**\nF = ma (Force = mass × acceleration)\n\n**3rd Law:**\nEvery action has an equal and opposite reaction\n\n🍎 Fun fact: Newton discovered gravity after watching an apple fall!";
+    }
+    
+    // Coding Help
+    if (msg.includes('coding') || msg.includes('html') || msg.includes('css') || msg.includes('javascript')) {
+        return "💻 **CODING HELP:**\n\n**HTML Example:**\n<h1>Hello World</h1>\n\n**CSS Example:**\ncolor: blue;\nfont-size: 16px;\n\n**JavaScript Example:**\nfunction greet() {\n    alert('Hello!');\n}\n\n**Python Example:**\nprint('Hello World')\n\n**Learning Path:**\n1. HTML (2 weeks)\n2. CSS (2 weeks)\n3. JavaScript (4 weeks)\n\nPractice 1 hour daily! 🚀";
+    }
+    
+    // Time and Date
+    if (msg.includes('time')) {
+        return `⏰ Current time: ${new Date().toLocaleTimeString()}`;
+    }
+    
+    if (msg.includes('date')) {
+        return `📅 Today's date: ${new Date().toLocaleDateString()}`;
+    }
+    
+    if (msg.includes('thank')) {
+        return "🙏 Aapka swagat hai! Main hamesha madad ke liye hoon! Kuch aur poocho?";
+    }
+    
+    if (msg.includes('bye')) {
+        return "👋 Goodbye! Phir milenge. Have a great day! 🌟";
+    }
+    
+    // Default response
+    return "🤔 Main aapki madad kar sakta hoon! \n\n❓ Aap pooch sakte ho:\n• (a+b)² kitna hota hai?\n• Area of circle?\n• Study tips\n• Motivation\n• Coding help\n\nKuch bhi poocho, main jawab dunga!";
+}
+
+// ==================== CHAT FUNCTIONS ====================
+
+function sendMessage() {
+    const input = document.getElementById('chatInput');
+    if (!input) return;
+    
+    const message = input.value.trim();
+    if (!message) {
+        input.placeholder = "Kuch likho...";
+        setTimeout(() => {
+            input.placeholder = "Enter your message here";
+        }, 2000);
+        return;
+    }
+    
+    // Add user message
+    addToChat(message, 'user');
+    input.value = '';
+    
+    // Show typing
+    showTyping();
+    
+    // Get AI response
+    setTimeout(() => {
+        hideTyping();
+        const response = getSmartResponse(message);
+        addToChat(response, 'bot');
+    }, 600);
+}
+
+function addToChat(text, sender) {
+    const chatMessages = document.getElementById('chatMessages');
+    if (!chatMessages) return;
+    
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `message ${sender}`;
+    
+    const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    
+    messageDiv.innerHTML = `
+        <div class="message-content">
+            <div class="message-bubble">${escapeHtml(text)}</div>
+            <div class="message-time">${time}</div>
+        </div>
+    `;
+    
+    chatMessages.appendChild(messageDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function showTyping() {
+    const chatMessages = document.getElementById('chatMessages');
+    if (!chatMessages) return;
+    
+    const typingDiv = document.createElement('div');
+    typingDiv.id = 'typingIndicator';
+    typingDiv.className = 'typing-indicator';
+    typingDiv.innerHTML = '<span></span><span></span><span></span>';
+    chatMessages.appendChild(typingDiv);
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+}
+
+function hideTyping() {
+    const typing = document.getElementById('typingIndicator');
+    if (typing) typing.remove();
+}
+
+function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML.replace(/\n/g, '<br>');
+}
+
+// Handle Enter key
+function handleKeyPress(event) {
+    if (event.key === 'Enter') {
+        sendMessage();
+    }
+}
+
+// ==================== INITIALIZATION ====================
+document.addEventListener('DOMContentLoaded', () => {
+    console.log('✅ Chat_2.0 AI Assistant Loaded!');
+    
+    // Set default welcome message if chat is empty
+    const chatMessages = document.getElementById('chatMessages');
+    if (chatMessages && chatMessages.children.length === 0) {
+        addToChat("🙏 Namaste! Main hoon Smart AI Assistant!\n\nपढाई, मेहनत, साइंस, कोडिंग, मोटिवेशन - कुछ भी पूछें!\n\nHindi ya English mein baat kar sakte ho!\n\nTry karo: (a+b)² kitna hota hai?", 'bot');
+    }
+});
+
+
+    
+
             
             if (expression.match(/[\d+\-*/()]/)) {
                 // Handle square root
