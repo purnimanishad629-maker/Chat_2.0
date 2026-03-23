@@ -2376,113 +2376,195 @@ function getSimpleResponse(message) {
             "🌟 Your only limit is your mind. Stay positive!",
             "🔥 Manzil unhi ko milti hai, jo raah ke pattharon ko pehchan lete hain!",
             "🎯 Sapne wahi sach hote hain, jinko poora karne ka junoon ho!"
+
+  // ========== DIRECT CALCULATIONS (23*56, 144/12, etc.) ==========
+          function getSimpleResponse(message) {
+    var msg = message.toLowerCase();
+    
+    // ========== DIRECT CALCULATIONS ==========
+    
+    var multiplyMatch = msg.match(/(\d+)\s*[×\*]\s*(\d+)/);
+    if (multiplyMatch) {
+        var result = parseFloat(multiplyMatch[1]) * parseFloat(multiplyMatch[2]);
+        return "📊 " + multiplyMatch[1] + " × " + multiplyMatch[2] + " = " + result;
+    }
+    
+    var addMatch = msg.match(/(\d+)\s*\+\s*(\d+)/);
+    if (addMatch) {
+        var result = parseFloat(addMatch[1]) + parseFloat(addMatch[2]);
+        return "📊 " + addMatch[1] + " + " + addMatch[2] + " = " + result;
+    }
+    
+    var subMatch = msg.match(/(\d+)\s*\-\s*(\d+)/);
+    if (subMatch) {
+        var result = parseFloat(subMatch[1]) - parseFloat(subMatch[2]);
+        return "📊 " + subMatch[1] + " - " + subMatch[2] + " = " + result;
+    }
+    
+    var divMatch = msg.match(/(\d+)\s*[\/÷]\s*(\d+)/);
+    if (divMatch) {
+        var num2 = parseFloat(divMatch[2]);
+        if (num2 !== 0) {
+            var result = parseFloat(divMatch[1]) / num2;
+            return "📊 " + divMatch[1] + " ÷ " + divMatch[2] + " = " + result;
+        } else {
+            return "⚠️ Division by zero is not possible!";
+        }
+    }
+    
+    var sqrtMatch = msg.match(/(?:√|sqrt[\s\(]*)(\d+)/);
+    if (sqrtMatch) {
+        var result = Math.sqrt(parseFloat(sqrtMatch[1]));
+        return "📊 √" + sqrtMatch[1] + " = " + result;
+    }
+    
+    var powerMatch = msg.match(/(\d+)\s*[\^]\s*(\d+)/);
+    if (powerMatch) {
+        var result = Math.pow(parseFloat(powerMatch[1]), parseFloat(powerMatch[2]));
+        return "📊 " + powerMatch[1] + "^" + powerMatch[2] + " = " + result;
+    }
+    
+    // ========== MATH FORMULAS ==========
+    
+    if (msg.includes('(a+b)²') || msg.includes('(a+b)^2') || 
+        (msg.includes('a+b') && msg.includes('square')) ||
+        msg.includes('a plus b whole square')) {
+        return "📐 (a+b)² = a² + 2ab + b²\n\n📝 Examples:\n• (x+3)² = x² + 6x + 9\n• (5+3)² = 25 + 30 + 9 = 64";
+    }
+    
+    if (msg.includes('(a-b)²') || msg.includes('(a-b)^2') ||
+        msg.includes('a minus b whole square')) {
+        return "📐 (a-b)² = a² - 2ab + b²\n\n📝 Examples:\n• (x-4)² = x² - 8x + 16\n• (5-3)² = 25 - 30 + 9 = 4";
+    }
+    
+    if (msg.includes('a²-b²') || msg.includes('a^2-b^2') ||
+        msg.includes('a square minus b square')) {
+        return "📐 a² - b² = (a-b)(a+b)\n\n📝 Examples:\n• x² - 25 = (x-5)(x+5)\n• 100 - 36 = (10-6)(10+6) = 64";
+    }
+    
+    if (msg.includes('(a+b)³') || msg.includes('a+b whole cube')) {
+        return "📐 (a+b)³ = a³ + 3a²b + 3ab² + b³\n\n📝 Example: (x+2)³ = x³ + 6x² + 12x + 8";
+    }
+    
+    if (msg.includes('area of circle') || msg.includes('circle area')) {
+        return "🔵 Circle Area = πr²\n\n📝 Example: r = 7 cm\nArea = 22/7 × 49 = 154 cm²";
+    }
+    
+    if (msg.includes('area of triangle')) {
+        return "📐 Triangle Area = ½ × base × height\n\n📝 Example: base=10, height=8\nArea = 40 sq units";
+    }
+    
+    if (msg.includes('pythagoras') || msg.includes('hypotenuse')) {
+        return "📐 Pythagoras Theorem: a² + b² = c²\n\n📝 Example: base=3, height=4\nHypotenuse = √(9+16) = 5";
+    }
+    
+    if (msg.includes('percentage') || msg.includes('%')) {
+        var numbers = msg.match(/\d+/g);
+        if (numbers && numbers.length >= 2) {
+            var percent = parseFloat(numbers[0]);
+            var value = parseFloat(numbers[1]);
+            var result = (percent / 100) * value;
+            return "💰 " + percent + "% of " + value + " = " + result.toFixed(2);
+        }
+        return "💰 Percentage Formula: (Part/Whole) × 100\n\n📝 Example: 20% of 500 = 100";
+    }
+    
+    // ========== GREETINGS ==========
+    
+    if (msg.includes('hello') || msg.includes('hi') || msg.includes('namaste') || msg.includes('hey')) {
+        return "🙏 Namaste! Main hoon Smart AI Assistant!\n\nMujhse poocho:\n• 23*56 = ?\n• (a+b)² kitna hota hai?\n• Area of circle?\n• Study tips\n• Motivation\n\nKuch bhi poocho!";
+    }
+    
+    if (msg.includes('welcome') || msg.includes('apna swagat')) {
+        return "✨ Aapka swagat hai! Main hoon Chat_2.0!\n\nTry karo: 23*56 = ?";
+    }
+    
+    if (msg.includes('how are you')) {
+        return "🤖 Main theek hoon! Aap kaise ho? Main aapki madad ke liye hoon!";
+    }
+    
+    if (msg.includes('thank')) {
+        return "🙏 Aapka swagat hai! Kuch aur poocho?";
+    }
+    
+    if (msg.includes('bye')) {
+        return "👋 Goodbye! Phir milenge! Have a great day!";
+    }
+    
+    // ========== STUDY TIPS ==========
+    
+    if (msg.includes('study tip') || msg.includes('padhai') || msg.includes('how to study')) {
+        return "📚 SMART STUDY TIPS:\n\n• Pomodoro: 25 min study + 5 min break\n• Morning 5-7 AM best time\n• Make short notes for revision\n• Revise daily\n• Remove distractions (phone silent)\n• Sleep 7-8 hours";
+    }
+    
+    if (msg.includes('time management') || msg.includes('schedule')) {
+        return "⏰ IDEAL SCHEDULE:\n\n5-7 AM: Study (hard subjects)\n7-8 AM: Exercise\n8-9 AM: Breakfast\n9-12 PM: Study (medium subjects)\n12-1 PM: Lunch\n1-4 PM: Practice\n4-6 PM: Hobby\n6-8 PM: Family time\n8-10 PM: Revision\n10 PM: Sleep";
+    }
+    
+    // ========== MOTIVATION ==========
+    
+    if (msg.includes('motivation') || msg.includes('inspire') || msg.includes('himmat')) {
+        var quotes = [
+            "💪 Khud pe bharosa rakho! Tum kuch bhi kar sakte ho!",
+            "✨ Success is not final, failure is not fatal. Keep going!",
+            "🌟 Your only limit is your mind. Stay positive!",
+            "🔥 Manzil unhi ko milti hai, jo raah ke pattharon ko pehchan lete hain!",
+            "🎯 Sapne wahi sach hote hain, jinko poora karne ka junoon ho!"
         ];
         return quotes[Math.floor(Math.random() * quotes.length)];
     }
     
-    // ========== SCIENCE ==========
+    // ========== DEFAULT ==========
     
-    if (msg.includes('photosynthesis')) {
-        return "🌱 PHOTOSYNTHESIS:\n\nCO₂ + H₂O + Sunlight → Glucose + O₂\n\nPlants make their own food! 🌿";
+    return "🤖 Main aapki madad kar sakta hoon!\n\nTry karo:\n• 23*56 = ?\n• (a+b)² kitna hota hai?\n• Area of circle?\n• Study tips\n• Motivation\n\nKuch bhi poocho!";
     }
     
-    if (msg.includes('solar system') || msg.includes('planet')) {
-        return "🌍 SOLAR SYSTEM:\n\n☀️ Sun (Center)\n\n8 Planets:\n1. Mercury 🔥\n2. Venus 🌋\n3. Earth 🌎\n4. Mars 🔴\n5. Jupiter 🪐\n6. Saturn 💍\n7. Uranus 🔄\n8. Neptune 🌊";
+    // Multiplication: 23*56 or 23×56
+    var multiplyMatch = msg.match(/(\d+)\s*[×\*]\s*(\d+)/);
+    if (multiplyMatch) {
+        var result = parseFloat(multiplyMatch[1]) * parseFloat(multiplyMatch[2]);
+        return "📊 " + multiplyMatch[1] + " × " + multiplyMatch[2] + " = " + result;
     }
     
-    if (msg.includes('newton')) {
-        return "🔬 NEWTON'S LAWS:\n\n1st: Law of Inertia\n2nd: F = ma\n3rd: Action = Reaction\n\n🍎 Apple falling → Gravity discovery!";
+    // Addition: 23+56
+    var addMatch = msg.match(/(\d+)\s*\+\s*(\d+)/);
+    if (addMatch) {
+        var result = parseFloat(addMatch[1]) + parseFloat(addMatch[2]);
+        return "📊 " + addMatch[1] + " + " + addMatch[2] + " = " + result;
     }
     
-    // ========== CODING ==========
-    
-    if (msg.includes('coding') || msg.includes('html') || msg.includes('css')) {
-        return "💻 CODING HELP:\n\nHTML: <h1>Hello</h1>\nCSS: color: blue;\nJS: alert('Hello');\n\nStart with HTML, then CSS, then JavaScript!";
+    // Subtraction: 56-23
+    var subMatch = msg.match(/(\d+)\s*\-\s*(\d+)/);
+    if (subMatch) {
+        var result = parseFloat(subMatch[1]) - parseFloat(subMatch[2]);
+        return "📊 " + subMatch[1] + " - " + subMatch[2] + " = " + result;
     }
     
-    // ========== TIME & DATE ==========
-    
-    if (msg.includes('time')) {
-        var now = new Date();
-        return "⏰ Time: " + now.toLocaleTimeString();
-    }
-    
-    if (msg.includes('date')) {
-        var now = new Date();
-        return "📅 Date: " + now.toLocaleDateString();
-    }
-    
-    // ========== MATH CALCULATIONS ==========
-    
-    try {
-        if (msg.includes('what is') || msg.includes('calculate') || 
-            msg.includes('solve') || msg.includes('plus') || msg.includes('minus')) {
-            
-            var expression = msg
-                .replace(/what is/gi, '')
-                .replace(/calculate/gi, '')
-                .replace(/solve/gi, '')
-                .replace(/plus/gi, '+')
-                .replace(/minus/gi, '-')
-                .replace(/into/gi, '*')
-                .replace(/times/gi, '*')
-                .replace(/divided by/gi, '/')
-                .replace(/[^0-9+\-*/%.]/g, '');
-            
-            if (expression.match(/[\d+\-*/]/) && expression.length > 0) {
-                var result = eval(expression);
-                if (!isNaN(result) && isFinite(result)) {
-                    return "🔢 Answer: " + result.toFixed(4);
-                }
-            }
+    // Division: 144/12 or 144÷12
+    var divMatch = msg.match(/(\d+)\s*[\/÷]\s*(\d+)/);
+    if (divMatch) {
+        var num2 = parseFloat(divMatch[2]);
+        if (num2 !== 0) {
+            var result = parseFloat(divMatch[1]) / num2;
+            return "📊 " + divMatch[1] + " ÷ " + divMatch[2] + " = " + result;
+        } else {
+            return "⚠️ Division by zero is not possible!";
         }
-    } catch(e) {}
-    
-    // Default response
-    return "🤔 Main aapki madad kar sakta hoon!\n\nTry karo:\n• (a+b)² kitna hota hai?\n• Area of circle?\n• Study tips\n• Motivation\n• Time kya hua?\n\nKuch bhi poocho!";
-}
-
-// Make sure handleKeyPress works
-function handleKeyPress(event) {
-    if (event.key === 'Enter') {
-        sendMessage();
-    }
-}
-
-// Add welcome message on page load
-setTimeout(function() {
-    var chatMessages = document.getElementById('chatMessages');
-    if (chatMessages && chatMessages.children.length === 0) {
-        addToChat("🙏 Namaste! Main hoon Smart AI Assistant!\n\nMujhse poocho:\n• (a+b)² kitna hota hai?\n• Area of circle?\n• Study tips\n• Motivation\n\nKuch bhi poocho!", 'bot');
-    }
-}, 100);
-    // ========== INTEGRATION WITH EXISTING CODE ==========
-// Agar aapke paas already ek response function hai, to usme yeh add karein:
-
-// Example: Agar aapka existing function hai "getAIResponse(query)"
-// To usme yeh changes karein:
-
-/*
-function getAIResponse(query) {
-    // Pehle existing responses check karein
-    let existingResponse = checkExistingResponses(query);
-    
-    // Agar existing response nahi milta, to Super AI use karein
-    if (!existingResponse) {
-        return getSuperAIResponse(query);
     }
     
-    return existingResponse;
-}
-*/
-
-// Ya agar naya function banana hai to:
-function askSuperAI(question) {
-    const response = getSuperAIResponse(question);
-    // Yahan apne UI me display karne ka code add karein
-    return response;
-}
+    // Square root: √144 or sqrt(144)
+    var sqrtMatch = msg.match(/(?:√|sqrt[\s\(]*)(\d+)/);
+    if (sqrtMatch) {
+        var result = Math.sqrt(parseFloat(sqrtMatch[1]));
+        return "📊 √" + sqrtMatch[1] + " = " + result;
+    }
     
+    // Power: 2^5 or 2 power 5
+    var powerMatch = msg.match(/(\d+)\s*[\^]\s*(\d+)/);
+    if (powerMatch) {
+        var result = Math.pow(parseFloat(powerMatch[1]), parseFloat(powerMatch[2]));
+        return "📊 " + powerMatch[1] + "^" + powerMatch[2] + " = " + result;
+          }
   </script>
   
 </body>
