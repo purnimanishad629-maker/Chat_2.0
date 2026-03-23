@@ -854,125 +854,156 @@ const smartResponses = {
 🚀 Sun distance: 150 million km
 💫 Milky Way galaxy has 200 billion stars!`,
 
-  // MATHEMATICS
-  'math|mathematics|गणित|maths': `🔢 MATHEMATICS HELP:
-  // ==================== COMPLETE MATHEMATICS MASTER SECTION ====================
-// ==================== PAGE NAVIGATION ====================
-function showPage(pageId) {
-    const pages = document.querySelectorAll('.page');
-    pages.forEach(page => {
-        page.classList.remove('active-page');
-        page.style.display = 'none';
-    });
-    
-    const selectedPage = document.getElementById(pageId);
-    if (selectedPage) {
-        selectedPage.classList.add('active-page');
-        selectedPage.style.display = 'block';
-        window.scrollTo(0, 0);
-    }
-}
 
 // ==================== COMPLETE MATH SOLVER ====================
 
 function solveMathProblem(question) {
     const msg = question.toLowerCase().trim();
     
+    // ========== ALGEBRA FORMULAS ==========
+    
     // (a+b)²
     if (msg.includes('(a+b)²') || msg.includes('(a+b)^2') || 
-        (msg.includes('a+b') && msg.includes('square')) ||
-        msg.includes('a plus b whole square') ||
-        msg.includes('a plus b ka square')) {
-        return `📐 **ALGEBRA FORMULA:**\n\n✨ (a+b)² = a² + 2ab + b²\n\n📝 **Example:**\n(x+3)² = x² + 2(x)(3) + 3² = x² + 6x + 9\n\n📝 (2x+5)² = 4x² + 20x + 25`;
+        msg.includes('a+b whole square') || msg.includes('a plus b ka square') ||
+        (msg.includes('a+b') && msg.includes('square'))) {
+        return `📐 **ALGEBRA FORMULA:**\n\n✨ (a+b)² = a² + 2ab + b²\n\n📝 **Examples:**\n• (x+3)² = x² + 6x + 9\n• (2x+5)² = 4x² + 20x + 25\n• (5+3)² = 25 + 30 + 9 = 64`;
     }
     
     // (a-b)²
     if (msg.includes('(a-b)²') || msg.includes('(a-b)^2') ||
-        msg.includes('a minus b whole square')) {
-        return `📐 **ALGEBRA FORMULA:**\n\n✨ (a-b)² = a² - 2ab + b²\n\n📝 **Example:**\n(x-4)² = x² - 2(x)(4) + 4² = x² - 8x + 16`;
+        msg.includes('a-b whole square') || msg.includes('a minus b ka square')) {
+        return `📐 **ALGEBRA FORMULA:**\n\n✨ (a-b)² = a² - 2ab + b²\n\n📝 **Examples:**\n• (x-4)² = x² - 8x + 16\n• (5-3)² = 25 - 30 + 9 = 4`;
     }
     
     // a² - b²
     if (msg.includes('a²-b²') || msg.includes('a^2-b^2') || 
         msg.includes('a square minus b square')) {
-        return `📐 **ALGEBRA FORMULA:**\n\n✨ a² - b² = (a-b)(a+b)\n\n📝 **Example:**\nx² - 25 = (x-5)(x+5)\n\n16x² - 9 = (4x-3)(4x+3)`;
+        return `📐 **ALGEBRA FORMULA:**\n\n✨ a² - b² = (a-b)(a+b)\n\n📝 **Examples:**\n• x² - 25 = (x-5)(x+5)\n• 16x² - 9 = (4x-3)(4x+3)\n• 100 - 36 = (10-6)(10+6) = 4 × 16 = 64`;
     }
     
     // (a+b)³
     if (msg.includes('(a+b)³') || msg.includes('(a+b)^3') ||
         msg.includes('a plus b whole cube')) {
-        return `📐 **ALGEBRA FORMULA:**\n\n✨ (a+b)³ = a³ + 3a²b + 3ab² + b³\n\n📝 **Example:**\n(x+2)³ = x³ + 6x² + 12x + 8`;
+        return `📐 **ALGEBRA FORMULA:**\n\n✨ (a+b)³ = a³ + 3a²b + 3ab² + b³\n\n📝 **Examples:**\n• (x+2)³ = x³ + 6x² + 12x + 8\n• (2+1)³ = 8 + 12 + 6 + 1 = 27`;
     }
     
     // (a-b)³
     if (msg.includes('(a-b)³') || msg.includes('(a-b)^3') ||
         msg.includes('a minus b whole cube')) {
-        return `📐 **ALGEBRA FORMULA:**\n\n✨ (a-b)³ = a³ - 3a²b + 3ab² - b³\n\n📝 **Example:**\n(x-2)³ = x³ - 6x² + 12x - 8`;
+        return `📐 **ALGEBRA FORMULA:**\n\n✨ (a-b)³ = a³ - 3a²b + 3ab² - b³\n\n📝 **Examples:**\n• (x-2)³ = x³ - 6x² + 12x - 8\n• (3-1)³ = 27 - 27 + 9 - 1 = 8`;
     }
     
     // a³ + b³
     if (msg.includes('a³+b³') || msg.includes('a^3+b^3')) {
-        return `📐 **ALGEBRA FORMULA:**\n\n✨ a³ + b³ = (a+b)(a² - ab + b²)\n\n📝 **Example:**\nx³ + 27 = (x+3)(x² - 3x + 9)`;
+        return `📐 **ALGEBRA FORMULA:**\n\n✨ a³ + b³ = (a+b)(a² - ab + b²)\n\n📝 **Examples:**\n• x³ + 27 = (x+3)(x² - 3x + 9)\n• 8 + 27 = (2+3)(4 - 6 + 9) = 5 × 7 = 35`;
     }
     
     // a³ - b³
     if (msg.includes('a³-b³') || msg.includes('a^3-b^3')) {
-        return `📐 **ALGEBRA FORMULA:**\n\n✨ a³ - b³ = (a-b)(a² + ab + b²)\n\n📝 **Example:**\nx³ - 64 = (x-4)(x² + 4x + 16)`;
+        return `📐 **ALGEBRA FORMULA:**\n\n✨ a³ - b³ = (a-b)(a² + ab + b²)\n\n📝 **Examples:**\n• x³ - 64 = (x-4)(x² + 4x + 16)\n• 27 - 8 = (3-2)(9 + 6 + 4) = 1 × 19 = 19`;
     }
     
-    // Quadratic Formula
-    if (msg.includes('quadratic') || msg.includes('ax²+bx+c')) {
-        return `📐 **QUADRATIC EQUATIONS:**\n\n✨ Formula: x = [-b ± √(b² - 4ac)] / 2a\n\n✨ Discriminant (Δ) = b² - 4ac\n\n🔍 **Nature of Roots:**\n• Δ > 0 → Two real roots\n• Δ = 0 → One real root\n• Δ < 0 → No real roots\n\n📝 **Example:** x² - 5x + 6 = 0\nx = 2 or x = 3`;
+    // (a+b+c)²
+    if (msg.includes('(a+b+c)²') || msg.includes('a+b+c whole square')) {
+        return `📐 **ALGEBRA FORMULA:**\n\n✨ (a+b+c)² = a² + b² + c² + 2ab + 2bc + 2ca\n\n📝 **Example:**\n(x+y+z)² = x² + y² + z² + 2xy + 2yz + 2zx`;
     }
+    
+    // ========== QUADRATIC EQUATIONS ==========
+    
+    if (msg.includes('quadratic') || msg.includes('ax²+bx+c') || 
+        msg.includes('ax^2+bx+c') || msg.includes('dwighat')) {
+        return `📐 **QUADRATIC EQUATIONS:**\n\n✨ **Standard Form:** ax² + bx + c = 0\n\n✨ **Quadratic Formula:**\nx = [-b ± √(b² - 4ac)] / 2a\n\n✨ **Discriminant (Δ) = b² - 4ac**\n\n🔍 **Nature of Roots:**\n• If Δ > 0 → Two distinct real roots\n• If Δ = 0 → One real root (equal roots)\n• If Δ < 0 → No real roots (imaginary)\n\n📝 **Example:** x² - 5x + 6 = 0\nx = [5 ± √(25 - 24)] / 2 = [5 ± 1]/2\nx = 3 or x = 2`;
+    }
+    
+    // ========== GEOMETRY FORMULAS ==========
     
     // Circle Area
-    if (msg.includes('area of circle')) {
+    if (msg.includes('circle area') || msg.includes('area of circle') || 
+        (msg.includes('circle') && msg.includes('area'))) {
         const numbers = msg.match(/\d+/g);
         if (numbers) {
             const r = parseFloat(numbers[0]);
             const area = Math.PI * r * r;
-            return `🔵 **Circle Area:**\n\n✨ Area = πr²\n📝 Radius = ${r}\n✅ Area = ${area.toFixed(2)} square units`;
+            return `🔵 **Circle Area:**\n\n✨ Formula: πr²\n📝 Radius = ${r}\n✅ Area = π × ${r}² = ${area.toFixed(2)} square units\n\n📝 π = 3.14159`;
         }
-        return `🔵 **Circle Area Formula:**\n\n✨ Area = πr²\n📝 π = 3.14159\n\n📝 **Example:** Radius = 7\nArea = 22/7 × 49 = 154 sq units`;
+        return `🔵 **Circle Area Formula:**\n\n✨ Area = πr²\n📝 π = 3.14159 (or 22/7)\n\n📝 **Example:** Radius = 7 cm\nArea = 22/7 × 49 = 154 cm²`;
+    }
+    
+    // Circle Circumference
+    if (msg.includes('circumference') || msg.includes('circle perimeter')) {
+        const numbers = msg.match(/\d+/g);
+        if (numbers) {
+            const r = parseFloat(numbers[0]);
+            const circum = 2 * Math.PI * r;
+            return `🔵 **Circle Circumference:**\n\n✨ Formula: 2πr\n📝 Radius = ${r}\n✅ Circumference = 2 × π × ${r} = ${circum.toFixed(2)} units`;
+        }
+        return `🔵 **Circle Circumference:**\n\n✨ Circumference = 2πr\n\n📝 **Example:** Radius = 7 cm\nCircumference = 2 × 22/7 × 7 = 44 cm`;
     }
     
     // Triangle Area
-    if (msg.includes('area of triangle')) {
+    if (msg.includes('triangle area') || msg.includes('area of triangle')) {
         const numbers = msg.match(/\d+/g);
         if (numbers && numbers.length >= 2) {
             const base = parseFloat(numbers[0]);
             const height = parseFloat(numbers[1]);
             const area = 0.5 * base * height;
-            return `📐 **Triangle Area:**\n\n✨ Area = ½ × base × height\n📝 Base = ${base}, Height = ${height}\n✅ Area = ${area} square units`;
+            return `📐 **Triangle Area:**\n\n✨ Formula: ½ × base × height\n📝 Base = ${base}, Height = ${height}\n✅ Area = ½ × ${base} × ${height} = ${area} square units`;
         }
-        return `📐 **Triangle Area:**\n\n✨ Area = ½ × base × height\n\n📝 **Example:** Base = 10, Height = 8\nArea = 40 sq units`;
+        return `📐 **Triangle Area Formula:**\n\n✨ Area = ½ × base × height\n\n📝 **Example:** Base = 10 cm, Height = 8 cm\nArea = ½ × 10 × 8 = 40 cm²\n\n✨ **Heron's Formula:**\nArea = √[s(s-a)(s-b)(s-c)]\nwhere s = (a+b+c)/2`;
     }
     
-    // Pythagoras Theorem
-    if (msg.includes('pythagoras') || msg.includes('hypotenuse')) {
+    // Rectangle Area
+    if (msg.includes('rectangle area') || msg.includes('area of rectangle')) {
+        const numbers = msg.match(/\d+/g);
+        if (numbers && numbers.length >= 2) {
+            const l = parseFloat(numbers[0]);
+            const b = parseFloat(numbers[1]);
+            const area = l * b;
+            return `📏 **Rectangle Area:**\n\n✨ Formula: length × breadth\n📝 Length = ${l}, Breadth = ${b}\n✅ Area = ${l} × ${b} = ${area} square units`;
+        }
+        return `📏 **Rectangle Area:**\n\n✨ Area = length × breadth\n✨ Perimeter = 2(length + breadth)\n\n📝 **Example:** Length = 10, Breadth = 5\nArea = 50 sq units, Perimeter = 30 units`;
+    }
+    
+    // Square Area
+    if (msg.includes('square area') || msg.includes('area of square')) {
+        const numbers = msg.match(/\d+/g);
+        if (numbers) {
+            const side = parseFloat(numbers[0]);
+            const area = side * side;
+            return `⬛ **Square Area:**\n\n✨ Formula: side²\n📝 Side = ${side}\n✅ Area = ${side}² = ${area} square units`;
+        }
+        return `⬛ **Square Area:**\n\n✨ Area = side²\n✨ Perimeter = 4 × side\n\n📝 **Example:** Side = 5 cm\nArea = 25 cm², Perimeter = 20 cm`;
+    }
+    
+    // ========== PYTHAGORAS THEOREM ==========
+    
+    if (msg.includes('pythagoras') || msg.includes('hypotenuse') || 
+        msg.includes('pythagorean')) {
         const numbers = msg.match(/\d+/g);
         if (numbers && numbers.length >= 2) {
             const a = parseFloat(numbers[0]);
             const b = parseFloat(numbers[1]);
             const c = Math.sqrt(a*a + b*b);
-            return `📐 **Pythagoras Theorem:**\n\n✨ a² + b² = c²\n📝 Base = ${a}, Height = ${b}\n✅ Hypotenuse = ${c.toFixed(2)}`;
+            return `📐 **Pythagoras Theorem:**\n\n✨ Formula: a² + b² = c²\n📝 Base = ${a}, Height = ${b}\n\nc² = ${a}² + ${b}² = ${a*a} + ${b*b} = ${a*a + b*b}\n✅ **Hypotenuse = √${a*a + b*b} = ${c.toFixed(2)}**`;
         }
-        return `📐 **PYTHAGORAS THEOREM:**\n\n✨ a² + b² = c²\n\n📝 **Example:** Base = 3, Height = 4\nHypotenuse = 5`;
+        return `📐 **PYTHAGORAS THEOREM:**\n\n✨ a² + b² = c²\n\n📝 **Example:** Base = 3, Height = 4\nc² = 3² + 4² = 9 + 16 = 25\nc = √25 = 5 (hypotenuse)\n\n💡 Use only for right-angled triangles!`;
     }
     
-    // Percentage
-    if (msg.includes('percent') || msg.includes('%')) {
+    // ========== PERCENTAGE ==========
+    
+    if (msg.includes('percent') || msg.includes('%') || msg.includes('percentage')) {
         const numbers = msg.match(/\d+/g);
         if (numbers && numbers.length >= 2) {
             const percent = parseFloat(numbers[0]);
             const value = parseFloat(numbers[1]);
             const result = (percent / 100) * value;
-            return `💰 **Percentage:**\n\n✨ ${percent}% of ${value} = ${result.toFixed(2)}`;
+            return `💰 **Percentage Calculation:**\n\n✨ ${percent}% of ${value} = (${percent}/100) × ${value}\n✅ **Answer = ${result.toFixed(2)}**\n\n📝 **Formula:** Percentage = (Part/Whole) × 100`;
         }
-        return `💰 **Percentage Formula:**\n\n✨ Percentage = (Part/Whole) × 100\n\n📝 **Example:** 20% of 500 = 100`;
+        return `💰 **PERCENTAGE FORMULAS:**\n\n✨ Percentage = (Part/Whole) × 100\n✨ Part = (Percentage × Whole)/100\n✨ Whole = (Part × 100)/Percentage\n\n📝 **Example:** 20% of 500 = 100\n📝 15 is what % of 60? = (15/60) × 100 = 25%`;
     }
     
-    // Simple Interest
+    // ========== SIMPLE INTEREST ==========
+    
     if (msg.includes('simple interest') || msg.includes('si')) {
         const numbers = msg.match(/\d+/g);
         if (numbers && numbers.length >= 3) {
@@ -980,61 +1011,117 @@ function solveMathProblem(question) {
             const R = parseFloat(numbers[1]);
             const T = parseFloat(numbers[2]);
             const SI = (P * R * T) / 100;
-            return `💰 **Simple Interest:**\n\n✨ SI = (P × R × T)/100\n📝 Principal = ₹${P}, Rate = ${R}%, Time = ${T} years\n✅ SI = ₹${SI.toFixed(2)}`;
+            const Amount = P + SI;
+            return `💰 **Simple Interest Calculation:**\n\n📝 Principal (P) = ₹${P}\n📝 Rate (R) = ${R}%\n📝 Time (T) = ${T} years\n\n✨ SI = (P × R × T)/100\n✨ SI = (${P} × ${R} × ${T})/100 = ₹${SI.toFixed(2)}\n✅ **Total Amount = ₹${Amount.toFixed(2)}**`;
         }
-        return `💰 **Simple Interest Formula:**\n\n✨ SI = (P × R × T)/100\n\n📝 **Example:** P=1000, R=10%, T=2 years\nSI = ₹200`;
+        return `💰 **SIMPLE INTEREST FORMULA:**\n\n✨ SI = (P × R × T)/100\n✨ Amount = P + SI\n\nWhere:\nP = Principal (Initial amount)\nR = Rate of Interest (% per annum)\nT = Time (in years)\n\n📝 **Example:** P=1000, R=10%, T=2 years\nSI = (1000 × 10 × 2)/100 = ₹200\nAmount = ₹1200`;
     }
     
-    // Volume of Cube
-    if (msg.includes('volume of cube')) {
+    // ========== COMPOUND INTEREST ==========
+    
+    if (msg.includes('compound interest') || msg.includes('ci')) {
+        const numbers = msg.match(/\d+/g);
+        if (numbers && numbers.length >= 3) {
+            const P = parseFloat(numbers[0]);
+            const R = parseFloat(numbers[1]);
+            const T = parseFloat(numbers[2]);
+            const Amount = P * Math.pow((1 + R/100), T);
+            const CI = Amount - P;
+            return `💰 **Compound Interest Calculation:**\n\n📝 Principal (P) = ₹${P}\n📝 Rate (R) = ${R}%\n📝 Time (T) = ${T} years\n\n✨ A = P(1 + R/100)ⁿ\n✨ A = ${P}(1 + ${R}/100)^${T}\n✅ **Amount = ₹${Amount.toFixed(2)}**\n✅ **CI = ₹${CI.toFixed(2)}**`;
+        }
+        return `💰 **COMPOUND INTEREST FORMULA:**\n\n✨ A = P(1 + R/100)ⁿ\n✨ CI = A - P\n\nWhere:\nA = Final Amount\nP = Principal\nR = Rate of Interest\nn = Number of years\n\n📝 **Example:** P=1000, R=10%, T=2 years\nA = 1000(1.1)² = ₹1210\nCI = ₹210`;
+    }
+    
+    // ========== VOLUME FORMULAS ==========
+    
+    // Cube Volume
+    if (msg.includes('volume of cube') || msg.includes('cube volume')) {
         const numbers = msg.match(/\d+/g);
         if (numbers) {
             const side = parseFloat(numbers[0]);
             const volume = side * side * side;
-            return `📦 **Cube Volume:**\n\n✨ Volume = side³\n📝 Side = ${side}\n✅ Volume = ${volume} cubic units`;
+            return `📦 **Cube Volume:**\n\n✨ Formula: side³\n📝 Side = ${side}\n✅ Volume = ${side}³ = ${volume} cubic units\n\n✨ Surface Area = 6 × side² = 6 × ${side}² = ${6 * side * side} sq units`;
         }
-        return `📦 **Cube Volume:**\n\n✨ Volume = side³\n\n📝 **Example:** Side = 5 cm\nVolume = 125 cm³`;
+        return `📦 **Cube Formulas:**\n\n✨ Volume = side³\n✨ Surface Area = 6 × side²\n\n📝 **Example:** Side = 5 cm\nVolume = 125 cm³\nSurface Area = 150 cm²`;
     }
     
-    // Volume of Cylinder
-    if (msg.includes('volume of cylinder')) {
+    // Cuboid Volume
+    if (msg.includes('volume of cuboid') || msg.includes('cuboid volume')) {
+        const numbers = msg.match(/\d+/g);
+        if (numbers && numbers.length >= 3) {
+            const l = parseFloat(numbers[0]);
+            const b = parseFloat(numbers[1]);
+            const h = parseFloat(numbers[2]);
+            const volume = l * b * h;
+            return `📦 **Cuboid Volume:**\n\n✨ Formula: length × breadth × height\n📝 Length = ${l}, Breadth = ${b}, Height = ${h}\n✅ Volume = ${l} × ${b} × ${h} = ${volume} cubic units`;
+        }
+        return `📦 **Cuboid Formulas:**\n\n✨ Volume = l × b × h\n✨ Surface Area = 2(lb + bh + hl)\n\n📝 **Example:** l=10, b=5, h=4\nVolume = 200 cm³`;
+    }
+    
+    // Cylinder Volume
+    if (msg.includes('volume of cylinder') || msg.includes('cylinder volume')) {
         const numbers = msg.match(/\d+/g);
         if (numbers && numbers.length >= 2) {
             const r = parseFloat(numbers[0]);
             const h = parseFloat(numbers[1]);
             const volume = Math.PI * r * r * h;
-            return `🥫 **Cylinder Volume:**\n\n✨ Volume = πr²h\n📝 Radius = ${r}, Height = ${h}\n✅ Volume = ${volume.toFixed(2)} cubic units`;
+            return `🥫 **Cylinder Volume:**\n\n✨ Formula: πr²h\n📝 Radius = ${r}, Height = ${h}\n✅ Volume = π × ${r}² × ${h} = ${volume.toFixed(2)} cubic units`;
         }
-        return `🥫 **Cylinder Volume:**\n\n✨ Volume = πr²h\n\n📝 **Example:** r=7, h=10\nVolume = 1540 cm³`;
+        return `🥫 **Cylinder Formulas:**\n\n✨ Volume = πr²h\n✨ Curved Surface = 2πrh\n✨ Total Surface = 2πr(r + h)\n\n📝 **Example:** r=7, h=10\nVolume = 1540 cm³`;
     }
     
-    // Speed, Distance, Time
-    if (msg.includes('speed') && msg.includes('distance')) {
+    // Sphere Volume
+    if (msg.includes('volume of sphere') || msg.includes('sphere volume')) {
+        const numbers = msg.match(/\d+/g);
+        if (numbers) {
+            const r = parseFloat(numbers[0]);
+            const volume = (4/3) * Math.PI * r * r * r;
+            return `🌐 **Sphere Volume:**\n\n✨ Formula: ⁴⁄₃πr³\n📝 Radius = ${r}\n✅ Volume = ⁴⁄₃ × π × ${r}³ = ${volume.toFixed(2)} cubic units`;
+        }
+        return `🌐 **Sphere Formulas:**\n\n✨ Volume = ⁴⁄₃πr³\n✨ Surface Area = 4πr²\n\n📝 **Example:** r=7 cm\nVolume = 1437.33 cm³\nSurface Area = 616 cm²`;
+    }
+    
+    // ========== SPEED, DISTANCE, TIME ==========
+    
+    if (msg.includes('speed') || msg.includes('distance') || msg.includes('time')) {
         const numbers = msg.match(/\d+/g);
         if (numbers && numbers.length >= 2) {
-            const d = parseFloat(numbers[0]);
-            const t = parseFloat(numbers[1]);
-            const s = d / t;
-            return `🚗 **Speed = Distance/Time**\n📝 Distance = ${d} km, Time = ${t} hours\n✅ Speed = ${s.toFixed(2)} km/h`;
+            if (msg.includes('speed') && msg.includes('distance')) {
+                const d = parseFloat(numbers[0]);
+                const t = parseFloat(numbers[1]);
+                const s = d / t;
+                return `🚗 **Speed Calculation:**\n\n✨ Speed = Distance/Time\n📝 Distance = ${d} km\n📝 Time = ${t} hours\n✅ Speed = ${s.toFixed(2)} km/h`;
+            } else if (msg.includes('speed') && msg.includes('time')) {
+                const s = parseFloat(numbers[0]);
+                const t = parseFloat(numbers[1]);
+                const d = s * t;
+                return `🚗 **Distance Calculation:**\n\n✨ Distance = Speed × Time\n📝 Speed = ${s} km/h\n📝 Time = ${t} hours\n✅ Distance = ${d} km`;
+            }
         }
+        return `🚗 **SPEED, DISTANCE, TIME FORMULAS:**\n\n✨ Speed = Distance/Time\n✨ Distance = Speed × Time\n✨ Time = Distance/Speed\n\n📝 **Example:** Distance = 100 km, Time = 2 hours\nSpeed = 50 km/h`;
     }
     
-    // Average
+    // ========== AVERAGE ==========
+    
     if (msg.includes('average') || msg.includes('mean')) {
         const numbers = msg.match(/\d+/g);
         if (numbers && numbers.length > 0) {
             let sum = 0;
             numbers.forEach(n => sum += parseFloat(n));
             const avg = sum / numbers.length;
-            return `📊 **Average = ${avg.toFixed(2)}**\n\nNumbers: ${numbers.join(', ')}\nSum = ${sum}, Count = ${numbers.length}`;
+            return `📊 **Average Calculation:**\n\n✨ Average = Sum of terms / Number of terms\n📝 Numbers: ${numbers.join(', ')}\n📝 Sum = ${sum}\n📝 Count = ${numbers.length}\n✅ **Average = ${avg.toFixed(2)}**`;
         }
+        return `📊 **AVERAGE FORMULA:**\n\n✨ Average = (Sum of all terms)/(Number of terms)\n\n📝 **Example:** Find average of 10, 20, 30\nSum = 60, Count = 3\nAverage = 60/3 = 20`;
     }
     
-    // General Calculations
+    // ========== GENERAL MATH CALCULATIONS ==========
+    
     try {
         if (msg.includes('what is') || msg.includes('calculate') || 
             msg.includes('solve') || msg.includes('=') || 
-            msg.includes('plus') || msg.includes('minus')) {
+            msg.includes('plus') || msg.includes('minus') ||
+            msg.includes('multiply') || msg.includes('divide') ||
+            msg.includes('×') || msg.includes('÷')) {
             
             let expression = msg
                 .replace(/what is/gi, '')
@@ -1042,22 +1129,32 @@ function solveMathProblem(question) {
                 .replace(/solve/gi, '')
                 .replace(/plus/gi, '+')
                 .replace(/minus/gi, '-')
+                .replace(/multiply/gi, '*')
                 .replace(/into/gi, '*')
                 .replace(/times/gi, '*')
                 .replace(/divided by/gi, '/')
-                .replace(/[^0-9+\-*/%.]/g, '');
+                .replace(/×/g, '*')
+                .replace(/÷/g, '/')
+                .replace(/square of (\d+)/gi, '($1*$1)')
+                .replace(/cube of (\d+)/gi, '($1*$1*$1)')
+                .replace(/[^0-9+\-*/%.()]/g, '');
             
-            if (expression.match(/[\d+\-*/]/) && expression.length > 0) {
+            if (expression.match(/[\d+\-*/()]/) && expression.length > 0 && expression.length < 50) {
                 const result = eval(expression);
                 if (!isNaN(result) && isFinite(result)) {
-                    return `🔢 **Answer:** ${result.toFixed(4)}`;
+                    return `🔢 **Calculation Result:**\n\n${expression} = ${result.toFixed(4)}`;
                 }
             }
         }
-    } catch(e) {}
+    } catch(e) {
+        // Silent fail
+    }
     
     return null;
 }
+
+// Make sure to call this function in your getSmartResponse
+
 
 // ==================== SMART AI RESPONSE ====================
 
