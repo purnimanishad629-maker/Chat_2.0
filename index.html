@@ -821,9 +821,243 @@ function showPage(pageId) {
   }
 }
 
-// ==================== SUPER SMART AI ASSISTANT ====================
-// ChatGPT jaisa intelligent AI - Study, Science, Math, Coding, GK
+// =================== SUPER SMART AI ASSISTANT 2.0 ===================
+// Advanced AI - Mathematics, Coding, Science, General Knowledge
 
+class SuperAIAssistant {
+    constructor() {
+        this.conversationHistory = [];
+        this.userContext = {};
+    }
+  // Main processing function
+processQuery(query) {
+    const lowerQuery = query.toLowerCase().trim();
+    
+    // Save to history
+    this.conversationHistory.push({ role: 'user', content: query, timestamp: Date.now() });
+    
+    let response = '';
+    
+    // Check for mathematical calculations
+    if (this.isMathQuestion(lowerQuery)) {
+        response = this.solveMath(query);
+    }
+    // Check for coding questions
+    else if (this.isCodingQuestion(lowerQuery)) {
+        response = this.solveCoding(query);
+    }
+    // Check for definition/dictionary
+    else if (this.isDefinitionQuestion(lowerQuery)) {
+        response = this.getDefinition(query);
+    }
+    // Smart response generation
+    else {
+        response = this.generateSmartResponse(query);
+    }
+    
+    // Save response to history
+    this.conversationHistory.push({ role: 'assistant', content: response, timestamp: Date.now() });
+    
+    return response;
+}// Check if question is mathematical
+isMathQuestion(query) {
+    const mathPatterns = ['calculate', 'solve', 'what is', 'compute', 'plus', 'minus', 
+                          'multiply', 'divide', '√', 'square root', 'percentage', '^', 'power'];
+    return mathPatterns.some(pattern => query.includes(pattern)) && 
+           /[\d\+\-\*\/\^\%\(\)\√]/.test(query);
+}
+
+// Solve mathematical problems
+solveMath(query) {
+    try {
+        let expression = query.replace(/[^0-9\+\-\*\/\^\%\(\)\√\s\.]/g, '');
+        expression = expression.replace(/√(\d+)/g, 'Math.sqrt($1)');
+        expression = expression.replace(/(\d+)\^(\d+)/g, 'Math.pow($1, $2)');
+        
+        const result = Function('"use strict";return (' + expression + ')')();
+        
+        return `📊 **Calculation Result**\n\nQuestion: ${query}\nAnswer: ${result}\n\n💡 Need more calculations? Just ask!`;
+    } catch(e) {
+        return this.generateSmartResponse(query);
+    }
+}
+  // Check if question is about coding
+isCodingQuestion(query) {
+    const codingPatterns = ['code', 'program', 'function', 'algorithm', 'javascript', 
+                            'python', 'html', 'css', 'loop', 'array', 'string', 'sort'];
+    return codingPatterns.some(pattern => query.includes(pattern));
+}
+
+// Solve coding problems
+solveCoding(query) {
+    const lowerQuery = query.toLowerCase();
+    
+    if (lowerQuery.includes('javascript') || lowerQuery.includes('js')) {
+        if (lowerQuery.includes('array') && lowerQuery.includes('sort')) {
+            return this.getJSArraySort();
+        } else if (lowerQuery.includes('function')) {
+            return this.getJSFunction();
+        } else if (lowerQuery.includes('loop')) {
+            return this.getJSLoop();
+        }
+    }
+    else if (lowerQuery.includes('python')) {
+        if (lowerQuery.includes('list')) {
+            return this.getPythonList();
+        }
+    }
+    
+    return this.getGeneralCodeHelp();
+}
+  // JavaScript Examples
+getJSArraySort() {
+    return `**JavaScript - Array Sort**\n\n` +
+           `\`\`\`javascript\n` +
+           `// Sort numbers in ascending order\n` +
+           `const numbers = [5, 2, 9, 1, 5, 6];\n` +
+           `numbers.sort((a, b) => a - b);\n` +
+           `console.log(numbers); // [1, 2, 5, 5, 6, 9]\n` +
+           `\`\`\`\n\n` +
+           `💡 **Explanation**: sort() method array ko ascending order me sort karta hai.`;
+}
+
+getJSFunction() {
+    return `**JavaScript - Functions**\n\n` +
+           `\`\`\`javascript\n` +
+           `// Regular function\n` +
+           `function add(a, b) {\n` +
+           `    return a + b;\n` +
+           `}\n\n` +
+           `// Arrow function\n` +
+           `const multiply = (a, b) => a * b;\n\n` +
+           `console.log(add(5, 3));      // 8\n` +
+           `console.log(multiply(4, 2)); // 8\n` +
+           `\`\`\`\n\n` +
+           `💡 **Tip**: Arrow functions shorter syntax provide karte hain!`;
+}
+
+getJSLoop() {
+    return `**JavaScript - Loops**\n\n` +
+           `\`\`\`javascript\n` +
+           `// For loop\n` +
+           `for (let i = 0; i < 5; i++) {\n` +
+           `    console.log(i);\n` +
+           `}\n\n` +
+           `// For...of loop (arrays)\n` +
+           `const fruits = ['apple', 'banana', 'orange'];\n` +
+           `for (const fruit of fruits) {\n` +
+           `    console.log(fruit);\n` +
+           `}\n` +
+           `\`\`\`\n\n` +
+           `💡 **Use**: for - fixed iterations, for...of - arrays ke liye best!`;
+}
+  // Python Examples
+getPythonList() {
+    return `**Python - Lists**\n\n` +
+           `\`\`\`python\n` +
+           `# Create and manipulate list\n` +
+           `numbers = [1, 2, 3, 4, 5]\n` +
+           `numbers.append(6)      # Add element\n` +
+           `numbers.remove(3)      # Remove element\n` +
+           `numbers.sort()         # Sort list\n\n` +
+           `# List comprehension\n` +
+           `squares = [x**2 for x in range(10)]\n` +
+           `print(squares)\n` +
+           `\`\`\`\n\n` +
+           `💡 **Tip**: List comprehensions fast aur readable code ke liye best hain!`;
+}
+
+getGeneralCodeHelp() {
+    return `💻 **Coding Help**\n\n` +
+           `Main aapki coding problems solve kar sakta hoon!\n\n` +
+           `**Topics I can help with:**\n` +
+           `• JavaScript (arrays, functions, loops, objects)\n` +
+           `• Python (lists, dictionaries, functions)\n` +
+           `• HTML/CSS (basic to advanced)\n` +
+           `• Algorithms & Data Structures\n\n` +
+           `**Example queries:**\n` +
+           `- "JavaScript array sort kaise karein?"\n` +
+           `- "Python list comprehension code"\n` +
+           `- "HTML form banane ka code"`;
+}
+  // Check if question is asking for definition
+isDefinitionQuestion(query) {
+    const defPatterns = ['what is', 'define', 'meaning of', 'what are', 'explain'];
+    return defPatterns.some(pattern => query.includes(pattern));
+}
+
+// Get definitions
+getDefinition(query) {
+    const lowerQuery = query.toLowerCase();
+    
+    const definitions = {
+        'ai': '**AI (Artificial Intelligence)** - Machines ka human-like intelligence se kaam karna. Machine Learning aur Deep Learning iske main parts hain.',
+        'api': '**API (Application Programming Interface)** - Do software ke beech communication karne ka tarika. Jaise waiter jo kitchen aur customer ke beech order pahunchata hai.',
+        'cloud': '**Cloud Computing** - Internet pe data store aur access karna. Jaise Google Drive, iCloud.',
+        'algorithm': '**Algorithm** - Problem solve karne ke liye step-by-step instructions ka set. Jaise cooking recipe.'
+    };
+    
+    for (let [key, value] of Object.entries(definitions)) {
+        if (lowerQuery.includes(key)) {
+            return value;
+        }
+    }
+    
+    return this.generateSmartResponse(query);
+}
+      // Smart response generator for any question
+    generateSmartResponse(query) {
+        const lowerQuery = query.toLowerCase();
+        
+        // Science related
+        if (lowerQuery.includes('gravity') || lowerQuery.includes('गुरुत्वाकर्षण')) {
+            return `🌍 **Gravity Explained**\n\ng = 9.8 m/s² on Earth\nMoon gravity = 1.62 m/s² (1/6 of Earth)\n\n💡 Newton discovered gravity watching an apple fall in 1666!`;
+        }
+        
+        if (lowerQuery.includes('photosynthesis') || lowerQuery.includes('प्रकाश संश्लेषण')) {
+            return `🌱 **Photosynthesis**\n\nFormula: CO₂ + H₂O + Sunlight → Glucose + O₂\n\nPlants sunlight use karke apna khana banate hain aur oxygen release karte hain!`;
+        }
+        
+        if (lowerQuery.includes('solar') || lowerQuery.includes('planet')) {
+            return `🪐 **Solar System**\n\n8 Planets:\nMercury → Venus → Earth → Mars → Jupiter → Saturn → Uranus → Neptune\n\n🌞 Sun contains 99.86% of solar system's mass!`;
+        }
+        
+        // Study related
+        if (lowerQuery.includes('study') || lowerQuery.includes('padhai')) {
+            return `📚 **Study Tips**\n\n✅ Pomodoro: 25 min study + 5 min break\n✅ Active Recall: Bina book ke yaad karein\n✅ Spaced Repetition: Time gap repeat karein\n✅ Feynman Technique: Doosron ko padhao\n\n🌅 Best time: 5 AM - 7 AM`;
+        }
+        
+        if (lowerQuery.includes('time') || lowerQuery.includes('schedule')) {
+            return `⏰ **Ideal Daily Schedule**\n\n5-6 AM: Wake up & Exercise\n6-8 AM: Difficult subjects\n8-9 AM: Breakfast\n9-12 PM: Medium subjects\n12-1 PM: Lunch\n1-3 PM: Easy subjects\n3-5 PM: Practice/Revision\n5-7 PM: Hobby\n7-9 PM: Dinner & Family\n9-10 PM: Revision\n10 PM: Sleep\n\n💤 8 hours sleep is compulsory!`;
+        }
+        
+        if (lowerQuery.includes('exam') || lowerQuery.includes('test')) {
+            return `📝 **Exam Master Plan**\n\n**30 Days Before:**\n• Complete syllabus\n• Mark important topics\n\n**15 Days Before:**\n• Daily mock tests\n• Focus on weak topics\n\n**1 Day Before:**\n• Light revision only\n• 8 hours sleep\n• Stay positive!\n\n🎯 Success Mantra: "Jo padha achhe se padho!"`;
+        }
+        
+        // Math formulas
+        if (lowerQuery.includes('formula') || lowerQuery.includes('equation')) {
+            return `📐 **Important Formulas**\n\n**Algebra:**\n(a+b)² = a² + 2ab + b²\n(a-b)² = a² - 2ab + b²\n\n**Physics:**\nF = ma (Force)\nE = mc² (Energy)\n\n**Geometry:**\nArea of circle = πr²\nPythagoras: a² + b² = c²`;
+        }
+        
+        // General greeting
+        if (lowerQuery.includes('hello') || lowerQuery.includes('hi') || lowerQuery.includes('namaste')) {
+            return `👋 **Namaste! Main hoon aapka Super AI Assistant 2.0**\n\nMain aapki help kar sakta hoon:\n📚 Study Tips\n🧮 Mathematics\n💻 Coding Problems\n🔬 Science & GK\n📝 Exam Preparation\n\nPuchhiye kuch bhi! Main jawab dunga. 😊`;
+        }
+        
+        // Default smart response
+        return `🤖 **Super AI Assistant**\n\nAapne poochha: "${query}"\n\nMain aapki help kar sakta hoon:\n• **Math problems** solve karne mein\n• **Code** likhne mein\n• **Study tips** dene mein\n• **Science concepts** samjhane mein\n\nKripya aur specific sawaal poochhein! 📚✨\n\n*Example: "JavaScript array sort kaise karein?"*`;
+    }
+}
+
+// Create global instance
+const superAI = new SuperAIAssistant();
+
+// Function to call from your existing code
+function getSuperAIResponse(userQuery) {
+    return superAI.processQuery(userQuery);
+}
+  
 const smartResponses = {
   // STUDY & EDUCATION
   'study tips|padhai kaise karein|how to study|study motivation': `📚 COMPLETE STUDY GUIDE:
