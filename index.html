@@ -3630,7 +3630,295 @@ window.getSimpleResponse = function(message) {
 
 console.log("✅ Advanced GK System Loaded!");
 console.log("Try: capital of india, largest planet, random fact, quiz");
+    // ========== PART 1: ADVANCED SMART RESPONSES ==========
+
+// Smart conversation memory
+var conversationMemory = [];
+var userPreferences = {
+    language: 'bilingual',
+    interests: []
+};
+
+// Advanced response generator
+function getAdvancedResponse(message) {
+    var msg = message.toLowerCase().trim();
+    
+    // Store conversation
+    conversationMemory.push({ question: message, time: new Date() });
+    if (conversationMemory.length > 10) conversationMemory.shift();
+    
+    // ========== EMOTIONAL INTELLIGENCE ==========
+    
+    // Detect emotions and respond accordingly
+    if (msg.includes('sad') || msg.includes('depressed') || msg.includes('upset') || msg.includes('alone')) {
+        return "💝 **Main samajh sakta hoon aapko bura lag raha hai...**\n\nYaad rakho:\n🌟 Aap akela nahi ho\n💪 Har mushkil waqt ke baad sukoon aata hai\n🌅 Kal naya din hoga\n\nKya aap baat karna chahte ho? Main hoon na! 🤗";
+    }
+    
+    if (msg.includes('happy') || msg.includes('excited') || msg.includes('wonderful')) {
+        return "🎉 **Wow! Aapki khushi sunke mujhe bhi bohot accha lag raha hai!**\n\nBatao kya special hua? Main aapki khushi share kar sakta hoon! 😊✨";
+    }
+    
+    if (msg.includes('stress') || msg.includes('tension') || msg.includes('worried')) {
+        return "🧘 **Tension mat lo! Main hoon na!**\n\n**Stress relief tips:**\n• 5 deep breaths le lo\n• 10 min walk karo\n• Kuch accha suno\n• Apni feelings likho\n\nMain aapki baat sunne ke liye hoon! 💙";
+    }
+    
+    if (msg.includes('bored') || msg.includes('nothing to do')) {
+        return "😊 **Bored? Main kuch ideas deta hoon!**\n\n📚 Kuch naya seekho\n🎨 Kuch creative karo\n🎵 Music suno\n📖 Kuch interesting padho\n🤖 Ya mujhse baat karo!\n\nKya karna pasand karoge?";
+    }
+    
+    if (msg.includes('scared') || msg.includes('fear') || msg.includes('afraid')) {
+        return "🛡️ **Dar lag raha hai? Main hoon na!**\n\nYaad rakho:\n• Dar ek emotion hai, weakness nahi\n• Jo dar ko face karta hai, woh jeet jata hai\n• Tum strong ho!\n\nBatao kya hua? Main sunne ke liye hoon! 💪";
+    }
+    
+    // ========== PERSONALIZED GREETINGS ==========
+    
+    var hour = new Date().getHours();
+    var timeGreeting = "";
+    if (hour < 12) timeGreeting = "🌅 Good Morning!";
+    else if (hour < 17) timeGreeting = "☀️ Good Afternoon!";
+    else if (hour < 21) timeGreeting = "🌤️ Good Evening!";
+    else timeGreeting = "🌙 Good Night!";
+    
+    if ((msg.includes('hello') || msg.includes('hi') || msg.includes('namaste')) && 
+        (msg.includes('again') || msg.includes('welcome back') || conversationMemory.length > 1)) {
+        return `${timeGreeting} 🙏 **Aap wapas aaye! Welcome back!**\n\nAaj main aapki kya help kar sakta hoon? ${getPersonalizedSuggestion()}`;
+    }
+    
+    // ========== PERSONALIZED SUGGESTIONS ==========
+    
+    if (msg.includes('suggest') || msg.includes('recommend') || msg.includes('idea')) {
+        return getPersonalizedSuggestion();
+    }
+    
+    return null;
+}
+
+function getPersonalizedSuggestion() {
+    var suggestions = [
+        "📚 **Study:** " + getRandomStudyTip(),
+        "🎯 **Motivation:** " + getRandomMotivationQuote(),
+        "🔢 **Math:** Try solving 23*56 or find square root of 144",
+        "🌱 **Science:** Want to learn about photosynthesis or solar system?",
+        "💻 **Coding:** Want HTML, CSS, or JavaScript help?",
+        "📖 **GK:** Try asking 'capital of india' or 'largest planet'",
+        "🧘 **Health:** Take a deep breath! Want some health tips?",
+        "🎨 **Creative:** Write something, draw, or learn something new!"
+    ];
+    return suggestions[Math.floor(Math.random() * suggestions.length)];
+}
+
+function getRandomStudyTip() {
+    var tips = [
+        "Pomodoro: 25 min study + 5 min break",
+        "Morning 5-7 AM is best for studying",
+        "Make short notes for revision",
+        "Teach others to learn better",
+        "Take breaks every hour"
+    ];
+    return tips[Math.floor(Math.random() * tips.length)];
+}
+
+function getRandomMotivationQuote() {
+    var quotes = [
+        "Believe you can and you're halfway there!",
+        "Success is not final, failure is not fatal",
+        "Your only limit is your mind",
+        "Keep going! Every step counts",
+        "You are stronger than you think"
+    ];
+    return quotes[Math.floor(Math.random() * quotes.length)];
+}
+
+console.log("✅ Part 1: Advanced Smart Responses Loaded!");
+    // ========== PART 2: JOKE & FUN SECTION ==========
+
+function getFunResponse(message) {
+    var msg = message.toLowerCase();
+    
+    // Jokes Database
+    var jokes = [
+        { q: "joke", a: "😄 **Joke:**\n\nStudent: 'Sir, neend nahi aa rahi'\nTeacher: 'Maths book padho, turant aa jayegi!'" },
+        { q: "funny", a: "😂 **Funny:**\n\nWhy don't scientists trust atoms?\nBecause they make up everything!" },
+        { q: "dad joke", a: "🤣 **Dad Joke:**\n\nWhy did the scarecrow win an award?\nBecause he was outstanding in his field!" },
+        { q: "programmer joke", a: "👨‍💻 **Programmer Joke:**\n\nWhy do programmers prefer dark mode?\nBecause light attracts bugs!" },
+    ];
+    
+    if (msg.includes('joke') || msg.includes('funny') || msg.includes('comedy')) {
+        var joke = jokes[Math.floor(Math.random() * jokes.length)];
+        return joke.a;
+    }
+    
+    // Riddles
+    if (msg.includes('riddle') || msg.includes('puzzle')) {
+        var riddles = [
+            "🧩 **Riddle:**\n\nI speak without a mouth and hear without ears. I have no body, but I come alive with wind. What am I?\n\n💡 *Answer batao!*",
+            "🧩 **Riddle:**\n\nThe more you take, the more you leave behind. What am I?\n\n💡 *Answer: Footsteps!*",
+            "🧩 **Riddle:**\n\nWhat has keys but can't open locks?\n\n💡 *Answer: A piano!*"
+        ];
+        return riddles[Math.floor(Math.random() * riddles.length)];
+    }
+    
+    // Games
+    if (msg.includes('game') || msg.includes('play')) {
+        return "🎮 **Games I can play:**\n\n1. **Number Guessing** - Think of a number, I'll guess!\n2. **Quiz** - GK questions\n3. **Riddles** - Solve puzzles\n\nType 'number game' or 'quiz' to start! 😊";
+    }
+    
+    if (msg.includes('number game') || msg.includes('guess number')) {
+        var secretNumber = Math.floor(Math.random() * 10) + 1;
+        return "🎲 **Number Guessing Game!**\n\nI'm thinking of a number between 1 and 10.\nType 'guess X' (where X is your guess)!\n\n💡 *Hint: It's between 1-10!*";
+    }
+    
+    var guessMatch = msg.match(/guess (\d+)/);
+    if (guessMatch && conversationMemory.some(m => m.question.includes('number game'))) {
+        var guess = parseInt(guessMatch[1]);
+        var secret = 7; // You can make this dynamic
+        if (guess === secret) {
+            return "🎉 **Correct! You won!** 🎉\n\nWant to play again? Type 'number game'!";
+        } else {
+            return `🤔 ${guess} is not correct. Try again! 💡 *Hint: It's between 1-10*`;
+        }
+    }
+    
+    return null;
+}
+
+console.log("✅ Part 2: Joke & Fun Section Loaded!");
+    // ========== PART 3: ADVANCED KNOWLEDGE BASE ==========
+
+const advancedKnowledge = {
+    // Technology
+    'what is ai': "🤖 **Artificial Intelligence (AI)**\n\nAI is machines learning to think like humans. Examples: ChatGPT, Self-driving cars, Voice assistants!",
+    'what is machine learning': "📊 **Machine Learning**\n\nML is a subset of AI where computers learn from data without being explicitly programmed.",
+    'what is blockchain': "⛓️ **Blockchain**\n\nA digital ledger that records transactions securely. Bitcoin uses blockchain!",
+    'what is cloud computing': "☁️ **Cloud Computing**\n\nStoring and accessing data over the internet instead of your computer's hard drive.",
+    
+    // Business
+    'what is entrepreneurship': "🚀 **Entrepreneurship**\n\nStarting and running your own business. It's about solving problems and creating value!",
+    'what is marketing': "📢 **Marketing**\n\nUnderstanding customers and promoting products to meet their needs.",
+    'what is stock market': "📈 **Stock Market**\n\nA marketplace where shares of companies are bought and sold.",
+    
+    // Psychology
+    'what is mindset': "🧠 **Mindset**\n\nYour beliefs and attitudes that shape how you see yourself and the world. Growth mindset = Believe you can improve!",
+    'what is confidence': "💪 **Confidence**\n\nBelieving in yourself and your abilities. Fake it till you make it works!",
+    'what is stress management': "🧘 **Stress Management**\n\nTechniques to handle stress: deep breathing, exercise, talking to someone, taking breaks.",
+    
+    // Career
+    'career guidance': "🎯 **Career Guidance**\n\n1. Find your passion\n2. Learn skills\n3. Network with people\n4. Start small\n5. Never stop learning!\n\nWhat field are you interested in?",
+    'how to get job': "💼 **Job Tips:**\n\n• Build strong resume\n• Learn in-demand skills\n• Network online\n• Prepare for interviews\n• Stay persistent!",
+};
+
+function getAdvancedKnowledge(message) {
+    var msg = message.toLowerCase();
+    
+    for (var [key, value] of Object.entries(advancedKnowledge)) {
+        if (msg.includes(key)) {
+            return value;
+        }
+    }
+    
+    // Quick facts
+    if (msg.includes('fact about')) {
+        var topic = msg.replace('fact about', '').trim();
+        return getQuickFact(topic);
+    }
+    
+    return null;
+}
+
+function getQuickFact(topic) {
+    var facts = {
+        'space': "🚀 Space is completely silent because there's no air!",
+        'ocean': "🌊 94% of life on Earth is aquatic!",
+        'human': "🧠 Your brain generates enough electricity to power a light bulb!",
+        'animal': "🦒 A giraffe's tongue is 21 inches long!",
+        'history': "📜 The Great Wall of China is over 13,000 miles long!"
+    };
+    
+    for (var [key, value] of Object.entries(facts)) {
+        if (topic.includes(key)) {
+            return "💡 **Fact:** " + value;
+        }
+    }
+    return "💡 Tell me what fact you want: space, ocean, human, animal, history";
+}
+
+console.log("✅ Part 3: Advanced Knowledge Base Loaded!");
+    // ========== PART 4: ENHANCED MAIN RESPONSE FUNCTION ==========
+
+// Save original function
+var originalSimpleResponse = window.getSimpleResponse;
+
+// New enhanced function
+window.getSimpleResponse = function(message) {
+    var msg = message.toLowerCase().trim();
+    
+    // ========== LAYER 1: Emotions & Personal ==========
+    var emotionalResponse = getAdvancedResponse(message);
+    if (emotionalResponse) return emotionalResponse;
+    
+    // ========== LAYER 2: Fun & Games ==========
+    var funResponse = getFunResponse(message);
+    if (funResponse) return funResponse;
+    
+    // ========== LAYER 3: Advanced Knowledge ==========
+    var knowledgeResponse = getAdvancedKnowledge(message);
+    if (knowledgeResponse) return knowledgeResponse;
+    
+    // ========== LAYER 4: Original Responses ==========
+    if (originalSimpleResponse) {
+        var originalResponse = originalSimpleResponse(message);
+        // Check if original response is the default (not a specific answer)
+        if (originalResponse && !originalResponse.includes("Main aapki madad kar sakta hoon")) {
+            return originalResponse;
+        }
+    }
+    
+    // ========== LAYER 5: Smart Default ==========
+    return getSmartDefaultResponse(message);
+};
+
+function getSmartDefaultResponse(message) {
+    var responses = [
+        `🤔 Hmm... "${message}"\n\nMain iska jawab dhundh raha hoon! 📚\n\n**Try karo:**\n• Joke batao\n• Riddle do\n• GK question\n• Study tips\n• Motivation\n\nYa aur detail mein batao! 😊`,
+        
+        `💡 **Interesting question!**\n\nMain iske baare mein soch raha hoon...\n\nKya aap pooch sakte ho:\n• "what is AI"\n• "career guidance"\n• "tell me a joke"\n• "random fact"\n\nMain behtar help kar sakta hoon! 🚀`,
+        
+        `🌟 **Aapka sawaal:** "${message}"\n\nMujhe aur context chahiye. Kya aap:\n• Koi specific topic pooch rahe ho?\n• Help chahiye?\n• Ya bas baat karna chahte ho?\n\nMain hoon yahan! 😊`
+    ];
+    return responses[Math.floor(Math.random() * responses.length)];
+}
+
+console.log("✅ PART 4: Enhanced Main Function Loaded!");
+console.log("🎉 ALL FEATURES ACTIVATED! Try:");
+console.log("- Tell me a joke");
+console.log("- I'm sad");
+console.log("- What is AI");
+console.log("- Number game");
+console.log("- Random fact");
+    // ========== PART 5: FINAL INTEGRATION ==========
+
+// Initialize everything when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    console.log("🚀 Advanced AI Assistant Ready!");
+    console.log("✨ Features: Emotions | Jokes | Games | Knowledge | Personalization");
+    
+    // Add welcome message with time greeting
+    var hour = new Date().getHours();
+    var greeting = hour < 12 ? "Good Morning" : (hour < 17 ? "Good Afternoon" : "Good Evening");
+    
+    setTimeout(function() {
+        var chatMessages = document.getElementById('chatMessages');
+        if (chatMessages && chatMessages.children.length <= 1) {
+            addToChat(`🌟 **${greeting}! Namaste!** 🌟\n\nMain hoon aapka **Smart AI Assistant 3.0**! 🤖\n\n**New Features:**\n😊 I understand your emotions\n😂 Jokes & Riddles\n🎮 Games to play\n📚 Advanced knowledge\n\n**Try karo:**\n• "I'm feeling sad" (emotional support)\n• "Tell me a joke" (fun)\n• "Number game" (play)\n• "What is AI" (knowledge)\n• "Random fact" (interesting)\n\nKuch bhi poocho! 💫`, 'bot');
+        }
+    }, 800);
+});
+
+console.log("✅ PART 5: Final Integration Complete!");
+console.log("🎊 CONGRATULATIONS! Your AI Assistant is now SUPER SMART! 🎊");
+    
   </script>
+
   
 </body>
 </html>
